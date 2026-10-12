@@ -3,6 +3,7 @@
 This is wiring only: the prompt is deliberately minimal and not tuned.
 """
 
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,13 @@ from maintain_eval.config import Settings, get_settings
 from maintain_eval.observability import traced_run
 from maintain_eval.schemas import Characteristic, Evidence, Finding, Verdict
 from maintain_eval.version_b.readonly_backend import ReadOnlyFilesystemBackend
+
+# Bump whenever SYSTEM_PROMPT or the agent's tools/output schema change. Sent to Langfuse
+# as the observation `version`, so runs of different prompt iterations can be compared.
+PROMPT_VERSION = "1.0"
+# Observation name for every LLM call in the agent loop (traces name the operation,
+# not the model class; the model id is recorded separately on each generation).
+LLM_CALL_NAME = "decide-next-action"
 
 SYSTEM_PROMPT = """\
 You evaluate the maintainability of a software project (ISO/IEC 25010).
@@ -48,7 +56,7 @@ class AgentAnswer(BaseModel):
 def build_model(settings: Settings) -> BaseChatModel:
     if not settings.llm_model:
         raise AgentOutputError("LLM_MODEL is not set (expected `provider:model`).")
-    kwargs: dict[str, Any] = {}
+    kwargs: dict[str, Any] = {"name": LLM_CALL_NAME}
     if settings.openai_api_key is not None:
         kwargs["api_key"] = settings.openai_api_key.get_secret_value()
     if settings.openai_base_url:
@@ -89,28 +97,7 @@ def to_finding(answer: AgentAnswer, characteristic: Characteristic) -> Finding:
     )
 
 
-def run_smoke(
-    target: Path,
-    characteristic: Characteristic,
-    run_id: str,
-    settings: Settings | None = None,
-    model: BaseChatModel | None = None,
-) -> Finding:
-    """Ask the agent about one characteristic of `target` and return a validated Finding."""
-    agent = build_agent(target, model or build_model(settings or get_settings()))
-    question = (
-        f"Evaluate the {characteristic.value} of the project at `/`. "
-        "Answer PASS, FAIL or UNKNOWN and cite file + line."
-    )
-    with traced_run(version="B", run_id=run_id, characteristic=characteristic) as config:
-        config["recursion_limit"] = 60
-        try:
-            result = agent.invoke(
-                {"messages": [{"role": "user", "content": question}]}, config=config
-            )
-        except StructuredOutputError as exc:
-            raise AgentOutputError(f"Agent answer could not be parsed: {exc}") from exc
-
+def _finding_from_result(result: dict[str, Any], characteristic: Characteristic) -> Finding:
     answer = result.get("structured_response")
     if not isinstance(answer, AgentAnswer):
         raise AgentOutputError(
@@ -120,3 +107,43 @@ def run_smoke(
         return to_finding(answer, characteristic)
     except ValidationError as exc:
         raise AgentOutputError(f"Agent answer failed validation: {exc}") from exc
+
+
+def run_smoke(
+    target: Path,
+    characteristic: Characteristic,
+    run_id: str,
+    settings: Settings | None = None,
+    model: BaseChatModel | None = None,
+    session_id: str | None = None,
+    on_trace_url: Callable[[str], None] | None = None,
+) -> Finding:
+    """Ask the agent about one characteristic of `target` and return a validated Finding.
+
+    `on_trace_url` is called with the Langfuse trace URL before the agent starts, if tracing.
+    """
+    agent = build_agent(target, model or build_model(settings or get_settings()))
+    question = (
+        f"Evaluate the {characteristic.value} of the project at `/`. "
+        "Answer PASS, FAIL or UNKNOWN and cite file + line."
+    )
+    with traced_run(
+        version="B",
+        run_id=run_id,
+        characteristic=characteristic,
+        input={"target": str(target), "characteristic": characteristic.value, "question": question},
+        session_id=session_id,
+        component_version=PROMPT_VERSION,
+    ) as run:
+        if run.trace_url and on_trace_url:
+            on_trace_url(run.trace_url)
+        config = run.config | {"recursion_limit": 60}
+        try:
+            result = agent.invoke(
+                {"messages": [{"role": "user", "content": question}]}, config=config
+            )
+        except StructuredOutputError as exc:
+            raise AgentOutputError(f"Agent answer could not be parsed: {exc}") from exc
+        finding = _finding_from_result(result, characteristic)
+        run.set_output(finding.model_dump(mode="json"))
+    return finding
