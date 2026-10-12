@@ -73,6 +73,7 @@ Use exactly these words in code, docs and commits; no synonyms.
 
 ## Rules and skills
 
-- `.claude/rules/` (loaded automatically): `naming.md`, `repo-structure.md`, `git-workflow.md`.
+- `.claude/rules/` (loaded automatically): `naming.md`, `repo-structure.md`, `git-workflow.md`,
+  `comments.md`.
 - `.claude/skills/`: Matt Pocock's engineering skills, third-party and updated deliberately,
   never automatically. Source, commit and update steps: `.claude/skills/README.md`.
