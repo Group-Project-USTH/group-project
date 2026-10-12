@@ -4,7 +4,7 @@
 # NOT run automatically. Requires `gh` authenticated as a repo admin.
 #
 # Usage:
-#   scripts/apply_branch_protection.sh [--dry-run] [OWNER/REPO]
+#   scripts/apply_branch_protection.sh [OWNER/REPO] [--dry-run]   (any order)
 #
 # What it changes on GitHub:
 #   1. Creates (or updates, if one with the same name exists) the repository
@@ -19,12 +19,21 @@
 set -euo pipefail
 
 DRY_RUN=0
-if [[ "${1:-}" == "--dry-run" ]]; then
-  DRY_RUN=1
-  shift
-fi
-
-REPO="${1:-$(gh repo view --json nameWithOwner --jq .nameWithOwner)}"
+REPO=""
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    -*) echo "Unknown option: $arg" >&2; exit 2 ;;
+    *)
+      if [[ -n "$REPO" ]]; then
+        echo "Only one OWNER/REPO allowed, got '$REPO' and '$arg'" >&2
+        exit 2
+      fi
+      REPO="$arg"
+      ;;
+  esac
+done
+REPO="${REPO:-$(gh repo view --json nameWithOwner --jq .nameWithOwner)}"
 RULESET_FILE="$(cd "$(dirname "$0")/.." && pwd)/.github/rulesets/main.json"
 RULESET_NAME="$(jq -r .name "$RULESET_FILE")"
 
