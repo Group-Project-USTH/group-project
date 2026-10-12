@@ -8,7 +8,8 @@
       "Bash(uv run pytest *)"
     ],
     "ask": [
-      "Bash(uv run pytest -m integration *)",
+      "Bash(uv run pytest *integration*)",
+      "Bash(uv run pytest *smoke*)",
       "Bash(gh pr merge *)",
       "Bash(gh repo edit *)",
       "Bash(gh api * --method *)",
