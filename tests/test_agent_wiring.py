@@ -108,3 +108,11 @@ def test_run_smoke_rejects_bad_answers(project: Path, final: AIMessage) -> None:
 def test_build_agent_requires_existing_directory(tmp_path: Path) -> None:
     with pytest.raises(NotADirectoryError):
         build_agent(tmp_path / "missing", scripted())
+
+
+def test_build_model_names_llm_calls_by_operation() -> None:
+    from maintain_eval.config import Settings
+    from maintain_eval.version_b.agent import LLM_CALL_NAME, build_model
+
+    model = build_model(Settings(llm_model="openai:some-model", openai_api_key="sk-test"))
+    assert model.get_name() == LLM_CALL_NAME

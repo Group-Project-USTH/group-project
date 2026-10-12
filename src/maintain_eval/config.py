@@ -2,7 +2,7 @@
 
 from functools import lru_cache
 
-from pydantic import SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -20,6 +20,19 @@ class Settings(BaseSettings):
     langfuse_public_key: str | None = None
     langfuse_secret_key: SecretStr | None = None
     langfuse_base_url: str = "https://cloud.langfuse.com"
+    # Keeps dev/test traces out of experiment data. Pattern documented by Langfuse.
+    langfuse_tracing_environment: str = Field(
+        default="development", pattern=r"^[a-z0-9_-]+$", max_length=40
+    )
+    # Application release; defaults to the git commit of this code (see observability.py).
+    langfuse_release: str | None = None
+
+    @field_validator("langfuse_tracing_environment")
+    @classmethod
+    def _environment_not_reserved(cls, value: str) -> str:
+        if value.startswith("langfuse"):
+            raise ValueError("Langfuse reserves environments starting with 'langfuse'")
+        return value
 
     @property
     def langfuse_configured(self) -> bool:
