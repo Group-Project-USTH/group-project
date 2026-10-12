@@ -129,6 +129,7 @@ src/maintain_eval/
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
 .github/                CI, Dependabot, PR template, CODEOWNERS, main-branch ruleset
 scripts/                apply_branch_protection.sh (run manually by a repo admin)
+.claude/                shared Claude Code settings, rules and third-party skills (see CLAUDE.md)
 ```
 
 ## Contribution workflow
