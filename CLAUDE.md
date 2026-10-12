@@ -50,3 +50,6 @@ uv run pytest -m integration --no-cov   # real LLM, needs .env
 - The team's OpenAI-compatible router ignores `tool_choice` on `/chat/completions`; that is
   why `openai:*` models use the Responses API with `ProviderStrategy` structured output.
 - The agent's file access is read-only but not sandboxed: it can read anything under the target.
+- Tracing conventions live in `observability.py` (trace name `evaluate-characteristic` is an
+  API for dashboards: don't rename casually). Bump `PROMPT_VERSION` when the agent prompt
+  changes. Use the Langfuse skill and fetch current docs before changing tracing.
