@@ -7,7 +7,7 @@ glance at the file tree.
 
 - Full descriptive words, no cryptic abbreviations: `characteristic` not `chr`, `evidence`
   not `ev`. Allowed: universally known ones (`id`, `url`, `llm`, `cli`, `config`).
-- One concept, one word. Use the domain vocabulary in `CLAUDE.md` everywhere, never a
+- One concept, one word. Use the terms in `GLOSSARY.md` everywhere, never a
   synonym: a `Verdict` is never a `result`, `answer` or `outcome`.
 
 ## Files

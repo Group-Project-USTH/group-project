@@ -130,6 +130,8 @@ tests/                  unit tests; fixtures/sample_project is the smoke-test ta
 .github/                CI, Dependabot, PR template, CODEOWNERS, main-branch ruleset
 scripts/                apply_branch_protection.sh (run manually by a repo admin)
 .claude/                shared Claude Code settings, rules and third-party skills (see CLAUDE.md)
+GLOSSARY.md             domain terms (Characteristic, Verdict, Finding, ...); use exactly these
+docs/agents/            how the Claude Code skills use our issue tracker, labels and domain docs
 ```
 
 ## Contribution workflow
