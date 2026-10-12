@@ -143,3 +143,11 @@ scripts/                apply_branch_protection.sh (run manually by a repo admin
 6. **Squash merge** (or rebase). Nobody pushes to `main` directly.
 
 Never commit secrets: `.env` is git-ignored, only `.env.example` (no real values) is tracked.
+
+### Using Claude Code
+
+`CLAUDE.md`, `.claude/rules/` and `.claude/settings.json` are shared team setup; the skills in
+`.claude/skills/` are third-party (see its README). Open the repo in Claude Code interactively
+once and accept the trust prompt, otherwise the shared `allow` rules are ignored (the `deny`
+rules always apply). Personal tweaks go in `.claude/settings.local.json` or `CLAUDE.local.md`,
+both git-ignored.
