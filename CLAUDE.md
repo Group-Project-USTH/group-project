@@ -33,20 +33,9 @@ CI runs the first five. Copy `.env.example` to `.env` for the LLM and Langfuse k
 
 ## Domain vocabulary
 
-Use exactly these words in code, docs and commits; no synonyms.
-
-- **Characteristic**: one of the five ISO/IEC 25010 maintainability sub-characteristics:
-  modularity, reusability, analysability, modifiability, testability.
-- **Verdict**: `pass` / `fail` / `unknown` for one characteristic.
-- **Evidence**: a file + line range (and optional snippet) that supports a verdict.
-- **Finding**: one verdict for one characteristic, with its evidence, rationale and source
-  (`agent` or `tool:<name>`). Agent pass/fail findings must cite evidence.
-- **Version A**: static-analysis tools only (SonarQube, dependency checker, coverage tool).
-  **Version B**: the same tools plus the DeepAgents agent, traced in Langfuse.
-  "Version" alone means A/B; the prompt version is `PROMPT_VERSION`, the code version is the
-  Langfuse release.
-- **Answer key**: the reference verdicts (Git history, mutation testing, expert-rated
-  dataset, manual checks by two team members).
+Use exactly the terms in @GLOSSARY.md (imported, so it loads every session) in code, docs,
+issues and commits, never the synonyms it lists under _Avoid_. New or changed terms go
+there, not here.
 
 ## Working rules
 
@@ -77,3 +66,18 @@ Use exactly these words in code, docs and commits; no synonyms.
   `comments.md`.
 - `.claude/skills/`: Matt Pocock's engineering skills, third-party and updated deliberately,
   never automatically. Source, commit and update steps: `.claude/skills/README.md`.
+
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues for this repo, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five default labels: `needs-triage`, `needs-info`, `ready-for-agent`,
+`ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` at the root, ADRs in `docs/adr/`. See `docs/agents/domain.md`.

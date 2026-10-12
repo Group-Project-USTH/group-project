@@ -9,12 +9,12 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | `src/maintain_eval/` | the only top-level package (src layout) |
 | `tests/` | mirrors `src/maintain_eval/` |
 | `scripts/` | one-off or ops scripts; never imported by the package |
-| `docs/` | human docs: `architecture.md` and short ADRs for decisions costly to reverse |
+| `docs/` | `architecture.md`, ADRs in `docs/adr/` for decisions costly to reverse, skill config in `docs/agents/` |
 | `data/` | datasets; large or generated files are git-ignored |
 | `.github/` | CI, Dependabot, PR template, rulesets |
 
-Don't pre-create domain docs (glossary, ADR folders): `/setup-matt-pocock-skills` decides
-where they live.
+Domain terms live in `GLOSSARY.md` at the root. Don't pre-create ADRs or other domain docs;
+`/domain-modeling` creates them when a decision is actually made.
 
 ## Organise by domain, not by technical layer
 
