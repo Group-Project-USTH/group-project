@@ -48,6 +48,18 @@ cli ──> version_a, version_b, evaluation ──> adapters (observability, ma
 
 One responsibility per file. Review any file over ~300 lines or function over ~50 lines.
 
+## Known deviations
+
+Existing code that predates these rules. Don't copy these patterns, and don't fix them as a
+side effect of other work: each gets its own PR. Delete the line once it is fixed.
+
+- `tests/` is flat; `test_agent_wiring.py`, `test_smoke_agent.py`, `test_version_a.py` don't
+  mirror their source files. New tests go in the mirrored path.
+- `version_a/__init__.py` holds the implementation instead of re-exporting it.
+- `version_b/readonly_backend.py` vs `ReadOnlyFilesystemBackend`; `evaluation/confusion.py`
+  vs `ConfusionCounts`.
+- `AgentAnswer` clashes with "answer key"; `version` is overloaded in `observability.py`.
+
 ## Before adding something
 
 1. Which package owns it? If none fits, does it deserve a new one?
