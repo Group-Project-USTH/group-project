@@ -13,8 +13,8 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | `data/` | datasets; large or generated files are git-ignored |
 | `.github/` | CI, Dependabot, PR template, rulesets |
 
-Domain terms live in `GLOSSARY.md` at the root. Don't pre-create ADRs or other domain docs;
-`/domain-modeling` creates them when a decision is actually made.
+Domain terms live in `GLOSSARY.md` at the root. Write an ADR in `docs/adr/` only when a
+decision costly to reverse is actually made; don't pre-create empty doc folders.
 
 ## Organise by domain, not by technical layer
 
