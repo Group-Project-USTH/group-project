@@ -11,8 +11,8 @@
 #      ruleset "main-branch-protection": PR required with 1 approval, stale
 #      approvals dismissed, conversations resolved, required status check
 #      `lint-typecheck-test` (GitHub Actions, branch up to date), linear
-#      history, no force-push, no deletion, squash/rebase merges only.
-#   2. Repo merge settings: disable merge commits, keep squash + rebase,
+#      history, no force-push, no deletion, squash merges only.
+#   2. Repo merge settings: allow squash merges only,
 #      delete head branches after merge.
 #
 # Rulesets need a public repo, or a paid plan (Pro/Team) for private repos.
@@ -50,7 +50,7 @@ fi
 echo "Repository:   $REPO"
 echo "Ruleset:      $RULESET_NAME ($([[ -n "$existing_id" ]] && echo "update id $existing_id" || echo "create"))"
 echo "Request:      $method $endpoint"
-echo "Merge config: allow_merge_commit=false allow_squash_merge=true allow_rebase_merge=true delete_branch_on_merge=true"
+echo "Merge config: allow_merge_commit=false allow_squash_merge=true allow_rebase_merge=false delete_branch_on_merge=true"
 
 if [[ "$DRY_RUN" == 1 ]]; then
   echo "Dry run: nothing changed."
@@ -63,6 +63,6 @@ gh api --method "$method" "$endpoint" --input "$RULESET_FILE" \
 gh api --method PATCH "repos/$REPO" \
   -F allow_merge_commit=false \
   -F allow_squash_merge=true \
-  -F allow_rebase_merge=true \
+  -F allow_rebase_merge=false \
   -F delete_branch_on_merge=true \
   --jq '"Merge settings: merge_commit=\(.allow_merge_commit) squash=\(.allow_squash_merge) rebase=\(.allow_rebase_merge) delete_branch_on_merge=\(.delete_branch_on_merge)"'

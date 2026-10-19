@@ -11,6 +11,11 @@
 <!-- Commands you ran and what you observed, e.g.
 `uv run pytest`, `uv run maintain-eval smoke --target tests/fixtures/sample_project` -->
 
+## Merge danger
+
+<!-- Door: one-way (hard to undo: data, settings, public APIs such as the trace name) or
+two-way (a revert undoes it). Blast radius: what could break, and for whom. -->
+
 ## Checklist
 
 - [ ] CI is green (ruff check, ruff format --check, mypy, pytest)
