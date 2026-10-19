@@ -29,13 +29,15 @@ scripts, CI, the glossary) stay at the root; anything that belongs to one side g
 - `version_a/`: static-analysis tools only.
 - `version_b/`: the agent.
 - `evaluation/`: comparison against the answer key (confusion counts, stability, cost).
+- `api/`: the FastAPI app, one router module per area (`health.py`, ...); `create_app()` in
+  `app_factory.py`. HTTP only: the work happens in the packages it calls.
 - `schemas.py`: the shared core types. `config.py`: all settings.
 - A new capability gets its own package or module; never grow a catch-all.
 
 ## Dependency direction
 
 ```
-cli ──> version_a, version_b, evaluation ──> adapters (observability, masking) ──> schemas, config
+cli, api ──> version_a, version_b, evaluation ──> adapters (observability, masking) ──> schemas, config
 ```
 
 - `version_a` and `version_b` must not import each other.

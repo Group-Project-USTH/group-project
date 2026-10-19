@@ -2,7 +2,7 @@
 
 The Python side of the project: the maintainability evaluation pipeline (Version A and
 Version B, built on [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview)),
-its `maintain-eval` CLI and, next, a FastAPI app for the web chat product. What the project
+its `maintain-eval` CLI and the FastAPI app for the web chat product. What the project
 is and how we work: [root README](../README.md).
 
 > Status: scaffold. Version A has only an interface; Version B is wired end-to-end with a
@@ -56,6 +56,16 @@ The agent gets **read-only** access to `--target`: write/edit/delete tools are d
 DeepAgents permission rule *and* by a read-only backend. It is not an OS sandbox: it can read
 everything under the target directory (including any `.env` there), so only point it at code
 you are happy to send to the LLM provider.
+
+## Run the API
+
+```bash
+uv run uvicorn --factory maintain_eval.api:create_app --reload   # http://127.0.0.1:8000
+curl http://127.0.0.1:8000/health                              # {"status":"ok"}
+```
+
+Interactive API docs: http://127.0.0.1:8000/docs. Only `GET /health` exists so far; the chat
+endpoints come next. `--reload` is for development only.
 
 ## Lint, type-check, test
 
@@ -122,6 +132,7 @@ src/maintain_eval/
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
   cli.py                `maintain-eval` entry point
+  api/                  FastAPI app: create_app(), one router per area (health)
   version_a/            Analyzer protocol for static-analysis tools (stub)
   version_b/            DeepAgents agent with read-only file access
   evaluation/           TP/FP/FN/TN + unknown counting

@@ -21,6 +21,7 @@ uv run ruff check                                  # lint
 uv run ruff format --check                         # format check (`uv run ruff format` to fix)
 uv run mypy                                        # type-check (strict, src/)
 uv run pytest                                      # unit tests + coverage, integration excluded
+uv run uvicorn --factory maintain_eval.api:create_app --reload   # API on :8000, docs at /docs
 uv run maintain-eval smoke --target tests/fixtures/sample_project   # real LLM, needs .env
 uv run pytest -m integration --no-cov              # real LLM end-to-end, needs .env
 ```
@@ -32,7 +33,8 @@ Langfuse keys.
 
 - `backend/`: the Python project (own `pyproject.toml`, `uv.lock`, `.env`)
   - `src/maintain_eval/`: the package (`version_a/`, `version_b/`, `evaluation/`, shared
-    `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`)
+    `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`,
+    FastAPI app `api/`)
   - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
 - `frontend/`: the web chat UI, not started
 - `scripts/`: ops scripts run by hand (e.g. branch protection, admins only)
