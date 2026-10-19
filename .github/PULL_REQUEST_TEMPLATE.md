@@ -9,7 +9,7 @@
 ## How tested
 
 <!-- Commands you ran and what you observed, e.g.
-`uv run pytest`, `uv run maintain-eval smoke --target tests/fixtures/sample_project` -->
+(from backend/) `uv run pytest`, `uv run maintain-eval smoke --target tests/fixtures/sample_project` -->
 
 ## Merge danger
 

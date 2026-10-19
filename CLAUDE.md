@@ -8,7 +8,12 @@ answer key: does the agent make the evaluation more accurate, and is the extra c
 Scoring: TP/FP/FN/TN with Fail as the positive class, Unknown counted separately, plus
 stability over 3-5 repeated runs and cost per benefit.
 
+It is growing into a web chat product: a FastAPI backend serving a DeepAgents agent, and a
+web frontend (not started).
+
 ## Commands
+
+Run from `backend/` (a self-contained uv project):
 
 ```bash
 uv sync --locked                                   # install (Python 3.12, from uv.lock)
@@ -20,13 +25,16 @@ uv run maintain-eval smoke --target tests/fixtures/sample_project   # real LLM, 
 uv run pytest -m integration --no-cov              # real LLM end-to-end, needs .env
 ```
 
-CI runs the first five. Copy `.env.example` to `.env` for the LLM and Langfuse keys.
+CI runs the first five. Copy `backend/.env.example` to `backend/.env` for the LLM and
+Langfuse keys.
 
 ## Repo map
 
-- `src/maintain_eval/`: the package (`version_a/`, `version_b/`, `evaluation/`, shared
-  `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`)
-- `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
+- `backend/`: the Python project (own `pyproject.toml`, `uv.lock`, `.env`)
+  - `src/maintain_eval/`: the package (`version_a/`, `version_b/`, `evaluation/`, shared
+    `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`)
+  - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
+- `frontend/`: the web chat UI, not started
 - `scripts/`: ops scripts run by hand (e.g. branch protection, admins only)
 - `.github/`: CI workflow, Dependabot, PR template, CODEOWNERS, `main` ruleset
 - `.claude/`: shared Claude Code settings, rules and skills
