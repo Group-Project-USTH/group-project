@@ -9,12 +9,14 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | `src/maintain_eval/` | the only top-level package (src layout) |
 | `tests/` | mirrors `src/maintain_eval/` |
 | `scripts/` | one-off or ops scripts; never imported by the package |
-| `docs/` | `architecture.md`, ADRs in `docs/adr/` for decisions costly to reverse, skill config in `docs/agents/` |
-| `data/` | datasets; large or generated files are git-ignored |
+| `docs/` | skill config in `docs/agents/`; later `architecture.md`, ADRs in `docs/adr/`, research notes in `docs/research/` |
+| `data/` | datasets (not created yet); large or generated files are git-ignored |
 | `.github/` | CI, Dependabot, PR template, rulesets |
 
-Domain terms live in `GLOSSARY.md` at the root. Write an ADR in `docs/adr/` only when a
-decision costly to reverse is actually made; don't pre-create empty doc folders.
+Domain terms live in `GLOSSARY.md` at the root. Create a doc file or folder only when it
+gets real content: an ADR only when a decision costly to reverse is actually made, a
+research note (from the `research` skill) as `docs/research/<topic>.md`. Don't
+pre-create empty folders.
 
 ## Organise by domain, not by technical layer
 

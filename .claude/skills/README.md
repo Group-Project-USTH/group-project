@@ -33,7 +33,7 @@ DO_NOT_TRACK=1 npx -y skills@1.7.2 add mattpocock/skills --agent claude-code --c
 | `codebase-design` | system design | Vocabulary for deep modules, interfaces and seams, plus "design it twice". |
 | `diagnosing-bugs` | debugging | Diagnosis loop for hard bugs and performance regressions. |
 | `research` | research | Research a question against primary sources into a Markdown file. |
-| `pr` | PRs | The shape a pull request body should take. |
+| `pr` | PRs | The shape a pull request body should take. Our PR template's headings win (see `.claude/rules/git-workflow.md`). |
 
 These skills only call each other (`implement` → `tdd`, `code-review`; `tdd` →
 `codebase-design`). `code-review` and `implement` read the issue tracker set in

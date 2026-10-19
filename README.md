@@ -142,7 +142,10 @@ docs/agents/            how the Claude Code skills use our issue tracker (GitHub
 3. Push and open a PR; fill in the template.
 4. CI (`lint-typecheck-test`) must pass and the branch must be up to date with `main`.
 5. At least one teammate approves; resolve all review conversations.
-6. **Squash merge** (or rebase). Nobody pushes to `main` directly.
+6. **Squash merge** (the only method allowed). Nobody pushes to `main` directly.
+
+The repo owner can bypass these checks (e.g. to merge without an approval); everyone else,
+Claude included, goes through them.
 
 Never commit secrets: `.env` is git-ignored, only `.env.example` (no real values) is tracked.
 
