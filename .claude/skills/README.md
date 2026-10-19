@@ -6,9 +6,9 @@ automatically.
 
 | | |
 |---|---|
-| Source | https://github.com/mattpocock/skills, folder `skills/engineering` |
+| Source | https://github.com/mattpocock/skills, folder `skills/engineering`, plus `grilling` and `writing-for-agents` from `skills/productivity` (called by `/grill-with-docs`, `/improve-codebase-architecture` and `/retro`) |
 | Commit | `49dd158d1076134a641b33efb035946536778336` (2026-10-09) |
-| Installed | 2026-10-12 |
+| Installed | 2026-10-12; `grilling` and `writing-for-agents` added 2026-10-19 |
 | License | MIT, © 2026 Matt Pocock: see [`LICENSE`](LICENSE) |
 
 Installed with (real copies, no symlinks; the generated `skills-lock.json` was deleted
@@ -18,14 +18,15 @@ because this file records the commit instead). Only the skills below are install
 ```bash
 DO_NOT_TRACK=1 npx -y skills@1.7.2 add mattpocock/skills --agent claude-code --copy -y \
   --skill code-review codebase-design diagnosing-bugs domain-modeling grill-with-docs \
-  implement improve-codebase-architecture pr prototype research retro \
-  setup-matt-pocock-skills tdd
+  grilling implement improve-codebase-architecture pr prototype research retro \
+  setup-matt-pocock-skills tdd writing-for-agents
 ```
 
 ## Updating
 
 1. On a `chore/` branch, list `skills/engineering` upstream
-   (`gh api repos/mattpocock/skills/contents/skills/engineering`) and adjust the
+   (`gh api repos/mattpocock/skills/contents/skills/engineering`), check that skills we
+   keep still find the skills they call (`grill-with-docs` → `grilling`, `retro` → `writing-for-agents`), and adjust the
    `--skill` list for added, removed or deprecated skills. Don't re-add the ones under
    [Not installed](#not-installed). Delete folders of skills that were removed upstream.
 2. Re-run the command above from the repo root, then `rm skills-lock.json`.
@@ -43,15 +44,17 @@ DO_NOT_TRACK=1 npx -y skills@1.7.2 add mattpocock/skills --agent claude-code --c
 | `codebase-design` | Vocabulary for designing deep modules, interfaces and seams. |
 | `diagnosing-bugs` | Diagnosis loop for hard bugs and performance regressions. |
 | `domain-modeling` | Build and sharpen the domain model: glossary and ADRs. |
-| `/grill-with-docs` | Relentless interview to sharpen a plan, writing glossary and ADRs as it goes. |
+| `/grill-with-docs` | Relentless interview to sharpen a plan, writing glossary and ADRs as it goes. Runs `grilling` + `domain-modeling`. |
+| `grilling` | Relentless interview about a plan or decision, in rounds of numbered questions with recommended answers. |
 | `/implement` | Implement a piece of work from a spec or tickets. |
 | `/improve-codebase-architecture` | Find deepening opportunities and present them as an HTML report. |
 | `pr` | The shape a pull request body should take. |
 | `prototype` | Throwaway prototype to answer a design question. |
 | `research` | Research a question against primary sources into a Markdown file. |
-| `/retro` | Retrospective on a coding session. |
+| `/retro` | Retrospective on a coding session. Uses `writing-for-agents`. |
 | `/setup-matt-pocock-skills` | Configure issue tracker and domain-doc layout. Run once (done; see `docs/agents/`). |
 | `tdd` | Test-driven development, red-green-refactor. |
+| `writing-for-agents` | Style guide for documents agents read: skills, `CLAUDE.md`, rules. |
 
 ## Not installed
 
