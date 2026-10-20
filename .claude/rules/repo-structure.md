@@ -12,7 +12,6 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | `frontend/` | the web chat UI (not started); its own toolchain, never imports the backend |
 | `scripts/` | one-off or ops scripts for the repo; never imported by the package |
 | `docs/` | skill config in `docs/agents/`; later `architecture.md`, ADRs in `docs/adr/`, research notes in `docs/research/` |
-| `backend/data/` | datasets (not created yet); large or generated files are git-ignored |
 | `.github/` | CI, Dependabot, PR template, rulesets |
 
 Domain terms live in `GLOSSARY.md` at the root. Create a doc file or folder only when it
@@ -20,9 +19,9 @@ gets real content: an ADR only when a decision costly to reverse is actually mad
 research note (from the `research` skill) as `docs/research/<topic>.md`. Don't
 pre-create empty folders.
 
-Backend paths below are relative to `backend/src/maintainability_agent/`. Repo-wide things (docs,
-scripts, CI, the glossary) stay at the root; anything that belongs to one side goes in
-`backend/` or `frontend/`.
+Backend paths below are relative to `backend/src/maintainability_agent/`. Repo-wide things
+(docs, scripts, CI, the glossary) stay at the root; anything that belongs to one side goes
+in `backend/` or `frontend/`.
 
 ## Organise by domain, not by technical layer
 
@@ -46,8 +45,8 @@ cli, api ──> agent ──> adapters (observability, masking) ──> schemas
 
 - Each package exposes its public API in `__init__.py` (`__all__`); the rest is internal.
   `__init__.py` re-exports, it doesn't hold the implementation.
-- One thin adapter per external system (SonarQube, LLM provider, Langfuse). Nothing else
-  talks to that system directly.
+- One thin adapter per external system (LLM provider, Langfuse). Nothing else talks to that
+  system directly.
 - Settings are read only in `config.py`; `.env.example` documents them. No `os.environ`
   anywhere else in `backend/src/`.
 
