@@ -17,7 +17,7 @@ from maintain_eval.schemas import Characteristic
 def test_no_keys_degrades_to_noop_with_warning(caplog: pytest.LogCaptureFixture) -> None:
     with (
         caplog.at_level(logging.WARNING),
-        traced_run(version="B", run_id="r1", characteristic=Characteristic.MODULARITY) as run,
+        traced_run(run_id="r1", characteristic=Characteristic.MODULARITY) as run,
     ):
         assert run.config["callbacks"] == []
         assert run.trace_url is None
@@ -31,7 +31,6 @@ def test_disabled_flag_degrades_without_warning(caplog: pytest.LogCaptureFixture
     with (
         caplog.at_level(logging.WARNING),
         traced_run(
-            version="A",
             run_id="r2",
             characteristic=Characteristic.TESTABILITY,
             settings=settings,
@@ -43,14 +42,10 @@ def test_disabled_flag_degrades_without_warning(caplog: pytest.LogCaptureFixture
 
 def test_untraced_config_still_carries_metadata_and_tags() -> None:
     with traced_run(
-        version="B", run_id="abc", characteristic=Characteristic.ANALYSABILITY, tags=["smoke"]
+        run_id="abc", characteristic=Characteristic.ANALYSABILITY, tags=["smoke"]
     ) as run:
-        assert run.config["metadata"] == {
-            "version": "B",
-            "run_id": "abc",
-            "characteristic": "analysability",
-        }
-        assert run.config["tags"] == ["version:B", "characteristic:analysability", "smoke"]
+        assert run.config["metadata"] == {"run_id": "abc", "characteristic": "analysability"}
+        assert run.config["tags"] == ["characteristic:analysability", "smoke"]
 
 
 def test_new_run_id_is_unique_and_short() -> None:
@@ -100,7 +95,6 @@ def test_keyed_run_has_agent_root_with_clean_io(
 ) -> None:
     memory, settings = exporter
     with traced_run(
-        version="B",
         run_id="run123",
         characteristic=Characteristic.MODULARITY,
         input={"target": "proj", "characteristic": "modularity"},
@@ -132,19 +126,16 @@ def test_keyed_run_has_agent_root_with_clean_io(
         assert a["session.id"] == "stability-1"
         assert a["langfuse.environment"] == "test"
         assert a["langfuse.release"] == "rel-123"
-        assert json.loads(str(a["langfuse.trace.metadata.version"])) == "B"
         assert json.loads(str(a["langfuse.trace.metadata.run_id"])) == "run123"
         assert json.loads(str(a["langfuse.trace.metadata.characteristic"])) == "modularity"
-        assert set(a["langfuse.trace.tags"]) == {"version:B", "characteristic:modularity"}  # type: ignore[arg-type]
+        assert set(a["langfuse.trace.tags"]) == {"characteristic:modularity"}  # type: ignore[arg-type]
 
 
 def test_keyed_run_without_session_sets_none(
     exporter: tuple[InMemorySpanExporter, Settings],
 ) -> None:
     memory, settings = exporter
-    with traced_run(
-        version="B", run_id="r", characteristic=Characteristic.TESTABILITY, settings=settings
-    ):
+    with traced_run(run_id="r", characteristic=Characteristic.TESTABILITY, settings=settings):
         pass
     obs.build_langfuse_client(settings).flush()
     assert "session.id" not in attrs(spans_by_name(memory)["evaluate-characteristic"])
@@ -154,9 +145,7 @@ def test_exception_marks_root_as_error(exporter: tuple[InMemorySpanExporter, Set
     memory, settings = exporter
     with (
         pytest.raises(RuntimeError, match="boom"),
-        traced_run(
-            version="B", run_id="r", characteristic=Characteristic.TESTABILITY, settings=settings
-        ),
+        traced_run(run_id="r", characteristic=Characteristic.TESTABILITY, settings=settings),
     ):
         raise RuntimeError("boom")
     obs.build_langfuse_client(settings).flush()
@@ -173,7 +162,6 @@ def test_secrets_are_masked_and_empty_hooks_dropped(
     memory, settings = exporter
     client = get_client(public_key=settings.langfuse_public_key)
     with traced_run(
-        version="B",
         run_id="r",
         characteristic=Characteristic.MODULARITY,
         input={"file": "OPENAI_API_KEY=sk-abcdefghijklmnopqrstuvwx\nDEBUG=1"},

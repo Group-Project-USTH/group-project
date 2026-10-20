@@ -1,4 +1,4 @@
-"""Shared data model for verdicts produced by Version A (tools) and Version B (agent)."""
+"""Shared data model for the verdicts the agent produces."""
 
 from enum import StrEnum
 from typing import Self
@@ -17,7 +17,7 @@ class Characteristic(StrEnum):
 
 
 class Verdict(StrEnum):
-    """Outcome for one characteristic. FAIL is the positive class in evaluation."""
+    """Outcome for one characteristic."""
 
     PASS = "pass"
     FAIL = "fail"
@@ -40,16 +40,15 @@ class Evidence(BaseModel):
 
 
 class Finding(BaseModel):
-    """One verdict for one characteristic, from a tool or from the agent."""
+    """One verdict for one characteristic."""
 
     characteristic: Characteristic
     verdict: Verdict
     evidence: list[Evidence] = Field(default_factory=list)
     rationale: str
-    source: str = Field(pattern=r"^(agent|tool:[A-Za-z0-9_.\-]+)$")
 
     @model_validator(mode="after")
-    def _agent_verdict_needs_evidence(self) -> Self:
-        if self.source == "agent" and self.verdict is not Verdict.UNKNOWN and not self.evidence:
-            raise ValueError("agent PASS/FAIL verdicts must cite at least one Evidence")
+    def _pass_or_fail_needs_evidence(self) -> Self:
+        if self.verdict is not Verdict.UNKNOWN and not self.evidence:
+            raise ValueError("PASS/FAIL verdicts must cite at least one Evidence")
         return self

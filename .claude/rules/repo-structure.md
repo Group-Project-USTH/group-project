@@ -26,9 +26,7 @@ scripts, CI, the glossary) stay at the root; anything that belongs to one side g
 
 ## Organise by domain, not by technical layer
 
-- `version_a/`: static-analysis tools only.
-- `version_b/`: the agent.
-- `evaluation/`: comparison against the answer key (confusion counts, stability, cost).
+- `agent/`: the DeepAgents agent (`deep_agent.py`) and its read-only file backend.
 - `api/`: the FastAPI app, one router module per area (`health.py`, ...); `create_app()` in
   `app_factory.py`. HTTP only: the work happens in the packages it calls.
 - `schemas.py`: the shared core types. `config.py`: all settings.
@@ -37,11 +35,9 @@ scripts, CI, the glossary) stay at the root; anything that belongs to one side g
 ## Dependency direction
 
 ```
-cli, api ──> version_a, version_b, evaluation ──> adapters (observability, masking) ──> schemas, config
+cli, api ──> agent ──> adapters (observability, masking) ──> schemas, config
 ```
 
-- `version_a` and `version_b` must not import each other.
-- `evaluation` imports only `schemas`.
 - Imports only point down; no cycles. If two packages need the same code, move it down
   (usually into `schemas`), never import sideways.
 
@@ -63,12 +59,9 @@ One responsibility per file. Review any file over ~300 lines or function over ~5
 Existing code that predates these rules. Don't copy these patterns, and don't fix them as a
 side effect of other work: each gets its own PR. Delete the line once it is fixed.
 
-- `backend/tests/` is flat; `test_agent_wiring.py`, `test_smoke_agent.py`,
-  `test_version_a.py` don't mirror their source files. New tests go in the mirrored path.
-- `version_a/__init__.py` holds the implementation instead of re-exporting it.
-- `version_b/readonly_backend.py` vs `ReadOnlyFilesystemBackend`; `evaluation/confusion.py`
-  vs `ConfusionCounts`.
-- `AgentAnswer` clashes with "answer key"; `version` is overloaded in `observability.py`.
+- `backend/tests/` is flat; `test_agent_wiring.py` and `test_smoke_agent.py` don't mirror
+  their source files. New tests go in the mirrored path.
+- `agent/readonly_backend.py` vs `ReadOnlyFilesystemBackend`.
 
 ## Before adding something
 

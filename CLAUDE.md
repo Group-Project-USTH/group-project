@@ -2,14 +2,10 @@
 
 ## Project
 
-USTH group project: **adding an AI agent to static analysis for maintainability evaluation**
-(ISO/IEC 25010). One pipeline, two versions, same code under test, compared against an
-answer key: does the agent make the evaluation more accurate, and is the extra cost worth it?
-Scoring: TP/FP/FN/TN with Fail as the positive class, Unknown counted separately, plus
-stability over 3-5 repeated runs and cost per benefit.
-
-It is growing into a web chat product: a FastAPI backend serving a DeepAgents agent, and a
-web frontend (not started).
+USTH group project: a **DeepAgents agent that evaluates software maintainability**
+(ISO/IEC 25010), growing into a web chat product: a FastAPI backend serving the agent, and a
+web frontend (not started). For each characteristic the agent reads the code and returns a
+pass/fail/unknown verdict citing file and line evidence.
 
 ## Commands
 
@@ -32,9 +28,8 @@ Langfuse keys.
 ## Repo map
 
 - `backend/`: the Python project (own `pyproject.toml`, `uv.lock`, `.env`)
-  - `src/maintain_eval/`: the package (`version_a/`, `version_b/`, `evaluation/`, shared
-    `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`,
-    FastAPI app `api/`)
+  - `src/maintain_eval/`: the package (the agent in `agent/`, FastAPI app `api/`, shared
+    `schemas.py` and `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`)
   - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
 - `frontend/`: the web chat UI, not started
 - `scripts/`: ops scripts run by hand (e.g. branch protection, admins only)
@@ -62,7 +57,7 @@ there, not here.
 ## Gotchas
 
 - `pydantic-settings` reads `.env` but doesn't export it to `os.environ`; keys are passed
-  explicitly (see `version_b/agent.py`, `observability.py`).
+  explicitly (see `agent/deep_agent.py`, `observability.py`).
 - The team's OpenAI-compatible router ignores `tool_choice` on `/chat/completions`, so
   `openai:*` models use the Responses API with `ProviderStrategy` structured output.
 - The agent's file access is read-only but not sandboxed: it can read anything under the target.

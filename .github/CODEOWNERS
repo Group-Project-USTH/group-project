@@ -4,7 +4,6 @@
 # Docs: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # *                                            @OWNER_1 @OWNER_2
-# /backend/src/maintain_eval/version_a/        @OWNER_VERSION_A
-# /backend/src/maintain_eval/version_b/        @OWNER_VERSION_B
-# /backend/src/maintain_eval/evaluation/       @OWNER_EVALUATION
+# /backend/src/maintain_eval/agent/            @OWNER_AGENT
+# /backend/src/maintain_eval/api/              @OWNER_API
 # /.github/                                    @OWNER_1

@@ -1,4 +1,4 @@
-"""Offline tests of the Version B wiring, using a scripted fake chat model (no LLM, no keys)."""
+"""Offline tests of the agent wiring, using a scripted fake chat model (no LLM, no keys)."""
 
 import json
 import shutil
@@ -11,8 +11,8 @@ from langchain_core.language_models import BaseChatModel
 from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage, ToolMessage
 
+from maintain_eval.agent import AgentOutputError, build_agent, run_smoke
 from maintain_eval.schemas import Characteristic, Evidence, Verdict
-from maintain_eval.version_b import AgentOutputError, build_agent, run_smoke
 
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
 
@@ -85,7 +85,6 @@ def test_run_smoke_returns_validated_finding(project: Path) -> None:
         ANSWER_FAIL,
     )
     finding = run_smoke(project, Characteristic.MODULARITY, run_id="t1", model=model)
-    assert finding.source == "agent"
     assert finding.characteristic is Characteristic.MODULARITY
     assert finding.verdict is Verdict.FAIL
     assert finding.evidence == [Evidence(file="app.py", line_start=6, line_end=25)]
@@ -111,8 +110,8 @@ def test_build_agent_requires_existing_directory(tmp_path: Path) -> None:
 
 
 def test_build_model_names_llm_calls_by_operation() -> None:
+    from maintain_eval.agent.deep_agent import LLM_CALL_NAME, build_model
     from maintain_eval.config import Settings
-    from maintain_eval.version_b.agent import LLM_CALL_NAME, build_model
 
     model = build_model(Settings(llm_model="openai:some-model", openai_api_key="sk-test"))
     assert model.get_name() == LLM_CALL_NAME

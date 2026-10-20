@@ -32,7 +32,6 @@ def test_smoke_prints_finding_json(
             verdict=Verdict.PASS,
             evidence=[Evidence(file="utils.py", line_start=1)],
             rationale="small and focused",
-            source="agent",
         )
 
     monkeypatch.setattr(cli, "run_smoke", fake_run_smoke)
