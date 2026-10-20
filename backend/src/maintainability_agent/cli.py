@@ -6,7 +6,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from maintainability_agent.agent import AgentOutputError, run_smoke
+from maintainability_agent.agent import AgentOutputError, evaluate_characteristic
 from maintainability_agent.observability import check_langfuse_auth, new_run_id
 from maintainability_agent.schemas import Characteristic
 
@@ -39,7 +39,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     print(f"run_id={run_id} characteristic={args.characteristic.value}", file=sys.stderr)
     check_langfuse_auth()
     try:
-        finding = run_smoke(
+        finding = evaluate_characteristic(
             args.target,
             args.characteristic,
             run_id=run_id,

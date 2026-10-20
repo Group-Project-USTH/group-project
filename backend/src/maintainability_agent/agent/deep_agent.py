@@ -13,7 +13,7 @@ from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
 from pydantic import BaseModel, Field, ValidationError
 
-from maintainability_agent.agent.readonly_backend import ReadOnlyFilesystemBackend
+from maintainability_agent.agent.read_only_filesystem_backend import ReadOnlyFilesystemBackend
 from maintainability_agent.config import Settings, get_settings
 from maintainability_agent.observability import traced_run
 from maintainability_agent.schemas import Characteristic, Evidence, Finding, Verdict
@@ -108,7 +108,7 @@ def _finding_from_result(result: dict[str, Any], characteristic: Characteristic)
         raise AgentOutputError(f"Agent answer failed validation: {exc}") from exc
 
 
-def run_smoke(
+def evaluate_characteristic(
     target: Path,
     characteristic: Characteristic,
     run_id: str,

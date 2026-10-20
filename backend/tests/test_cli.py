@@ -24,7 +24,7 @@ def test_smoke_missing_target_fails_clearly(
 def test_smoke_prints_finding_json(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    def fake_run_smoke(
+    def fake_evaluate_characteristic(
         target: Path, characteristic: Characteristic, run_id: str, **kwargs: object
     ) -> Finding:
         return Finding(
@@ -34,7 +34,7 @@ def test_smoke_prints_finding_json(
             rationale="small and focused",
         )
 
-    monkeypatch.setattr(cli, "run_smoke", fake_run_smoke)
+    monkeypatch.setattr(cli, "evaluate_characteristic", fake_evaluate_characteristic)
     code = cli.main(
         ["smoke", "--target", str(SAMPLE), "--characteristic", "testability", "--run-id", "r9"]
     )
@@ -54,9 +54,9 @@ def test_unknown_characteristic_is_rejected() -> None:
 def test_unexpected_errors_print_cleanly(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    def failing_run_smoke(*args: object, **kwargs: object) -> Finding:
+    def failing_evaluate_characteristic(*args: object, **kwargs: object) -> Finding:
         raise ConnectionError("provider unreachable")
 
-    monkeypatch.setattr(cli, "run_smoke", failing_run_smoke)
+    monkeypatch.setattr(cli, "evaluate_characteristic", failing_evaluate_characteristic)
     assert cli.main(["smoke", "--target", str(SAMPLE)]) == 1
     assert "error: ConnectionError: provider unreachable" in capsys.readouterr().err

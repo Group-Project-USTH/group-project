@@ -26,7 +26,8 @@ scripts, CI, the glossary) stay at the root; anything that belongs to one side g
 
 ## Organise by domain, not by technical layer
 
-- `agent/`: the DeepAgents agent (`deep_agent.py`) and its read-only file backend.
+- `agent/`: the DeepAgents agent (`deep_agent.py`) and its read-only file backend
+  (`read_only_filesystem_backend.py`).
 - `api/`: the FastAPI app, one router module per area (`health.py`, ...); `create_app()` in
   `app_factory.py`. HTTP only: the work happens in the packages it calls.
 - `schemas.py`: the shared core types. `config.py`: all settings.
@@ -59,9 +60,7 @@ One responsibility per file. Review any file over ~300 lines or function over ~5
 Existing code that predates these rules. Don't copy these patterns, and don't fix them as a
 side effect of other work: each gets its own PR. Delete the line once it is fixed.
 
-- `backend/tests/` is flat; `test_agent_wiring.py` and `test_smoke_agent.py` don't mirror
-  their source files. New tests go in the mirrored path.
-- `agent/readonly_backend.py` vs `ReadOnlyFilesystemBackend`.
+None right now.
 
 ## Before adding something
 
