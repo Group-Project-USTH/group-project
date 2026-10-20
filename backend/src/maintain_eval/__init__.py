@@ -1,1 +1,1 @@
-"""Maintainability evaluation: static analysis tools (Version A) vs. tools + AI agent (B)."""
+"""A DeepAgents agent that evaluates the maintainability of a software project."""

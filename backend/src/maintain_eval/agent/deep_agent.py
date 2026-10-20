@@ -1,4 +1,4 @@
-"""Version B: a DeepAgents agent that judges one characteristic with read-only file access.
+"""A DeepAgents agent that judges one characteristic with read-only file access.
 
 This is wiring only: the prompt is deliberately minimal and not tuned.
 """
@@ -13,10 +13,10 @@ from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
 from pydantic import BaseModel, Field, ValidationError
 
+from maintain_eval.agent.readonly_backend import ReadOnlyFilesystemBackend
 from maintain_eval.config import Settings, get_settings
 from maintain_eval.observability import traced_run
 from maintain_eval.schemas import Characteristic, Evidence, Finding, Verdict
-from maintain_eval.version_b.readonly_backend import ReadOnlyFilesystemBackend
 
 # Bump whenever SYSTEM_PROMPT or the agent's tools/output schema change. Sent to Langfuse
 # as the observation `version`, so runs of different prompt iterations can be compared.
@@ -93,7 +93,6 @@ def to_finding(answer: AgentAnswer, characteristic: Characteristic) -> Finding:
         verdict=answer.verdict,
         evidence=evidence,
         rationale=answer.rationale,
-        source="agent",
     )
 
 
@@ -128,7 +127,6 @@ def run_smoke(
         "Answer PASS, FAIL or UNKNOWN and cite file + line."
     )
     with traced_run(
-        version="B",
         run_id=run_id,
         characteristic=characteristic,
         input={"target": str(target), "characteristic": characteristic.value, "question": question},

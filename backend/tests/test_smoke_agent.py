@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
+from maintain_eval.agent import run_smoke
 from maintain_eval.config import get_settings
 from maintain_eval.observability import new_run_id
 from maintain_eval.schemas import Characteristic, Finding
-from maintain_eval.version_b import run_smoke
 
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
 
@@ -33,7 +33,6 @@ def test_agent_smoke_returns_cited_finding(tmp_path: Path, monkeypatch: pytest.M
     finding = run_smoke(project, Characteristic.MODULARITY, run_id=f"it-{new_run_id()}")
 
     assert isinstance(finding, Finding)
-    assert finding.source == "agent"
     for ev in finding.evidence:
         assert (project / ev.file).is_file(), f"cited file does not exist: {ev.file}"
     assert {p.name: p.read_text() for p in project.iterdir()} == before

@@ -1,7 +1,7 @@
 [project]
 name = "maintain-eval"
 version = "0.1.0"
-description = "Static analysis vs. static analysis + AI agent for ISO/IEC 25010 maintainability evaluation."
+description = "A DeepAgents agent that evaluates ISO/IEC 25010 maintainability."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -6,15 +6,15 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from maintain_eval.agent import AgentOutputError, run_smoke
 from maintain_eval.observability import check_langfuse_auth, new_run_id
 from maintain_eval.schemas import Characteristic
-from maintain_eval.version_b import AgentOutputError, run_smoke
 
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="maintain-eval")
     sub = parser.add_subparsers(dest="command", required=True)
-    smoke = sub.add_parser("smoke", help="Run the Version B agent once and print its Finding.")
+    smoke = sub.add_parser("smoke", help="Run the agent once and print its Finding.")
     smoke.add_argument("--target", type=Path, required=True, help="Project directory to analyse.")
     smoke.add_argument(
         "--characteristic",
@@ -26,7 +26,7 @@ def _parser() -> argparse.ArgumentParser:
     smoke.add_argument(
         "--session-id",
         default=None,
-        help="Langfuse session grouping related runs, e.g. the repeats of a stability check.",
+        help="Langfuse session grouping related runs.",
     )
     return parser
 

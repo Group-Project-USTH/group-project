@@ -2,12 +2,12 @@
 
 Usage:
 
-    with traced_run(version="B", run_id=run_id, characteristic=c, input={...}) as run:
+    with traced_run(run_id=run_id, characteristic=c, input={...}) as run:
         result = agent.invoke(inputs, config=run.config)
         run.set_output(finding)
 
 Each run is one trace whose root is an `agent` observation named `evaluate-characteristic`,
-with the run's input/output, `version`/`run_id`/`characteristic` as metadata and tags, the
+with the run's input/output, `run_id`/`characteristic` as metadata, `characteristic` as a tag, the
 environment and release, and an optional session grouping repeated runs. LangChain/LangGraph
 observations (generations, tool calls) nest under the root via the callback handler.
 The SDK flushes buffered spans on interpreter exit.
@@ -22,7 +22,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass, field
 from functools import cache
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any
 
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.runnables import RunnableConfig
@@ -36,7 +36,6 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-PipelineVersion = Literal["A", "B"]
 # Names are an API for dashboards and evaluators: stable, verb-first, no dynamic values.
 TRACE_NAME = "evaluate-characteristic"
 
@@ -171,7 +170,6 @@ class TracedRun:
 @contextmanager
 def traced_run(
     *,
-    version: PipelineVersion,
     run_id: str,
     characteristic: Characteristic,
     input: Any = None,
@@ -182,13 +180,13 @@ def traced_run(
 ) -> Iterator[TracedRun]:
     """Trace one evaluation run to Langfuse if configured.
 
-    `session_id` groups related traces, e.g. the repeated runs of a stability check.
+    `session_id` groups related traces, e.g. repeated runs of the same evaluation.
     `component_version` is the Langfuse `version` field (e.g. the agent prompt version).
     Exceptions raised inside the block mark the root observation as ERROR and propagate.
     """
     settings = settings or get_settings()
-    metadata = {"version": version, "run_id": run_id, "characteristic": characteristic.value}
-    all_tags = [f"version:{version}", f"characteristic:{characteristic.value}", *tags]
+    metadata = {"run_id": run_id, "characteristic": characteristic.value}
+    all_tags = [f"characteristic:{characteristic.value}", *tags]
 
     if not _tracing_ready(settings):
         yield TracedRun(config=RunnableConfig(callbacks=[], metadata=dict(metadata), tags=all_tags))

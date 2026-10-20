@@ -1,20 +1,17 @@
 # maintain-eval
 
-Does adding an AI agent to static-analysis tools give a more accurate evaluation of
-software **maintainability**, and is the extra cost worth it? Code under test runs through
-**Version A** (static analysis tools only) and **Version B** (the same tools plus a
-[DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview) agent). Their
-Pass/Fail/Unknown verdicts on the five ISO/IEC 25010 sub-characteristics (modularity,
-reusability, analysability, modifiability, testability) are compared against an answer key
-for accuracy, stability and cost.
+A [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview) agent that
+evaluates software **maintainability**. For each of the five ISO/IEC 25010
+sub-characteristics (modularity, reusability, analysability, modifiability, testability) it
+reads the code and returns a Pass/Fail/Unknown verdict, citing the files and lines behind it.
 
-The pipeline is growing into a web chat product: a FastAPI backend serving the agent and a
-web frontend.
+It is growing into a web chat product: a FastAPI backend serving the agent and a web
+frontend.
 
 ## Layout
 
 ```
-backend/        Python 3.12 (uv): the pipeline, the `maintain-eval` CLI and the FastAPI app.
+backend/        Python 3.12 (uv): the agent, the `maintain-eval` CLI and the FastAPI app.
                 Setup, configuration, tests, tracing: backend/README.md
 frontend/       the web chat UI (not started yet)
 docs/agents/    how the Claude Code skills use our issue tracker (GitHub Issues)
