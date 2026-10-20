@@ -27,8 +27,16 @@ in `backend/` or `frontend/`.
 
 - `agent/`: the DeepAgents agent (`deep_agent.py`) and its read-only file backend
   (`read_only_filesystem_backend.py`).
-- `api/`: the FastAPI app, one router module per area (`health.py`, ...); `create_app()` in
-  `app_factory.py`. HTTP only: the work happens in the packages it calls.
+- `api/`: the FastAPI app, laid out as in FastAPI's
+  [Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/) guide.
+  HTTP only: the work happens in the packages it calls.
+  - `main.py`: `create_app()` builds the app and includes every router.
+  - `routers/`: one module per area (`health.py`, ...), each with its own
+    `APIRouter(prefix="/<area>", tags=["<area>"])`. Import the module, not its `router`
+    (`from maintainability_agent.api.routers import health`, then `health.router`), so the
+    `router` names never collide.
+  - `dependencies.py`: dependencies shared by several routers (settings, auth). Create it
+    with the first one.
 - `schemas.py`: the shared core types. `config.py`: all settings.
 - A new capability gets its own package or module; never grow a catch-all.
 

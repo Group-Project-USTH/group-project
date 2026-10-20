@@ -132,6 +132,6 @@ src/maintainability_agent/
   masking.py            secret redaction applied to traces before export
   cli.py                `maintainability-agent` entry point
   agent/                DeepAgents agent with read-only file access
-  api/                  FastAPI app: create_app(), one router per area (health)
+  api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
 ```
