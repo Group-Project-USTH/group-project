@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
-from maintain_eval.agent import run_smoke
-from maintain_eval.config import get_settings
-from maintain_eval.observability import new_run_id
-from maintain_eval.schemas import Characteristic, Finding
+from maintainability_agent.agent import run_smoke
+from maintainability_agent.config import get_settings
+from maintainability_agent.observability import new_run_id
+from maintainability_agent.schemas import Characteristic, Finding
 
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
 

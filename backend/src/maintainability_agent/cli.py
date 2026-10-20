@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintain-eval smoke --target PATH`."""
+"""Command-line entry point: `maintainability-agent smoke --target PATH`."""
 
 import argparse
 import logging
@@ -6,13 +6,13 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from maintain_eval.agent import AgentOutputError, run_smoke
-from maintain_eval.observability import check_langfuse_auth, new_run_id
-from maintain_eval.schemas import Characteristic
+from maintainability_agent.agent import AgentOutputError, run_smoke
+from maintainability_agent.observability import check_langfuse_auth, new_run_id
+from maintainability_agent.schemas import Characteristic
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="maintain-eval")
+    parser = argparse.ArgumentParser(prog="maintainability-agent")
     sub = parser.add_subparsers(dest="command", required=True)
     smoke = sub.add_parser("smoke", help="Run the agent once and print its Finding.")
     smoke.add_argument("--target", type=Path, required=True, help="Project directory to analyse.")

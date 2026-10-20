@@ -1199,7 +1199,7 @@ wheels = [
 ]
 
 [[package]]
-name = "maintain-eval"
+name = "maintainability-agent"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

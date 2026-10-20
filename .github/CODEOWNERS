@@ -4,6 +4,6 @@
 # Docs: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # *                                            @OWNER_1 @OWNER_2
-# /backend/src/maintain_eval/agent/            @OWNER_AGENT
-# /backend/src/maintain_eval/api/              @OWNER_API
+# /backend/src/maintainability_agent/agent/    @OWNER_AGENT
+# /backend/src/maintainability_agent/api/      @OWNER_API
 # /.github/                                    @OWNER_1

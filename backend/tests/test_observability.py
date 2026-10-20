@@ -8,10 +8,10 @@ from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from opentelemetry.sdk.trace import ReadableSpan
 from opentelemetry.sdk.trace.export.in_memory_span_exporter import InMemorySpanExporter
 
-import maintain_eval.observability as obs
-from maintain_eval.config import Settings
-from maintain_eval.observability import new_run_id, traced_run
-from maintain_eval.schemas import Characteristic
+import maintainability_agent.observability as obs
+from maintainability_agent.config import Settings
+from maintainability_agent.observability import new_run_id, traced_run
+from maintainability_agent.schemas import Characteristic
 
 
 def test_no_keys_degrades_to_noop_with_warning(caplog: pytest.LogCaptureFixture) -> None:
