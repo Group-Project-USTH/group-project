@@ -132,9 +132,9 @@ def test_keyed_run_has_agent_root_with_clean_io(
         assert a["session.id"] == "stability-1"
         assert a["langfuse.environment"] == "test"
         assert a["langfuse.release"] == "rel-123"
-        assert a["langfuse.trace.metadata.version"] == "B"
-        assert a["langfuse.trace.metadata.run_id"] == "run123"
-        assert a["langfuse.trace.metadata.characteristic"] == "modularity"
+        assert json.loads(str(a["langfuse.trace.metadata.version"])) == "B"
+        assert json.loads(str(a["langfuse.trace.metadata.run_id"])) == "run123"
+        assert json.loads(str(a["langfuse.trace.metadata.characteristic"])) == "modularity"
         assert set(a["langfuse.trace.tags"]) == {"version:B", "characteristic:modularity"}  # type: ignore[arg-type]
 
 
