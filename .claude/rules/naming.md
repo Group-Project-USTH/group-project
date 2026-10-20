@@ -34,7 +34,7 @@ No single-letter names, except trivial loop indices or math-like local scopes.
 
 ## Tests
 
-- `backend/tests/` mirrors `backend/src/maintain_eval/`; the test file for `x.py` is `test_x.py`.
+- `backend/tests/` mirrors `backend/src/maintainability_agent/`; the test file for `x.py` is `test_x.py`.
 - Test functions state the behaviour: `test_pass_without_evidence_is_rejected`, not `test_finding_2`.
 
 ## Branches

@@ -1,6 +1,6 @@
 import pytest
 
-from maintain_eval.config import Settings
+from maintainability_agent.config import Settings
 
 
 def test_defaults_without_env() -> None:

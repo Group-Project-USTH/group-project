@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from maintain_eval.config import get_settings
+from maintainability_agent.config import get_settings
 
 FIXTURES = Path(__file__).parent / "fixtures"
 

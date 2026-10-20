@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from maintain_eval.schemas import Characteristic, Evidence, Finding, Verdict
+from maintainability_agent.schemas import Characteristic, Evidence, Finding, Verdict
 
 EVIDENCE = Evidence(file="app.py", line_start=3, line_end=7)
 

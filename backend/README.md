@@ -2,7 +2,7 @@
 
 The Python side of the project: the maintainability agent (built on
 [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview)), its
-`maintain-eval` CLI and the FastAPI app for the web chat product. What the project is and
+`maintainability-agent` CLI and the FastAPI app for the web chat product. What the project is and
 how we work: [root README](../README.md).
 
 > Status: scaffold. The agent is wired end-to-end with a minimal, untuned prompt.
@@ -42,10 +42,10 @@ structured output (see `agent/deep_agent.py` for why).
 ## Run the smoke test
 
 ```bash
-uv run maintain-eval smoke --target tests/fixtures/sample_project
-uv run maintain-eval smoke --target path/to/project --characteristic testability --run-id my-run-1
+uv run maintainability-agent smoke --target tests/fixtures/sample_project
+uv run maintainability-agent smoke --target path/to/project --characteristic testability --run-id my-run-1
 # group related runs into one Langfuse session:
-uv run maintain-eval smoke --target path/to/project --session-id repeat-2026-10-12
+uv run maintainability-agent smoke --target path/to/project --session-id repeat-2026-10-12
 ```
 
 It prints one `Finding` as JSON (verdict + file/line evidence), or `error: ...` and exit
@@ -59,7 +59,7 @@ you are happy to send to the LLM provider.
 ## Run the API
 
 ```bash
-uv run uvicorn --factory maintain_eval.api:create_app --reload   # http://127.0.0.1:8000
+uv run uvicorn --factory maintainability_agent.api:create_app --reload   # http://127.0.0.1:8000
 curl http://127.0.0.1:8000/health                              # {"status":"ok"}
 ```
 
@@ -125,12 +125,12 @@ npx langfuse-cli api observations list --level ERROR --is-root-observation
 ## Layout
 
 ```
-src/maintain_eval/
+src/maintainability_agent/
   schemas.py            Characteristic, Verdict, Evidence, Finding
   config.py             settings from env / .env
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
-  cli.py                `maintain-eval` entry point
+  cli.py                `maintainability-agent` entry point
   agent/                DeepAgents agent with read-only file access
   api/                  FastAPI app: create_app(), one router per area (health)
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
