@@ -1,5 +1,5 @@
 [project]
-name = "maintain-eval"
+name = "maintainability-agent"
 version = "0.1.0"
 description = "A DeepAgents agent that evaluates ISO/IEC 25010 maintainability."
 readme = "README.md"
@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-maintain-eval = "maintain_eval.cli:main"
+maintainability-agent = "maintainability_agent.cli:main"
 
 [dependency-groups]
 dev = [
@@ -48,7 +48,7 @@ plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra -m 'not integration' --cov=maintain_eval --cov-report=term-missing"
+addopts = "-ra -m 'not integration' --cov=maintainability_agent --cov-report=term-missing"
 markers = ["integration: needs real LLM/Langfuse credentials; run with `-m integration`"]
 norecursedirs = ["fixtures"]
 

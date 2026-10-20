@@ -1,6 +1,6 @@
 import pytest
 
-from maintain_eval.masking import REDACTED, redact
+from maintainability_agent.masking import REDACTED, redact
 
 
 @pytest.mark.parametrize(

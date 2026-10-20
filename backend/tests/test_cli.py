@@ -3,8 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from maintain_eval import cli
-from maintain_eval.schemas import Characteristic, Evidence, Finding, Verdict
+from maintainability_agent import cli
+from maintainability_agent.schemas import Characteristic, Evidence, Finding, Verdict
 
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
 

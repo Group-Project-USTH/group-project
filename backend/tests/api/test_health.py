@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from maintain_eval.api import create_app
+from maintainability_agent.api import create_app
 
 
 def test_health_reports_ok() -> None:

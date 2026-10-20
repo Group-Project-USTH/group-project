@@ -1,4 +1,4 @@
-# maintain-eval
+# maintainability-agent
 
 A [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview) agent that
 evaluates software **maintainability**. For each of the five ISO/IEC 25010
@@ -11,7 +11,7 @@ frontend.
 ## Layout
 
 ```
-backend/        Python 3.12 (uv): the agent, the `maintain-eval` CLI and the FastAPI app.
+backend/        Python 3.12 (uv): the agent, the `maintainability-agent` CLI and the FastAPI app.
                 Setup, configuration, tests, tracing: backend/README.md
 frontend/       the web chat UI (not started yet)
 docs/agents/    how the Claude Code skills use our issue tracker (GitHub Issues)
