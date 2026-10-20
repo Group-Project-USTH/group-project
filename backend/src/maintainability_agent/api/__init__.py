@@ -1,3 +1,3 @@
-from maintainability_agent.api.app_factory import create_app
+from maintainability_agent.api.main import create_app
 
 __all__ = ["create_app"]

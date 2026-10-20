@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from maintainability_agent.api import health
+from maintainability_agent.api.routers import health
 
 
 def create_app() -> FastAPI:
