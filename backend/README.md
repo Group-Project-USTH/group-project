@@ -99,7 +99,7 @@ With Langfuse keys set, the CLI prints `trace=<url>` for every run. Each run is 
 |---|---|---|
 | Trace name | `evaluate-characteristic` | find all evaluation runs |
 | Tags | `characteristic:<name>` | filter dashboards and tables |
-| Metadata | `run_id`, `characteristic` | correlate with our own results |
+| Metadata | `run_id`, `characteristic` | find a specific run |
 | Session | `--session-id`, if given | group related runs (**Sessions** view) |
 | Environment | `LANGFUSE_TRACING_ENVIRONMENT` | keep dev/test traces out of experiment data |
 | Release | git commit of the code | compare code versions |

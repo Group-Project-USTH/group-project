@@ -40,6 +40,6 @@ No single-letter names, except trivial loop indices or math-like local scopes.
 ## Branches
 
 `feat/…`, `fix/…`, `chore/…`, `docs/…` (also `test/…`, `ci/…`): short, lowercase,
-hyphenated, e.g. `feat/sonarqube-analyzer`.
+hyphenated, e.g. `feat/chat-endpoint`.
 
 Formatting and import order are enforced by `ruff`; don't restate them.
