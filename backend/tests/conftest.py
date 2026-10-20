@@ -6,8 +6,6 @@ import pytest
 
 from maintainability_agent.config import get_settings
 
-FIXTURES = Path(__file__).parent / "fixtures"
-
 _ENV_PREFIXES = ("LLM_", "OPENAI_", "LANGFUSE_")
 
 

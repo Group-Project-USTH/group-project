@@ -11,10 +11,10 @@ from langchain_core.language_models import BaseChatModel
 from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage, ToolMessage
 
-from maintainability_agent.agent import AgentOutputError, build_agent, run_smoke
+from maintainability_agent.agent import AgentOutputError, build_agent, evaluate_characteristic
 from maintainability_agent.schemas import Characteristic, Evidence, Verdict
 
-SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
+SAMPLE = Path(__file__).parents[1] / "fixtures" / "sample_project"
 
 
 class ScriptedChatModel(GenericFakeChatModel):
@@ -79,12 +79,12 @@ def test_agent_cannot_modify_target(project: Path) -> None:
     assert snapshot(project) == before
 
 
-def test_run_smoke_returns_validated_finding(project: Path) -> None:
+def test_evaluate_characteristic_returns_validated_finding(project: Path) -> None:
     model = scripted(
         AIMessage(content="", tool_calls=[call("read_file", {"file_path": "/app.py"}, "r")]),
         ANSWER_FAIL,
     )
-    finding = run_smoke(project, Characteristic.MODULARITY, run_id="t1", model=model)
+    finding = evaluate_characteristic(project, Characteristic.MODULARITY, run_id="t1", model=model)
     assert finding.characteristic is Characteristic.MODULARITY
     assert finding.verdict is Verdict.FAIL
     assert finding.evidence == [Evidence(file="app.py", line_start=6, line_end=25)]
@@ -99,9 +99,11 @@ def test_run_smoke_returns_validated_finding(project: Path) -> None:
     ],
     ids=["prose", "invalid-verdict", "pass-without-evidence"],
 )
-def test_run_smoke_rejects_bad_answers(project: Path, final: AIMessage) -> None:
+def test_evaluate_characteristic_rejects_bad_answers(project: Path, final: AIMessage) -> None:
     with pytest.raises(AgentOutputError):
-        run_smoke(project, Characteristic.TESTABILITY, run_id="t2", model=scripted(final))
+        evaluate_characteristic(
+            project, Characteristic.TESTABILITY, run_id="t2", model=scripted(final)
+        )
 
 
 def test_build_agent_requires_existing_directory(tmp_path: Path) -> None:
