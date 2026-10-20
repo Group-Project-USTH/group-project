@@ -33,7 +33,7 @@ uv run pre-commit install   # optional: run ruff on every commit
 | `OPENAI_BASE_URL` | Endpoint base URL; leave empty for api.openai.com, set it for a router/proxy |
 | `LANGFUSE_ENABLED` | `false` turns tracing off even if keys are set (default `true`) |
 | `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` | Langfuse project keys; if missing, tracing is skipped with a warning |
-| `LANGFUSE_BASE_URL` | `https://cloud.langfuse.com` (EU), `https://us.cloud.langfuse.com` (US) or self-hosted |
+| `LANGFUSE_BASE_URL` | `https://cloud.langfuse.com` (EU), `https://us.cloud.langfuse.com` (US) or self-hosted (v4.59.0 or later, needed by SDK v5) |
 | `LANGFUSE_TRACING_ENVIRONMENT` | `development` (default); integration tests use `test`. Use e.g. `experiment` for real runs |
 | `LANGFUSE_RELEASE` | Optional; defaults to the git commit of the code (`-dirty` if uncommitted changes) |
 
