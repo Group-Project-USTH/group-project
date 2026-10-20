@@ -17,7 +17,7 @@ class Characteristic(StrEnum):
 
 
 class Verdict(StrEnum):
-    """Outcome for one characteristic."""
+    """Pass, fail or unknown for one characteristic."""
 
     PASS = "pass"
     FAIL = "fail"
