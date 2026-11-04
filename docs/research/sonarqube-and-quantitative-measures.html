@@ -258,7 +258,7 @@ FIL .../toggly/client.py     complexity=116 cognitive_complexity=117 functions=4
 <div class="table-wrap"><table>
   <thead><tr><th>Measure</th><th>SonarQube against our tools</th><th>Verdict</th></tr></thead>
   <tbody>
-    <tr><td>Cognitive complexity</td><td>The same in all 16 files, e.g. <code>observability.py</code> 20 and 20, <code>masking.py</code> 14 and 14</td><td><span class="badge ok">Agree</span> on this code (the probe below finds constructs where they differ)</td></tr>
+    <tr><td>Cognitive complexity</td><td>The same in 15 of 16 files, e.g. <code>observability.py</code> 20 and 20, <code>masking.py</code> 14 and 14. In <code>read_only_filesystem_backend.py</code> SonarQube gives 0 and complexipy 1, from a list comprehension (see the probe).</td><td><span class="badge ok">Agree</span> except where comprehensions are involved</td></tr>
     <tr><td>Functions per file</td><td>The same in all 16 files</td><td><span class="badge ok">Agree</span></td></tr>
     <tr><td>Lines of code</td><td>Within 2 lines per file. SonarQube counts fewer around multi-line brackets.</td><td><span class="badge ok">Close</span></td></tr>
     <tr><td>Cyclomatic complexity</td><td>SonarQube is lower in 5 of 16 files. Backend total: SonarQube 73, lizard 81. Fixture <code>app.py</code>: 6 and 7.</td><td><span class="badge warn">Differ</span> by definition, see the probe</td></tr>
