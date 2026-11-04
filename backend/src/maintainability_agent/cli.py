@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintainability-agent smoke --target PATH`."""
+"""Command-line entry point: `maintainability-agent smoke|measure --target PATH`."""
 
 import argparse
 import logging
@@ -7,6 +7,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from maintainability_agent.agent import AgentOutputError, evaluate_characteristic
+from maintainability_agent.measures import measure_project
 from maintainability_agent.observability import check_langfuse_auth, new_run_id
 from maintainability_agent.schemas import Characteristic
 
@@ -28,13 +29,30 @@ def _parser() -> argparse.ArgumentParser:
         default=None,
         help="Langfuse session grouping related runs.",
     )
+    measure = sub.add_parser("measure", help="Print the project's Measures as JSON.")
+    measure.add_argument("--target", type=Path, required=True, help="Project directory to measure.")
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
+    if args.command == "measure":
+        return run_measure(args.target)
+    return run_smoke(args)
 
+
+def run_measure(target: Path) -> int:
+    try:
+        project_measures = measure_project(target)
+    except NotADirectoryError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    print(project_measures.model_dump_json(indent=2))
+    return 0
+
+
+def run_smoke(args: argparse.Namespace) -> int:
     run_id = args.run_id or new_run_id()
     print(f"run_id={run_id} characteristic={args.characteristic.value}", file=sys.stderr)
     check_langfuse_auth()

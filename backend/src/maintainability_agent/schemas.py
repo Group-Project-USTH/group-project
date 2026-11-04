@@ -39,6 +39,26 @@ class Evidence(BaseModel):
         return self
 
 
+class MeasureName(StrEnum):
+    CYCLOMATIC_COMPLEXITY = "cyclomatic_complexity"
+    FUNCTION_LINES_OF_CODE = "function_lines_of_code"
+    COGNITIVE_COMPLEXITY = "cognitive_complexity"
+
+
+class Measure(BaseModel):
+    name: MeasureName
+    value: int
+    function: str
+    file: str = Field(min_length=1)
+    line_start: int = Field(ge=1)
+    line_end: int = Field(ge=1)
+
+
+class ProjectMeasures(BaseModel):
+    measures: list[Measure] = Field(default_factory=list)
+    unparsed_files: list[str] = Field(default_factory=list)
+
+
 class Finding(BaseModel):
     """One verdict for one characteristic."""
 
