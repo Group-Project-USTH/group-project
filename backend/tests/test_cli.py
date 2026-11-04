@@ -60,3 +60,25 @@ def test_unexpected_errors_print_cleanly(
     monkeypatch.setattr(cli, "evaluate_characteristic", failing_evaluate_characteristic)
     assert cli.main(["smoke", "--target", str(SAMPLE)]) == 1
     assert "error: ConnectionError: provider unreachable" in capsys.readouterr().err
+
+
+def test_measure_prints_project_measures_json(capsys: pytest.CaptureFixture[str]) -> None:
+    assert cli.main(["measure", "--target", str(SAMPLE)]) == 0
+
+    payload = json.loads(capsys.readouterr().out)
+    assert {
+        "name": "cyclomatic_complexity",
+        "value": 7,
+        "function": "process_order",
+        "file": "app.py",
+        "line_start": 6,
+        "line_end": 25,
+    } in payload["measures"]
+    assert payload["unparsed_files"] == []
+
+
+def test_measure_missing_target_fails_clearly(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert cli.main(["measure", "--target", str(tmp_path / "nope")]) == 1
+    assert "error:" in capsys.readouterr().err
