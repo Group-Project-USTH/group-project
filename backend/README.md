@@ -39,6 +39,16 @@ uv run pre-commit install   # optional: run ruff on every commit
 `openai:*` models are called through the OpenAI **Responses API** with native JSON-schema
 structured output (see `agent/deep_agent.py` for why).
 
+## Measure a project
+
+```bash
+uv run maintainability-agent measure --target tests/fixtures/sample_project
+```
+
+It prints the project's Measures as JSON: cyclomatic complexity (lizard's definition),
+cognitive complexity (complexipy) and lines of code for every function, each with its file
+and line range, plus any `unparsed_files`. It needs no LLM or Langfuse keys.
+
 ## Run the smoke test
 
 ```bash
@@ -126,12 +136,13 @@ npx langfuse-cli api observations list --level ERROR --is-root-observation
 
 ```
 src/maintainability_agent/
-  schemas.py            Characteristic, Verdict, Evidence, Finding
+  schemas.py            Characteristic, Verdict, Evidence, Finding, Measure
   config.py             settings from env / .env
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
   cli.py                `maintainability-agent` entry point
   agent/                DeepAgents agent with read-only file access
+  measures/             per-function Measures (lizard, complexipy), no LLM
   api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
 ```
