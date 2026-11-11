@@ -18,6 +18,12 @@ _Avoid_: result, answer, outcome, decision, label
 A file and line range, with an optional snippet, that supports a verdict.
 _Avoid_: citation, reference, proof, location
 
+**Measure**:
+One number computed from the code, such as the cyclomatic complexity of one function, with
+the file and line range it applies to. Computed by our code, never by the LLM. What
+SonarQube and other tools call a "metric" is a Measure here.
+_Avoid_: metric, score, statistic
+
 **Finding**:
 One verdict for one characteristic, with its evidence and rationale. A pass or fail
 finding must cite evidence.
