@@ -31,8 +31,8 @@ GLOSSARY.md     domain terms (Characteristic, Verdict, Finding, ...); use exactl
 5. At least one teammate approves; resolve all review conversations.
 6. **Squash merge** (the only method allowed). Nobody pushes to `main` directly.
 
-The repo owner can bypass these checks (e.g. to merge without an approval); everyone else,
-Claude included, goes through them.
+The repo owner can bypass these checks inside a PR (e.g. to merge without an approval), but
+cannot push to `main` directly; everyone else, Claude included, goes through them.
 
 Never commit secrets: `.env` is git-ignored, only `.env.example` (no real values) is tracked.
 

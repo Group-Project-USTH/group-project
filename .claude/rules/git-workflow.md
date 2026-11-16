@@ -11,7 +11,8 @@
   them (diagrams or diff sketches in Summary, before/after in How tested).
 - Merge needs: CI `lint-typecheck-test` green, branch up to date with `main`, 1 approval,
   all review threads resolved. Squash merge only.
-- The repo owner (`mingming1509`) can bypass the `main` ruleset. That bypass is for the
+- The repo owner (`mingming1509`) can bypass the `main` ruleset, but only inside a PR
+  (`bypass_mode: pull_request`, so a stolen login can't push to `main`). That bypass is for the
   owner, not for Claude: even when running with the owner's `gh` login, never push to
   `main`, and merge a PR (including `gh pr merge --admin`) only when the user asks.
 - Never force-push a shared branch; never rewrite `main`.
