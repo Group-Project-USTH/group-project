@@ -13,10 +13,10 @@ from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
 from pydantic import BaseModel, Field, ValidationError
 
-from maintainability_agent.agent.read_only_filesystem_backend import ReadOnlyFilesystemBackend
-from maintainability_agent.config import Settings, get_settings
-from maintainability_agent.observability import traced_run
-from maintainability_agent.schemas import Characteristic, Evidence, Finding, Verdict
+from maintainability_lens.agent.read_only_filesystem_backend import ReadOnlyFilesystemBackend
+from maintainability_lens.config import Settings, get_settings
+from maintainability_lens.observability import traced_run
+from maintainability_lens.schemas import Characteristic, Evidence, Finding, Verdict
 
 # Bump whenever SYSTEM_PROMPT or the agent's tools/output schema change. Sent to Langfuse
 # as the observation `version`, so runs of different prompt iterations can be compared.

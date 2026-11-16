@@ -2,7 +2,7 @@
 
 The Python side of the project: the maintainability agent (built on
 [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview)), its
-`maintainability-agent` CLI and the FastAPI app for the web chat product. What the project is and
+`maintainability-lens` CLI and the FastAPI app for the web chat product. What the project is and
 how we work: [root README](../README.md).
 
 > Status: scaffold. The agent is wired end-to-end with a minimal, untuned prompt.
@@ -42,7 +42,7 @@ structured output (see `agent/deep_agent.py` for why).
 ## Measure a project
 
 ```bash
-uv run maintainability-agent measure --target tests/fixtures/sample_project
+uv run maintainability-lens measure --target tests/fixtures/sample_project
 ```
 
 It prints the project's Measures as JSON: cyclomatic complexity (lizard's definition),
@@ -52,10 +52,10 @@ and line range, plus any `unparsed_files`. It needs no LLM or Langfuse keys.
 ## Run the smoke test
 
 ```bash
-uv run maintainability-agent smoke --target tests/fixtures/sample_project
-uv run maintainability-agent smoke --target path/to/project --characteristic testability --run-id my-run-1
+uv run maintainability-lens smoke --target tests/fixtures/sample_project
+uv run maintainability-lens smoke --target path/to/project --characteristic testability --run-id my-run-1
 # group related runs into one Langfuse session:
-uv run maintainability-agent smoke --target path/to/project --session-id repeat-2026-10-12
+uv run maintainability-lens smoke --target path/to/project --session-id repeat-2026-10-12
 ```
 
 It prints one `Finding` as JSON (verdict + file/line evidence), or `error: ...` and exit
@@ -69,7 +69,7 @@ you are happy to send to the LLM provider.
 ## Run the API
 
 ```bash
-uv run uvicorn --factory maintainability_agent.api:create_app --reload   # http://127.0.0.1:8000
+uv run uvicorn --factory maintainability_lens.api:create_app --reload   # http://127.0.0.1:8000
 curl http://127.0.0.1:8000/health                              # {"status":"ok"}
 ```
 
@@ -135,12 +135,12 @@ npx langfuse-cli api observations list --level ERROR --is-root-observation
 ## Layout
 
 ```
-src/maintainability_agent/
+src/maintainability_lens/
   schemas.py            Characteristic, Verdict, Evidence, Finding, Measure
   config.py             settings from env / .env
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
-  cli.py                `maintainability-agent` entry point
+  cli.py                `maintainability-lens` entry point
   agent/                DeepAgents agent with read-only file access
   measures/             per-function Measures (lizard, complexipy), no LLM
   api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)

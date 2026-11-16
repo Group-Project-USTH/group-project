@@ -2,9 +2,9 @@ import ast
 from collections.abc import Iterator
 from pathlib import Path
 
-from maintainability_agent.measures.cognitive_complexity import measure_cognitive_complexity
-from maintainability_agent.measures.function_measures import measure_functions
-from maintainability_agent.schemas import ProjectMeasures
+from maintainability_lens.measures.cognitive_complexity import measure_cognitive_complexity
+from maintainability_lens.measures.function_measures import measure_functions
+from maintainability_lens.schemas import ProjectMeasures
 
 NOT_PROJECT_FOLDERS = frozenset({"venv", "__pycache__", "node_modules", "site-packages"})
 

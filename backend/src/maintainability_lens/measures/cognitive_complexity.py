@@ -2,7 +2,7 @@ from pathlib import Path
 
 import complexipy
 
-from maintainability_agent.schemas import Measure, MeasureName
+from maintainability_lens.schemas import Measure, MeasureName
 
 
 def measure_cognitive_complexity(path: Path, relative_file: str) -> list[Measure]:

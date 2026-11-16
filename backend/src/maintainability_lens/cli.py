@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintainability-agent smoke|measure --target PATH`."""
+"""Command-line entry point: `maintainability-lens smoke|measure --target PATH`."""
 
 import argparse
 import logging
@@ -6,14 +6,14 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from maintainability_agent.agent import AgentOutputError, evaluate_characteristic
-from maintainability_agent.measures import measure_project
-from maintainability_agent.observability import check_langfuse_auth, new_run_id
-from maintainability_agent.schemas import Characteristic
+from maintainability_lens.agent import AgentOutputError, evaluate_characteristic
+from maintainability_lens.measures import measure_project
+from maintainability_lens.observability import check_langfuse_auth, new_run_id
+from maintainability_lens.schemas import Characteristic
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="maintainability-agent")
+    parser = argparse.ArgumentParser(prog="maintainability-lens")
     sub = parser.add_subparsers(dest="command", required=True)
     smoke = sub.add_parser("smoke", help="Run the agent once and print its Finding.")
     smoke.add_argument("--target", type=Path, required=True, help="Project directory to analyse.")

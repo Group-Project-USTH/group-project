@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from maintainability_agent.measures import measure_project
-from maintainability_agent.schemas import Measure, MeasureName
+from maintainability_lens.measures import measure_project
+from maintainability_lens.schemas import Measure, MeasureName
 
 
 def write_module(root: Path, relative_path: str, source: str) -> None:

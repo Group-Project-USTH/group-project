@@ -27,8 +27,8 @@ from typing import TYPE_CHECKING, Any
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.runnables import RunnableConfig
 
-from maintainability_agent.config import Settings, get_settings
-from maintainability_agent.schemas import Characteristic
+from maintainability_lens.config import Settings, get_settings
+from maintainability_lens.schemas import Characteristic
 
 if TYPE_CHECKING:
     from langfuse import Langfuse
@@ -85,7 +85,7 @@ def build_langfuse_client(settings: Settings, **overrides: Any) -> "Langfuse":
     """Langfuse client with this project's environment, release, masking and span filter."""
     from langfuse import Langfuse
 
-    from maintainability_agent.masking import mask_otel_spans
+    from maintainability_lens.masking import mask_otel_spans
 
     assert settings.langfuse_secret_key is not None
     kwargs: dict[str, Any] = {

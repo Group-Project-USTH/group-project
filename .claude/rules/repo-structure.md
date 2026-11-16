@@ -7,8 +7,8 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | Path | Holds |
 |---|---|
 | `backend/` | the Python project (own `pyproject.toml`, `uv.lock`, `.env`) |
-| `backend/src/maintainability_agent/` | the only Python package (src layout) |
-| `backend/tests/` | mirrors `backend/src/maintainability_agent/` |
+| `backend/src/maintainability_lens/` | the only Python package (src layout) |
+| `backend/tests/` | mirrors `backend/src/maintainability_lens/` |
 | `frontend/` | the web chat UI (not started); its own toolchain, never imports the backend |
 | `scripts/` | one-off or ops scripts for the repo; never imported by the package |
 | `docs/` | skill config in `docs/agents/`; later `architecture.md`, ADRs in `docs/adr/`, research notes in `docs/research/` |
@@ -19,7 +19,7 @@ gets real content: an ADR only when a decision costly to reverse is actually mad
 research note (from the `research` skill) as `docs/research/<topic>.md`. Don't
 pre-create empty folders.
 
-Backend paths below are relative to `backend/src/maintainability_agent/`. Repo-wide things
+Backend paths below are relative to `backend/src/maintainability_lens/`. Repo-wide things
 (docs, scripts, CI, the glossary) stay at the root; anything that belongs to one side goes
 in `backend/` or `frontend/`.
 
@@ -36,7 +36,7 @@ in `backend/` or `frontend/`.
   - `main.py`: `create_app()` builds the app and includes every router.
   - `routers/`: one module per area (`health.py`, ...), each with its own
     `APIRouter(prefix="/<area>", tags=["<area>"])`. Import the module, not its `router`
-    (`from maintainability_agent.api.routers import health`, then `health.router`), so the
+    (`from maintainability_lens.api.routers import health`, then `health.router`), so the
     `router` names never collide.
   - `dependencies.py`: dependencies shared by several routers (settings, auth). Create it
     with the first one.

@@ -1,6 +1,6 @@
 import pytest
 
-from maintainability_agent.config import Settings
+from maintainability_lens.config import Settings
 
 
 def test_defaults_without_env() -> None:
