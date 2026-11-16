@@ -54,15 +54,19 @@ structured output (see `agent/deep_agent.py` for why).
 uv run maintainability-lens measure --target tests/fixtures/sample_project
 ```
 
-It prints the project's Measures as JSON: cyclomatic complexity (lizard's definition),
-cognitive complexity (complexipy), lines of code and parameter count (without `self`/`cls`)
-for every function, each with its file,
-line range and qualified name (`Cart.add`, `outer.inner`); lines of code for every file
-(docstrings, comments and blank lines excluded; `function` is `null`); plus any
-`unparsed_files`. The units come from Python's `ast`, so both tools' numbers land on the
-same unit. Every Measure has `is_test_code`: true for `test_*.py`, `*_test.py`,
-`conftest.py` and anything under a `test/` or `tests/` folder. It needs no LLM or Langfuse
-keys.
+It prints the project's Measures as JSON, plus any `unparsed_files`. It needs no LLM or
+Langfuse keys.
+
+- **Per function** (with its file, line range and qualified name such as `Cart.add` or
+  `outer.inner`): cyclomatic complexity (lizard's definition), cognitive complexity
+  (complexipy), lines of code, and parameter count without `self`/`cls`. The units come from
+  Python's `ast`, so both tools' numbers land on the same unit.
+- **Per file** (`function` is `null`, lines 1 to the last): lines of code, skipping
+  docstrings, comments and blank lines; and duplicated lines, the lines in any block of 6 or
+  more lines that appears again anywhere in the project, ignoring indentation (SIG's
+  definition).
+- **Every Measure** has `is_test_code`: true for `test_*.py`, `*_test.py`, `conftest.py` and
+  anything under a `test/` or `tests/` folder.
 
 ## Run the smoke test
 
