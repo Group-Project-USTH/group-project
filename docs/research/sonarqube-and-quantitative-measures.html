@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SonarQube and Quantitative Measures</title>
+<style>
+:root {
+  --bg: #fbfbfa; --surface: #ffffff; --text: #1d1f23; --muted: #5d636e; --border: #e2e4e8;
+  --accent: #2f5bd3; --accent-soft: #eef2fd; --code-bg: #f2f3f5;
+  --ok: #1f7a3f; --ok-soft: #e7f5ec; --warn: #9a5b00; --warn-soft: #fdf3e2;
+  --gray: #5d636e; --gray-soft: #eef0f2;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15171a; --surface: #1c1f23; --text: #e6e8eb; --muted: #9aa1ab; --border: #30343a;
+    --accent: #8fb0ff; --accent-soft: #1f2a44; --code-bg: #262a30;
+    --ok: #7fd39c; --ok-soft: #173323; --warn: #f0b45c; --warn-soft: #3a2c14;
+    --gray: #a7adb6; --gray-soft: #2a2e34;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15171a; --surface: #1c1f23; --text: #e6e8eb; --muted: #9aa1ab; --border: #30343a;
+  --accent: #8fb0ff; --accent-soft: #1f2a44; --code-bg: #262a30;
+  --ok: #7fd39c; --ok-soft: #173323; --warn: #f0b45c; --warn-soft: #3a2c14;
+  --gray: #a7adb6; --gray-soft: #2a2e34;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.page-header { max-width: 1120px; margin: 0 auto; padding: 40px 24px 8px; }
+.page-header h1 { margin: 0 0 6px; font-size: 1.9rem; line-height: 1.25; }
+.subtitle { margin: 0; color: var(--muted); }
+.layout { max-width: 1120px; margin: 0 auto; padding: 16px 24px 64px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.toc { position: sticky; top: 16px; align-self: start; font-size: 0.9rem; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 4px 0; color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--accent); }
+main { min-width: 0; }
+h2 { margin: 40px 0 12px; font-size: 1.35rem; padding-top: 8px; border-top: 1px solid var(--border); }
+h2:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+h3 { margin: 24px 0 8px; font-size: 1.08rem; }
+a { color: var(--accent); }
+code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-size: 0.88em; overflow-wrap: anywhere; }
+pre { background: var(--code-bg); padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 0.86rem; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+.summary { background: var(--accent-soft); border-radius: 10px; padding: 16px 20px; }
+.summary ul { margin: 8px 0 0; padding-left: 20px; }
+.summary li { margin: 6px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+th { background: var(--code-bg); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+table.wrap-head th { white-space: normal; }
+td:first-child > code:only-child { white-space: nowrap; overflow-wrap: normal; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+.badge.ok { color: var(--ok); background: var(--ok-soft); }
+.badge.warn { color: var(--warn); background: var(--warn-soft); }
+.badge.gray { color: var(--gray); background: var(--gray-soft); }
+.callout { border-left: 4px solid var(--warn); background: var(--warn-soft); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.layers { display: grid; gap: 10px; margin: 16px 0; }
+.layer { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: start; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.layer .step { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-weight: 700; }
+.layer p { margin: 2px 0 0; color: var(--muted); }
+.sources li { margin: 4px 0; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .page-header { padding: 24px 16px 4px; }
+  .page-header h1 { font-size: 1.5rem; }
+  .layout { grid-template-columns: 1fr; padding: 12px 16px 48px; gap: 16px; }
+  nav.toc { position: static; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <h1>SonarQube and Quantitative Measures</h1>
+  <p class="subtitle">Should SonarQube compute the numbers behind our Verdicts? Every claim here was re-checked against official docs, live APIs or a real run on 2026-11-04.</p>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#summary">1. Summary</a></li>
+    <li><a href="#checks">2. What was double-checked</a></li>
+    <li><a href="#sonar-cli">3. SonarQube CLI</a></li>
+    <li><a href="#sonar-server">4. SonarQube Server measures</a></li>
+    <li><a href="#libraries">5. Python libraries, tested</a></li>
+    <li><a href="#proposal">6. Proposal: three layers</a></li>
+    <li><a href="#sonar-role">7. Where SonarQube fits</a></li>
+    <li><a href="#decisions">8. Decisions and next steps</a></li>
+    <li><a href="#spike">9. Spike results</a></li>
+    <li><a href="#sources">10. Sources</a></li>
+  </ol>
+</nav>
+<main>
+
+<h2 id="summary">1. Summary</h2>
+<div class="summary">
+  <strong>Recommendation:</strong> compute the measures ourselves with small local Python libraries, rate them with the SIG model from <code>Maintainability_Measurement_Models.pdf</code>, and use SonarQube to cross-check our numbers and as a baseline, not as the engine.
+  <ul>
+    <li><strong>The SonarQube CLI (<code>sonar</code>) doesn't compute measures.</strong> It queries an existing SonarQube project for issues and quality-gate status. Its local analysis is SonarQube Cloud only, and its Agentic Analysis needs a paid plan.</li>
+    <li><strong>SonarQube Server and Community Build compute some measures:</strong> cyclomatic and cognitive complexity, duplication, size, debt ratio, plus coverage if you import it. That is per file at the finest; there are no per-function values.</li>
+    <li><strong>SonarQube lacks most of what the PDF needs.</strong> SonarCloud's full list of 165 metrics has no MI, Halstead, CK, Martin, fan-in/out or cycle measures. Its lack of per-function values also means it can't build the SIG risk profiles that the PDF picks as the main frame.</li>
+    <li><strong>The local libraries ran on our fixture</strong> and produced per-function numbers with file and line. Running them found two things to handle. radon's MI isn't the formula in the PDF: it gives 68.5 on <code>app.py</code>, against 55.9 with the PDF's formula. And grimp needs a real package, so it can't graph loose scripts.</li>
+  </ul>
+</div>
+
+<h2 id="checks">2. What was double-checked</h2>
+<p>Each claim from the first answer, how it was checked, and the result. <span class="badge ok">Confirmed</span> means it holds. <span class="badge warn">Corrected</span> means the first answer was wrong or missing a detail. <span class="badge gray">Unverified</span> means only the docs say so.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Claim</th><th>How it was checked</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>The <code>sonar</code> CLI reads issues and gate status. It has no command for measures.</td><td>Docs, quickstart and the GitHub README's command list</td><td><span class="badge ok">Confirmed</span> The docs overview mentions a <code>sonar api</code> pass-through to the Web API. It isn't tested.</td></tr>
+    <tr><td>Local analysis needs a SonarQube backend.</td><td>README, "Step 4: Analyze Local Changes (SonarQube Cloud only)"</td><td><span class="badge ok">Confirmed</span> Only secrets detection runs with no server.</td></tr>
+    <tr><td>Agentic Analysis (Vortex) is paid and sends file contents to Sonar.</td><td>Quickstart and Sonar's blueprint page</td><td><span class="badge gray">Unverified</span> The docs say so; it wasn't tried.</td></tr>
+    <tr><td>CLI version, status and license</td><td>GitHub API, <code>releases/latest</code> and the repo license</td><td><span class="badge warn">Corrected</span> The latest release is <code>1.11.0.16877</code> (2026-10-27). It has been GA since 1.0, and its license is LGPL-3.0.</td></tr>
+    <tr><td>The CLI works with Community Build.</td><td>README prerequisites</td><td><span class="badge gray">Unverified</span> It requires SonarQube Cloud or "SonarQube Server (v2025.1+)". Community Build isn't mentioned.</td></tr>
+    <tr><td>SonarQube has no MI, Halstead, CK, Martin or cycle measures.</td><td>Live <code>sonarcloud.io/api/metrics/search</code>, all 165 keys</td><td><span class="badge ok">Confirmed</span> None of them are present.</td></tr>
+    <tr><td>Measures are available per file but not per function.</td><td>Live <code>api/measures/component_tree</code> on a public Python project, and the docs</td><td><span class="badge ok">Confirmed</span> Per-file values came back. The docs say function-level complexity "cannot be viewed directly". The one exception is rule S3776, whose issues give a function's cognitive complexity, but only when it's above 15.</td></tr>
+    <tr><td>The MQR key <code>software_quality_maintainability_debt_ratio</code> exists.</td><td>Server 2026.4 docs and the live SonarCloud key list</td><td><span class="badge warn">Corrected</span> It's in the Server docs but not on SonarCloud. Keys differ between products, so always list them on the instance in use.</td></tr>
+    <tr><td>Community Build runs in Docker.</td><td>Ran <code>sonarqube:community</code> (26.10.0.133078) locally, see <a href="#spike">section 9</a></td><td><span class="badge ok">Confirmed</span> The server took a minute or two to start, and each scan took 18–23 s. The 4 GB RAM figure wasn't measured.</td></tr>
+    <tr><td>radon computes CC, MI and Halstead.</td><td>Ran <code>radon==6.0.1</code> on the fixture and read its source</td><td><span class="badge warn">Corrected</span> It works, but its MI adds a comment term (<a href="#mi-mismatch">section 5</a>).</td></tr>
+    <tr><td>lizard gives per-function CC and length in many languages.</td><td>Ran <code>lizard==1.25.0</code></td><td><span class="badge ok">Confirmed</span> It lists 29 languages. Its CC agrees with radon's: 7 for <code>process_order</code>.</td></tr>
+    <tr><td>grimp gives the import graph needed for fan-in/out and Martin instability.</td><td>Ran <code>grimp==3.18</code> on our backend and on the fixture</td><td><span class="badge warn">Corrected</span> It works on a package (our 13 modules). It fails on loose scripts like the fixture.</td></tr>
+    <tr><td>complexipy computes cognitive complexity.</td><td>Ran <code>complexipy==8.3.0</code> and counted by hand</td><td><span class="badge ok">Confirmed</span> It gives <code>process_order</code> 8, which matches a hand count with the PDF's rule (+1 per break in flow, plus nesting).</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="sonar-cli">3. SonarQube CLI</h2>
+<p>The docs describe <code>sonar</code> as "a command-line companion for SonarQube Cloud and SonarQube Server" for developers and AI agents. It is a different tool from <code>sonar-scanner</code> (SonarScanner CLI), which runs the analysis and uploads it from CI.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Command</th><th>What it does</th><th>Needs</th></tr></thead>
+  <tbody>
+    <tr><td><code>sonar analyze secrets &lt;file&gt;</code></td><td>Detects secrets</td><td>Nothing, it runs locally</td></tr>
+    <tr><td><code>sonar list projects</code>, <code>sonar list issues</code></td><td>Lists projects, and issues with rule, severity and file:line. Output is JSON, CSV, TOON or a table.</td><td>A server or Cloud, plus a user token</td></tr>
+    <tr><td><code>sonar quality-gate status</code></td><td>Reports whether the quality gate passed (exit code 0) or failed (51)</td><td>A server or Cloud</td></tr>
+    <tr><td><code>sonar analyze --file / --staged / --base</code></td><td>Analyses local changes</td><td>SonarQube Cloud. Vortex needs a subscription.</td></tr>
+    <tr><td><code>sonar analyze agentic</code></td><td>Agentic Analysis, run from agent hooks</td><td>Cloud Enterprise or Team, or Server 2026.5 Enterprise</td></tr>
+    <tr><td><code>sonar integrate claude|codex|git</code></td><td>Installs agent hooks and git hooks</td><td>A server or Cloud</td></tr>
+    <tr><td><code>sonar run mcp</code></td><td>Starts the SonarQube MCP Server container</td><td>Docker or Podman, and a server or Cloud</td></tr>
+  </tbody>
+</table></div>
+<p>For us, it reports problems, but it doesn't produce numbers we can turn into a Verdict.</p>
+
+<h2 id="sonar-server">4. SonarQube Server measures against the PDF</h2>
+<p>SonarQube Server and the free Community Build compute measures during <code>sonar-scanner</code> analysis and serve them from <code>/api/measures/component</code> (project) and <code>/api/measures/component_tree</code> (per file). Each row below was checked against SonarCloud's live key list.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>What the PDF needs</th><th>SonarQube key</th><th>Available?</th></tr></thead>
+  <tbody>
+    <tr><td>Cyclomatic complexity (CC)</td><td><code>complexity</code></td><td><span class="badge warn">Per file</span> No per-function values</td></tr>
+    <tr><td>Cognitive complexity</td><td><code>cognitive_complexity</code></td><td><span class="badge warn">Per file</span> Per function only through S3776 issues above 15</td></tr>
+    <tr><td>Duplication %</td><td><code>duplicated_lines_density</code> = duplicated lines / lines × 100</td><td><span class="badge ok">Yes</span></td></tr>
+    <tr><td>SQALE debt ratio and rating</td><td><code>sqale_debt_ratio</code>, <code>sqale_rating</code> (A ≤ 5%, B &lt; 10%, C &lt; 20%, D &lt; 50%, E ≥ 50%)</td><td><span class="badge ok">Yes</span> The PDF treats these as secondary, not ISO</td></tr>
+    <tr><td>Size, comment density</td><td><code>ncloc</code>, <code>functions</code>, <code>classes</code>, <code>comment_lines_density</code></td><td><span class="badge ok">Yes</span></td></tr>
+    <tr><td>Coverage</td><td><code>coverage</code>, <code>line_coverage</code>, <code>branch_coverage</code></td><td><span class="badge warn">Imported</span> Only from a <code>coverage.xml</code> that we produce</td></tr>
+    <tr><td>Maintainability Index, Halstead</td><td>none</td><td><span class="badge gray">No</span></td></tr>
+    <tr><td>CK: CBO, RFC, LCOM, WMC, DIT, NOC</td><td>none</td><td><span class="badge gray">No</span></td></tr>
+    <tr><td>Martin I / A / D, fan-in, fan-out</td><td>none</td><td><span class="badge gray">No</span></td></tr>
+    <tr><td>Dependency cycles, propagation cost</td><td>none</td><td><span class="badge gray">No</span></td></tr>
+    <tr><td>SIG risk profiles (% of lines of code per CC band, unit size)</td><td>none</td><td><span class="badge gray">No</span> These need per-function CC and length</td></tr>
+  </tbody>
+</table></div>
+<p>A live per-file query against a public Python project on SonarCloud:</p>
+<pre><code>GET https://sonarcloud.io/api/measures/component_tree?component=toggly-sdks-python
+    &amp;qualifiers=FIL&amp;metricKeys=complexity,cognitive_complexity,ncloc,duplicated_lines_density,functions
+
+FIL .../toggly/evaluator.py  complexity=225 cognitive_complexity=220 functions=48 ncloc=622 duplicated_lines_density=0.0
+FIL .../toggly/client.py     complexity=116 cognitive_complexity=117 functions=41 ncloc=640 duplicated_lines_density=13.4</code></pre>
+<p><strong>Running it ourselves:</strong> Community Build is free and self-hosted, and it ships as the <code>sonarqube</code> Docker image. The docs ask for 4 GB of RAM for a small installation, and an Elasticsearch kernel setting of <code>vm.max_map_count ≥ 524288</code> on the host. Analysis is asynchronous: you scan, the server processes the report, then you query the API. That is fine for a batch over the evaluation set, but heavy for every Run of a web chat product.</p>
+
+<h2 id="libraries">5. Python libraries, tested on the fixture</h2>
+<p>These ran on <code>backend/tests/fixtures/sample_project</code> (three files, 32 lines) with Python 3.12, in throwaway environments. Nothing was added to the project.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Library</th><th>Gives</th><th>Fixture output</th></tr></thead>
+  <tbody>
+    <tr><td><code>radon==6.0.1</code></td><td>CC per function, MI per file, Halstead, raw size</td><td><code>process_order</code> at <code>app.py:6</code>: CC 7. MI: <code>app.py</code> 68.5, <code>utils.py</code> 100.0, <code>test_app.py</code> 84.6. Halstead volume of <code>app.py</code>: 129.32.</td></tr>
+    <tr><td><code>lizard==1.25.0</code></td><td>Per function: CC, lines of code, tokens, parameters, line range. Covers 29 languages.</td><td><code>process_order@6-25@app.py</code>: 19 lines of code, CC 7, 142 tokens, 1 parameter</td></tr>
+    <tr><td><code>complexipy==8.3.0</code></td><td>Cognitive complexity per function. Output is plain, JSON, CSV or SARIF.</td><td><code>process_order</code>: 8. <code>format_money</code>: 0. <code>test_format_money</code>: 0.</td></tr>
+    <tr><td><code>grimp==3.18</code></td><td>Import graph, giving fan-in (Ca), fan-out (Ce), Martin instability I = Ce / (Ce + Ca), and import chains between modules</td><td>On the fixture: no edges, or a <code>NotATopLevelModule</code> error. On our backend: 13 modules, e.g. <code>schemas</code> Ca=3, Ce=0, I=0.00 and <code>agent.deep_agent</code> Ca=1, Ce=4, I=0.80.</td></tr>
+  </tbody>
+</table></div>
+
+<h3 id="mi-mismatch">Finding 1: radon's MI isn't the PDF's MI</h3>
+<p>The PDF uses the Visual Studio formula, <code>MAX(0, (171 − 5.2·ln HV − 0.23·CC − 16.2·ln LOC) × 100 / 171)</code>. radon's <code>mi_compute</code> adds <code>+ 50·sin(√(2.46·rad(comments)))</code> and caps the result at 100. On <code>app.py</code>:</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Formula</th><th>Inputs</th><th>MI</th></tr></thead>
+  <tbody>
+    <tr><td>radon, with the comment term</td><td>HV 129.32, CC 7, 20 source lines, 1 comment line</td><td class="num">68.50</td></tr>
+    <tr><td>PDF / Visual Studio, no comment term</td><td>HV 129.32, CC 7, LOC 20</td><td class="num">55.89</td></tr>
+  </tbody>
+</table></div>
+<p>Both fall in the green band (20–100), but the numbers differ by 12.6 points. So we should take HV, CC and LOC from radon and apply the PDF's formula in our own code. The report should then state which formula we used.</p>
+
+<h3>Finding 2: grimp needs a package</h3>
+<p>grimp builds the graph only from an importable package (a folder). Loose scripts that use <code>from utils import …</code>, as the fixture does, produce no edges. Real targets are usually packages, but we need a fallback: a small walker using Python's <code>ast</code> module that resolves imports between files under the target.</p>
+
+<h3>Finding 3: the numbers check out by hand</h3>
+<p>radon and lizard both give <code>process_order</code> a CC of 7, and a hand count of its decision points (<code>if</code>, <code>for</code>, <code>if</code>, <code>if</code>, <code>elif</code>, <code>if</code>, plus 1) also gives 7. Its cognitive complexity of 8 from complexipy matches a hand count too: +1 for each of lines 8, 11, 17 and 20, and +2 for lines 12 and 15, which are nested in the loop. Two tools agreeing with each other and with a hand count is a cheap check that our measurement is right. SonarQube can be a third check, per file.</p>
+
+<h2 id="proposal">6. Proposal: three layers</h2>
+<div class="layers">
+  <div class="layer"><div class="step">1</div><div><strong>Measure</strong>, deterministic and local, takes seconds<p>Per-function, per-file and per-module numbers, each with a file and line, from radon, lizard, complexipy and grimp, plus our own <code>ast</code> walker for CK and imports.</p></div></div>
+  <div class="layer"><div class="step">2</div><div><strong>Rate</strong>, deterministic, no LLM<p>Apply the PDF's formulas and thresholds (SIG risk profiles, Martin D, duplication bands) and give each Characteristic a rating from ++ to −−. The same code always gets the same rating: this is our own quantitative matrix.</p></div></div>
+  <div class="layer"><div class="step">3</div><div><strong>Agent</strong>, the LLM<p>The agent reads the numbers through tools, cites the worst units as Evidence, checks what numbers can't see (names, comments), and gives the Verdict. If its Verdict disagrees with the rating, it has to explain why.</p></div></div>
+</div>
+
+<h3>Measures per Characteristic</h3>
+<p>The measure choices come from the PDF's coverage table, and each tool was checked above.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Characteristic</th><th>Measures (from the PDF)</th><th>Our source</th><th>SonarQube</th></tr></thead>
+  <tbody>
+    <tr><td>Modularity</td><td>CBO, Martin D, dependency cycles (target 0), propagation cost</td><td>grimp, or the <code>ast</code> fallback, plus our own CK walker</td><td>None</td></tr>
+    <tr><td>Reusability</td><td>QMOOD reusability, fan-in (Ca), duplication</td><td>grimp, our CK walker, a duplication tool (not chosen yet)</td><td>Duplication only</td></tr>
+    <tr><td>Analysability</td><td>SIG CC and unit-size profile, cognitive complexity, Halstead, MI</td><td>lizard, complexipy, radon (MI with the PDF's formula). Names and comments go to the agent.</td><td>CC and cognitive complexity per file</td></tr>
+    <tr><td>Modifiability</td><td>Duplication, CBO, SIG CC profile</td><td>lizard, the duplication tool, our CK walker</td><td>Duplication, per-file CC</td></tr>
+    <tr><td>Testability</td><td>Coverage and mutation if tests run. Static proxies: RFC, fan-out.</td><td>Our CK walker (RFC), grimp (fan-out), coverage.py as an option</td><td>Coverage, only if imported</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Worked example: the SIG CC rating for the fixture</h3>
+<p>Using lizard's per-function output and the PDF's SIG bands (1–10 low, 11–20 moderate, 21–50 high, over 50 very high):</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Function</th><th>CC</th><th>Lines of code</th><th>Band</th></tr></thead>
+  <tbody>
+    <tr><td><code>format_money</code> (<code>utils.py:1</code>)</td><td class="num">1</td><td class="num">2</td><td>low</td></tr>
+    <tr><td><code>process_order</code> (<code>app.py:6–25</code>)</td><td class="num">7</td><td class="num">19</td><td>low</td></tr>
+    <tr><td><code>test_format_money</code> (<code>test_app.py:4</code>)</td><td class="num">1</td><td class="num">2</td><td>low</td></tr>
+  </tbody>
+</table></div>
+<p>The risk profile for moderate / high / very high is 0% / 0% / 0% of lines of code, so the CC rating is <strong>++</strong>. The fixture is labelled "deliberately not well-structured", and CC alone doesn't catch that. That is the case for combining several measures and for the agent's layer-3 check.</p>
+
+<h3>A new glossary term</h3>
+<p><code>GLOSSARY.md</code> lists "metric" as a word to avoid, because it's a synonym for Characteristic. The numbers need their own term. A proposal: <strong>Measure</strong>, "one number computed from the code, such as the CC of a function, with the file and line it applies to". It should be added before any code is written.</p>
+
+<h2 id="sonar-role">7. Where SonarQube fits</h2>
+<ul>
+  <li><strong>Checking our numbers.</strong> Run Community Build once over the evaluation projects and compare its per-file CC, cognitive complexity and duplication with ours. Close agreement makes a strong section for the report.</li>
+  <li><strong>A baseline in the evaluation matrix.</strong> A "SonarQube rating only" baseline (its A–E rating mapped to pass/fail) against "agent with measures" is a fair comparison for the supervisor.</li>
+  <li><strong>Later, optionally,</strong> an adapter so the agent can read a team's existing SonarQube project, through the Web API or the SonarQube MCP Server. It isn't needed now.</li>
+</ul>
+
+<h2 id="decisions">8. Decisions and next steps</h2>
+<ol>
+  <li><span class="badge ok">Decided</span> <strong>The code under test is Python only</strong> (2026-11-04). The stack above is enough.</li>
+  <li><span class="badge ok">Done</span> <strong>The term Measure</strong> is added to <code>GLOSSARY.md</code> (not committed yet).</li>
+  <li><span class="badge ok">Done</span> <strong>The spike:</strong> see <a href="#spike">section 9</a>.</li>
+  <li><strong>Next, choose one CC definition</strong> and write it down, because the tools disagree (<a href="#spike">section 9</a>).</li>
+  <li><strong>Then the first PR:</strong> a <code>measures/</code> package for layer 1 with tests, with each dependency named and pinned to the version that ran.</li>
+</ol>
+
+<h2 id="spike">9. Spike results</h2>
+<p>SonarQube Community Build <code>26.10.0.133078</code> (<code>sonarqube:community</code>, 2.55 GB) and SonarScanner CLI <code>8.3.1.16491</code> (1.45 GB) ran in Docker, reachable only from this machine. They scanned copies of the fixture (3 files) and of our backend source (13 files, 442 lines of code). The same files went through <code>radon==6.0.1</code>, <code>lizard==1.25.0</code> and <code>complexipy==8.3.0</code>. Nothing was added to the project.</p>
+
+<h3>Per-file agreement across 16 files</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>Measure</th><th>SonarQube against our tools</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>Cognitive complexity</td><td>The same in 15 of 16 files, e.g. <code>observability.py</code> 20 and 20, <code>masking.py</code> 14 and 14. In <code>read_only_filesystem_backend.py</code> SonarQube gives 0 and complexipy 1, from a list comprehension (see the probe).</td><td><span class="badge ok">Agree</span> except where comprehensions are involved</td></tr>
+    <tr><td>Functions per file</td><td>The same in all 16 files</td><td><span class="badge ok">Agree</span></td></tr>
+    <tr><td>Lines of code</td><td>Within 2 lines per file. SonarQube counts fewer around multi-line brackets.</td><td><span class="badge ok">Close</span></td></tr>
+    <tr><td>Cyclomatic complexity</td><td>SonarQube is lower in 5 of 16 files. Backend total: SonarQube 73, lizard 81. Fixture <code>app.py</code>: 6 and 7.</td><td><span class="badge warn">Differ</span> by definition, see the probe</td></tr>
+    <tr><td>Duplication</td><td>0.0% on both targets</td><td><span class="badge gray">Not testable</span> Neither target has duplicated code</td></tr>
+    <tr><td>Technical debt</td><td>Fixture: 0 min. Backend: 20 min from one issue, <code>python:S8786</code> (a super-linear regular expression at <code>masking.py:28</code>), giving a 0.2% debt ratio and an A rating.</td><td><span class="badge warn">Note</span> In MQR mode the same issue is filed under Reliability, so the maintainability debt ratio there is 0.0%.</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Probe: what each tool counts</h3>
+<p>To explain the CC gap, I scanned 17 tiny files, each a function containing one construct. The table gives the file-level value from each tool.</p>
+<div class="table-wrap"><table class="wrap-head">
+  <thead><tr><th>Construct</th><th>CC SonarQube</th><th>CC lizard</th><th>CC radon</th><th>Cognitive SonarQube</th><th>Cognitive complexipy</th></tr></thead>
+  <tbody>
+    <tr><td>plain function</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td><code>if</code></td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td></tr>
+    <tr><td><code>if</code> + <code>elif</code></td><td class="num"><strong>2</strong></td><td class="num">3</td><td class="num">3</td><td class="num">2</td><td class="num">2</td></tr>
+    <tr><td><code>if</code> + <code>else</code></td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">2</td></tr>
+    <tr><td><code>for</code>, <code>while</code>, <code>and</code>, <code>or</code>, ternary</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td></tr>
+    <tr><td><code>try</code> / <code>except</code></td><td class="num"><strong>1</strong></td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td></tr>
+    <tr><td>comprehension with <code>if</code></td><td class="num"><strong>2</strong></td><td class="num">3</td><td class="num">3</td><td class="num"><strong>0</strong></td><td class="num">2</td></tr>
+    <tr><td><code>assert</code></td><td class="num">1</td><td class="num">1</td><td class="num"><strong>2</strong></td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td><code>match</code> with 2 cases</td><td class="num"><strong>1</strong></td><td class="num">3</td><td class="num">2</td><td class="num"><strong>0</strong></td><td class="num">1</td></tr>
+    <tr><td><code>with</code></td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td><code>for</code> + <code>else</code></td><td class="num">2</td><td class="num">2</td><td class="num"><strong>3</strong></td><td class="num"><strong>2</strong></td><td class="num">1</td></tr>
+    <tr><td><code>if</code> at module level, no function</td><td class="num"><strong>1</strong></td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td></tr>
+  </tbody>
+</table></div>
+<p><strong>What this means:</strong> "cyclomatic complexity" is three slightly different measures. SonarQube doesn't count <code>elif</code>, <code>except</code>, comprehension filters or <code>match</code> cases. radon counts <code>assert</code> and loop <code>else</code>. lizard ignores code outside functions. Cognitive complexity agrees on ordinary code but differs on comprehensions, <code>match</code> and loop <code>else</code>. A cross-check therefore can't expect equal totals. It has to explain each gap by one of these rules, and the report has to name the definition we use.</p>
+<p><strong>Recommendation:</strong> use lizard for CC and unit size. It works per function, which is what SIG risk profiles need, and it counts <code>elif</code> and <code>except</code> as McCabe does. Use complexipy for cognitive complexity. Treat SonarQube's per-file values as a check whose known differences are listed in this table.</p>
+
+<h3>Layer 2 demo: the SIG CC rating</h3>
+<div class="table-wrap"><table class="wrap-head">
+  <thead><tr><th>Target</th><th>Functions</th><th>Lines of code in functions</th><th>Moderate / high / very high</th><th>Worst function</th><th>SIG CC rating</th></tr></thead>
+  <tbody>
+    <tr><td>Fixture</td><td class="num">3</td><td class="num">23</td><td>0 / 0 / 0%</td><td><code>process_order</code>, CC 7, <code>app.py:6–25</code></td><td><strong>++</strong></td></tr>
+    <tr><td>Our backend</td><td class="num">31</td><td class="num">288</td><td>0 / 0 / 0%</td><td><code>mask_otel_spans</code>, CC 7, <code>masking.py:38–50</code></td><td><strong>++</strong></td></tr>
+  </tbody>
+</table></div>
+<p>Both targets rate ++, so CC alone doesn't separate them, even though the fixture is "deliberately not well-structured". Its problem is mixed responsibilities, not branching. This supports combining several measures, CK and import measures included, and keeping the agent's layer-3 check. It also shows that the next round needs larger, varied Python projects, for example the labelled evaluation set.</p>
+
+<h2 id="sources">10. Sources</h2>
+<ol class="sources">
+  <li><a href="https://docs.sonarsource.com/sonarqube-cli">SonarQube CLI documentation</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-cli/quickstart-guide.md">SonarQube CLI quickstart guide</a></li>
+  <li><a href="https://github.com/SonarSource/sonarqube-cli">SonarSource/sonarqube-cli on GitHub</a>: README, releases (1.11.0.16877, 2026-10-27), LGPL-3.0</li>
+  <li><a href="https://github.com/SonarSource/sonarqube-cli/releases/tag/1.0.0.2628">SonarQube CLI v1.0.0 release notes</a></li>
+  <li><a href="https://www.sonarsource.com/developers/blueprints/sonarqube-cli-to-analyze-code-and-configure-ai-agents/">Sonar blueprint: the CLI and AI agents</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-server/2026.4/user-guide/code-metrics/metrics-definition">Metrics definition, SonarQube Server 2026.4</a></li>
+  <li><a href="https://sonarcloud.io/api/metrics/search?ps=500">SonarCloud live metric list</a> (165 keys, queried 2026-11-04)</li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-community-build/try-out-sonarqube.md">Community Build: try out SonarQube</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-community-build/server-installation/server-host-requirements.md">Community Build: server host requirements</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-community-build/server-installation/pre-installation/linux.md">Community Build: Linux pre-installation</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python.md">Community Build: Python support</a></li>
+  <li><a href="https://docs.sonarsource.com/sonarqube-server/2026.4/extension-guide/web-api.md">SonarQube Web API</a></li>
+  <li><a href="https://pypi.org/project/radon/">radon on PyPI</a> (6.0.1), <a href="https://pypi.org/project/lizard/">lizard</a> (1.25.0), <a href="https://pypi.org/project/complexipy/">complexipy</a> (8.3.0), <a href="https://pypi.org/project/grimp/">grimp</a> (3.18)</li>
+  <li><code>docs/agents/Maintainability_Measurement_Models.pdf</code>: the formulas, the SIG bands and the coverage table</li>
+</ol>
+
+</main>
+</div>
+</body>
+</html>
