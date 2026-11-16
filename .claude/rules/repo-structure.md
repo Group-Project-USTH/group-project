@@ -35,7 +35,8 @@ in `backend/` or `frontend/`.
   `cognitive_complexity.py` for complexipy) attaches its numbers to those units;
   `unit_interfacing.py` turns each unit's parameter count into a Measure;
   `parsed_file.py` parses each file once and finds its code lines; `file_volume.py` counts
-  them; `duplication.py` finds 6-line blocks repeated across files;
+  them; `duplication.py` finds 6-line blocks repeated across files; `module_coupling.py`
+  resolves imports to project files and counts each file's fan-in;
   `production_test_split.py` decides which files are test code.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures to Claude Code. MCP only: the work happens in `measures/`.

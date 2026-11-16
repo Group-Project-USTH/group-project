@@ -46,6 +46,7 @@ class MeasureName(StrEnum):
     PARAMETER_COUNT = "parameter_count"
     FILE_LINES_OF_CODE = "file_lines_of_code"
     DUPLICATED_LINES = "duplicated_lines"
+    FILE_FAN_IN = "file_fan_in"
 
 
 class Measure(BaseModel):
