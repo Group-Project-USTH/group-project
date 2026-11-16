@@ -6,9 +6,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from maintainability_lens.agent import AgentOutputError, evaluate_characteristic
 from maintainability_lens.measures import measure_project
-from maintainability_lens.observability import check_langfuse_auth, new_run_id
 from maintainability_lens.schemas import Characteristic
 
 
@@ -53,6 +51,15 @@ def run_measure(target: Path) -> int:
 
 
 def run_smoke(args: argparse.Namespace) -> int:
+    # The LLM stack is a dev-only dependency group, absent when installed with uvx.
+    try:
+        from maintainability_lens.agent import AgentOutputError, evaluate_characteristic
+        from maintainability_lens.observability import check_langfuse_auth, new_run_id
+    except ImportError:
+        print(
+            "error: smoke needs the agent dependency group (`uv sync` in backend/)", file=sys.stderr
+        )
+        return 1
     run_id = args.run_id or new_run_id()
     print(f"run_id={run_id} characteristic={args.characteristic.value}", file=sys.stderr)
     check_langfuse_auth()

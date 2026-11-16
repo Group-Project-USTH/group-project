@@ -23,6 +23,15 @@ cp .env.example .env    # then fill in the values (.env is git-ignored)
 uv run pre-commit install   # optional: run ruff on every commit
 ```
 
+`uv sync` installs the `dev` and `agent` dependency groups. The `agent` group (DeepAgents,
+LangChain, Langfuse, FastAPI) is not part of the package, so an install without the repo
+gets only what `measure` needs:
+
+```bash
+uvx --from "git+https://github.com/Group-Project-USTH/group-project#subdirectory=backend" \
+  maintainability-lens measure --target path/to/project
+```
+
 ### Configuration (`.env`)
 
 | Variable | Purpose |

@@ -1,9 +1,11 @@
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
-from maintainability_lens import cli
+from maintainability_lens import agent, cli
 from maintainability_lens.schemas import Characteristic, Evidence, Finding, Verdict
 
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
@@ -34,7 +36,7 @@ def test_smoke_prints_finding_json(
             rationale="small and focused",
         )
 
-    monkeypatch.setattr(cli, "evaluate_characteristic", fake_evaluate_characteristic)
+    monkeypatch.setattr(agent, "evaluate_characteristic", fake_evaluate_characteristic)
     code = cli.main(
         ["smoke", "--target", str(SAMPLE), "--characteristic", "testability", "--run-id", "r9"]
     )
@@ -57,7 +59,7 @@ def test_unexpected_errors_print_cleanly(
     def failing_evaluate_characteristic(*args: object, **kwargs: object) -> Finding:
         raise ConnectionError("provider unreachable")
 
-    monkeypatch.setattr(cli, "evaluate_characteristic", failing_evaluate_characteristic)
+    monkeypatch.setattr(agent, "evaluate_characteristic", failing_evaluate_characteristic)
     assert cli.main(["smoke", "--target", str(SAMPLE)]) == 1
     assert "error: ConnectionError: provider unreachable" in capsys.readouterr().err
 
@@ -82,3 +84,44 @@ def test_measure_missing_target_fails_clearly(
 ) -> None:
     assert cli.main(["measure", "--target", str(tmp_path / "nope")]) == 1
     assert "error:" in capsys.readouterr().err
+
+
+LLM_STACK_MODULES = (
+    "deepagents",
+    "fastapi",
+    "langchain",
+    "langchain_core",
+    "langchain_openai",
+    "langfuse",
+    "langgraph",
+    "pydantic_settings",
+)
+
+
+def run_cli_without_llm_stack(*args: str) -> subprocess.CompletedProcess[str]:
+    script = "\n".join(
+        [
+            "import sys",
+            f"for name in {LLM_STACK_MODULES!r}:",
+            "    sys.modules[name] = None",
+            "from maintainability_lens import cli",
+            f"sys.exit(cli.main({list(args)!r}))",
+        ]
+    )
+    return subprocess.run(
+        [sys.executable, "-c", script], capture_output=True, text=True, check=False
+    )
+
+
+def test_measure_runs_without_the_llm_stack() -> None:
+    completed = run_cli_without_llm_stack("measure", "--target", str(SAMPLE))
+
+    assert completed.returncode == 0, completed.stderr
+    assert json.loads(completed.stdout)["unparsed_files"] == []
+
+
+def test_smoke_without_the_llm_stack_fails_clearly() -> None:
+    completed = run_cli_without_llm_stack("smoke", "--target", str(SAMPLE))
+
+    assert completed.returncode == 1
+    assert "error: smoke needs the agent dependency group" in completed.stderr

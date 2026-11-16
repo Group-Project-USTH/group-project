@@ -6,21 +6,25 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "complexipy>=8.3.0,<9",
-    "deepagents>=0.7.37,<0.8",
-    "fastapi>=0.162.5,<0.163",
-    "langchain>=1.4.6,<2",
-    "langchain-openai>=1.7.4,<2",
-    "langfuse>=5.2.0,<6",
     "lizard>=1.26.0,<2",
     "pydantic>=2.14.3,<3",
-    "pydantic-settings>=2.16.2,<3",
-    "uvicorn>=0.54.0,<0.55",
 ]
 
 [project.scripts]
 maintainability-lens = "maintainability_lens.cli:main"
 
 [dependency-groups]
+# The DeepAgents agent, API and tracing stay for the evaluation baseline (ADR 0001), but
+# are not installed with the CLI.
+agent = [
+    "deepagents>=0.7.37,<0.8",
+    "fastapi>=0.162.5,<0.163",
+    "langchain>=1.4.6,<2",
+    "langchain-openai>=1.7.4,<2",
+    "langfuse>=5.2.0,<6",
+    "pydantic-settings>=2.16.2,<3",
+    "uvicorn>=0.54.0,<0.55",
+]
 dev = [
     "httpx>=0.28.1",
     "mypy>=2.4.1",
@@ -29,6 +33,9 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.17.5",
 ]
+
+[tool.uv]
+default-groups = ["dev", "agent"]
 
 [build-system]
 requires = ["uv_build>=0.13.8,<0.14"]
