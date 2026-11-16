@@ -59,6 +59,12 @@ class ProjectMeasures(BaseModel):
     unparsed_files: list[str] = Field(default_factory=list)
 
 
+class ProjectMeasureSummary(BaseModel):
+    measures: list[Measure]
+    function_count: int = Field(ge=0)
+    unparsed_files: list[str]
+
+
 class Finding(BaseModel):
     """One verdict for one characteristic."""
 

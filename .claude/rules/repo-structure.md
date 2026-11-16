@@ -30,6 +30,8 @@ in `backend/` or `frontend/`.
 - `measures/`: Measures computed from the code, never by the LLM. `measure_project()` in
   `project_measures.py` is the entry point; one module per tool (`function_measures.py` for
   lizard, `cognitive_complexity.py` for complexipy).
+- `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
+  Measures to Claude Code. MCP only: the work happens in `measures/`.
 - `api/`: the FastAPI app, laid out as in FastAPI's
   [Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/) guide.
   HTTP only: the work happens in the packages it calls.
@@ -46,7 +48,7 @@ in `backend/` or `frontend/`.
 ## Dependency direction
 
 ```
-cli, api ──> agent ──> measures, adapters (observability, masking) ──> schemas, config
+cli, api, mcp_server ──> agent ──> measures, adapters (observability, masking) ──> schemas, config
 ```
 
 - Imports only point down; no cycles. If two packages need the same code, move it down

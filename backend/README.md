@@ -141,6 +141,16 @@ npx langfuse-cli api observations list --session-id repeat-2026-10-12 --is-root-
 npx langfuse-cli api observations list --level ERROR --is-root-observation
 ```
 
+## Serve the Measures over MCP
+
+```bash
+uv run maintainability-lens mcp
+```
+
+Starts an MCP server over stdio with one tool, `measure_project(target, function_limit=20)`:
+every Measure of the `function_limit` functions with the highest cyclomatic complexity, the
+number of functions measured, and `unparsed_files`. Claude Code starts it through the plugin.
+
 ## Layout
 
 ```
@@ -150,6 +160,7 @@ src/maintainability_lens/
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
   cli.py                `maintainability-lens` entry point
+  mcp_server.py         MCP server over stdio: the `measure_project` tool
   agent/                DeepAgents agent with read-only file access
   measures/             per-function Measures (lizard, complexipy), no LLM
   api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)

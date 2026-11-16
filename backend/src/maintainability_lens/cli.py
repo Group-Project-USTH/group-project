@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintainability-lens smoke|measure --target PATH`."""
+"""Command-line entry point: `maintainability-lens smoke|measure|mcp`."""
 
 import argparse
 import logging
@@ -29,6 +29,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     measure = sub.add_parser("measure", help="Print the project's Measures as JSON.")
     measure.add_argument("--target", type=Path, required=True, help="Project directory to measure.")
+    sub.add_parser("mcp", help="Serve the Measures as an MCP server over stdio.")
     return parser
 
 
@@ -37,6 +38,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
     if args.command == "measure":
         return run_measure(args.target)
+    if args.command == "mcp":
+        return run_mcp_server()
     return run_smoke(args)
 
 
@@ -47,6 +50,13 @@ def run_measure(target: Path) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     print(project_measures.model_dump_json(indent=2))
+    return 0
+
+
+def run_mcp_server() -> int:
+    from maintainability_lens.mcp_server import serve
+
+    serve()
     return 0
 
 
