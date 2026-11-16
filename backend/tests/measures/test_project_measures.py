@@ -30,7 +30,7 @@ def test_function_with_one_if_has_cyclomatic_complexity_two(tmp_path: Path) -> N
     )
 
 
-def measure_values(root: Path, name: MeasureName) -> dict[str, int]:
+def measure_values(root: Path, name: MeasureName) -> dict[str | None, int]:
     return {
         measure.function: measure.value
         for measure in measure_project(root).measures
@@ -74,7 +74,7 @@ def test_cyclomatic_complexity_follows_the_lizard_definition(
 def test_code_outside_functions_has_no_cyclomatic_complexity(tmp_path: Path) -> None:
     write_module(tmp_path, "script.py", "import sys\nif sys.argv:\n    print(1)\n")
 
-    assert measure_project(tmp_path).measures == []
+    assert measure_values(tmp_path, MeasureName.CYCLOMATIC_COMPLEXITY) == {}
 
 
 def test_function_lines_of_code_skip_comments_and_blank_lines(tmp_path: Path) -> None:
@@ -127,7 +127,7 @@ def test_tooling_and_hidden_folders_are_not_measured(tmp_path: Path, folder: str
     write_module(tmp_path, "app.py", "def mine():\n    return 1\n")
     write_module(tmp_path, f"{folder}/lib/vendored.py", "def theirs():\n    return 1\n")
 
-    assert {measure.function for measure in measure_project(tmp_path).measures} == {"mine"}
+    assert {measure.file for measure in measure_project(tmp_path).measures} == {"app.py"}
 
 
 def test_unparsable_file_is_listed_and_the_rest_is_still_measured(tmp_path: Path) -> None:
@@ -158,6 +158,7 @@ def test_every_measure_of_a_method_names_its_class_and_shares_one_line_range(
     assert {
         (measure.name, measure.function, measure.line_start, measure.line_end)
         for measure in measure_project(tmp_path).measures
+        if measure.function is not None
     } == {
         (MeasureName.CYCLOMATIC_COMPLEXITY, "Cart.make", 3, 6),
         (MeasureName.FUNCTION_LINES_OF_CODE, "Cart.make", 3, 6),
@@ -237,4 +238,52 @@ def test_parameter_count_skips_self_cls_and_the_bare_star(tmp_path: Path) -> Non
         "Cart.make": 2,
         "fetch": 2,
         "forward": 2,
+    }
+
+
+SCRIPT_WITH_DOCSTRING_AND_COMMENTS = (
+    '"""Print the arguments.\n'
+    "\n"
+    'Run it from the shell."""\n'
+    "\n"
+    "import sys\n"
+    "\n"
+    "# one line per argument\n"
+    "for argument in sys.argv:\n"
+    "    print(argument)\n"
+)
+
+
+def test_file_lines_of_code_skip_docstrings_comments_and_blank_lines(tmp_path: Path) -> None:
+    write_module(tmp_path, "script.py", SCRIPT_WITH_DOCSTRING_AND_COMMENTS)
+
+    assert [
+        measure
+        for measure in measure_project(tmp_path).measures
+        if measure.name is MeasureName.FILE_LINES_OF_CODE
+    ] == [
+        Measure(
+            name=MeasureName.FILE_LINES_OF_CODE,
+            value=3,
+            function=None,
+            file="script.py",
+            line_start=1,
+            line_end=9,
+        )
+    ]
+
+
+def test_an_empty_file_has_zero_lines_of_code(tmp_path: Path) -> None:
+    write_module(tmp_path, "pkg/__init__.py", "")
+
+    assert measure_values_by_file(tmp_path, MeasureName.FILE_LINES_OF_CODE) == {
+        "pkg/__init__.py": 0
+    }
+
+
+def measure_values_by_file(root: Path, name: MeasureName) -> dict[str, int]:
+    return {
+        measure.file: measure.value
+        for measure in measure_project(root).measures
+        if measure.name is name
     }

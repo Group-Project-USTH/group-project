@@ -14,8 +14,8 @@ class PythonUnit:
     parameter_count: int
 
 
-def find_units(source: str) -> list[PythonUnit]:
-    return list(walk_units(ast.parse(source).body, prefix="", is_class_body=False))
+def find_units(tree: ast.Module) -> list[PythonUnit]:
+    return list(walk_units(tree.body, prefix="", is_class_body=False))
 
 
 def walk_units(

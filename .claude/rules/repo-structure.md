@@ -33,7 +33,8 @@ in `backend/` or `frontend/`.
   `project_measures.py` is the entry point; `python_units.py` lists the units (functions and
   methods) from `ast`; one module per tool (`function_measures.py` for lizard,
   `cognitive_complexity.py` for complexipy) attaches its numbers to those units;
-  `unit_interfacing.py` turns each unit's parameter count into a Measure.
+  `unit_interfacing.py` turns each unit's parameter count into a Measure;
+  `file_volume.py` counts each file's lines of code.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures to Claude Code. MCP only: the work happens in `measures/`.
 - `api/`: the FastAPI app, laid out as in FastAPI's

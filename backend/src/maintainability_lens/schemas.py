@@ -44,12 +44,13 @@ class MeasureName(StrEnum):
     FUNCTION_LINES_OF_CODE = "function_lines_of_code"
     COGNITIVE_COMPLEXITY = "cognitive_complexity"
     PARAMETER_COUNT = "parameter_count"
+    FILE_LINES_OF_CODE = "file_lines_of_code"
 
 
 class Measure(BaseModel):
     name: MeasureName
     value: int
-    function: str
+    function: str | None = None
     file: str = Field(min_length=1)
     line_start: int = Field(ge=1)
     line_end: int = Field(ge=1)
