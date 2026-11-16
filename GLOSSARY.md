@@ -24,6 +24,23 @@ the file and line range it applies to. Computed by our code, never by the LLM. W
 SonarQube and other tools call a "metric" is a Measure here.
 _Avoid_: metric, score, statistic
 
+**System property**:
+One of the eight SIG properties rated from Measures: volume, duplication, unit size, unit
+complexity, unit interfacing, module coupling, component balance, component independence. A
+unit is one function or method. Each System property feeds one or more Characteristics.
+_Avoid_: factor, dimension, aspect
+
+**Risk profile**:
+For one System property, the share of lines of code in each risk band (low, moderate, high,
+very high), from the Measures of every function.
+_Avoid_: distribution, histogram
+
+**Rating**:
+`++`, `+`, `o`, `-` or `--` for one System property or Characteristic, computed by our code
+from Risk profiles and fixed thresholds, never by the LLM. A Verdict is decided with the
+Rating in hand, not replaced by it.
+_Avoid_: score, grade, stars, rank
+
 **Finding**:
 One verdict for one characteristic, with its evidence and rationale. A pass or fail
 finding must cite evidence.
