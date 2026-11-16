@@ -34,12 +34,16 @@ The research found that:
    evaluation harness has recorded the agent's Verdicts as a baseline.
 3. **Name.** The distribution, CLI command and plugin are renamed `maintainability-lens`
    (Python package `maintainability_lens`). It was free on PyPI on 2026-11-16.
-4. **Plugin location.** A top-level `plugin/` folder holds `.claude-plugin/plugin.json`,
-   `skills/` and `.mcp.json`. The repo root's `.claude-plugin/marketplace.json` points at
-   `./plugin`. `.claude/skills/` stays reserved for third-party skills. No top-level
-   `bin/`, so the skill also loads outside Claude Code.
-5. **Distribution.** Through this repo's marketplace only, pinned to git tags. The MCP
-   server is launched with `uvx` from the tagged git URL (`#subdirectory=backend`). No PyPI
+4. **Plugin location.** The repo root is the plugin: `.claude-plugin/` holds both
+   `marketplace.json` (one plugin, source `./`) and `plugin.json`, and the plugin's skills
+   (later agents and hooks) live in `plugin/`. Claude Code copies only the plugin folder on
+   install and plugin paths can't leave it, so this is what lets the MCP server run from the
+   installed copy (`uvx --from ${CLAUDE_PLUGIN_ROOT}/backend`). `.claude/skills/` stays
+   reserved for third-party skills. No top-level `bin/`, so the skill also loads outside
+   Claude Code. Cost: `claude plugin validate --strict` warns that the root `CLAUDE.md` is
+   not loaded as plugin context.
+5. **Distribution.** Through this repo's marketplace only, versioned by `version` in
+   `plugin.json`. The plugin and its MCP server always come from the same commit. No PyPI
    release for now.
 6. **Langfuse.** Kept until the baseline Runs are recorded, then removed with the agent. The
    `evaluate-characteristic` trace name is retired at that point. The harness records cost
@@ -64,7 +68,7 @@ The research found that:
   5. Judge well: rubrics per Characteristic, Evidence first, user claims left out.
   6. Remove the agent, the API and Langfuse; rewrite README, CLAUDE.md, GLOSSARY and
      `repo-structure.md`.
-  7. Publish: version tags and install docs.
+  7. Publish: release versions and install docs.
 - The rename comes first in phase 1, not last, so the plugin's `.mcp.json` never ships with
   the old CLI name.
 - Until phase 6, README and CLAUDE.md still describe the web chat product; this ADR
@@ -76,5 +80,6 @@ The research found that:
   and every pass or fail cites a Measure.
 - **One-way door:** the name. Once the plugin is installed by others, renaming breaks their
   install. Everything else can be reverted.
-- **Unverified:** that `uvx` can launch the server from an installed plugin copy. The phase 1
-  walking skeleton tests this first.
+- **Verified in phase 1:** `uvx` launches the server from an installed plugin copy
+  (`claude mcp list` shows it connected, 6.5 s cold), and a headless Run of the skill
+  returns a valid Finding.
