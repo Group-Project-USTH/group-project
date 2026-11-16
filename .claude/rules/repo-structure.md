@@ -32,7 +32,8 @@ in `backend/` or `frontend/`.
 - `measures/`: Measures computed from the code, never by the LLM. `measure_project()` in
   `project_measures.py` is the entry point; `python_units.py` lists the units (functions and
   methods) from `ast`; one module per tool (`function_measures.py` for lizard,
-  `cognitive_complexity.py` for complexipy) attaches its numbers to those units.
+  `cognitive_complexity.py` for complexipy) attaches its numbers to those units;
+  `unit_interfacing.py` turns each unit's parameter count into a Measure.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures to Claude Code. MCP only: the work happens in `measures/`.
 - `api/`: the FastAPI app, laid out as in FastAPI's
