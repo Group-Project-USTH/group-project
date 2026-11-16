@@ -8,12 +8,28 @@ reads the code and returns a Pass/Fail/Unknown verdict, citing the files and lin
 It is growing into a web chat product: a FastAPI backend serving the agent and a web
 frontend.
 
+## Use it in Claude Code
+
+Needs [uv](https://docs.astral.sh/uv/) on your `PATH`. In your shell:
+
+```bash
+claude plugin marketplace add Group-Project-USTH/group-project
+claude plugin install maintainability-lens@maintainability-lens
+```
+
+Then ask Claude about a Python project's maintainability, or run
+`/maintainability-lens:evaluate`. The plugin's MCP server computes the Measures; the skill
+turns them into a Verdict per Characteristic. This is the phase 1 walking skeleton: the
+Verdicts have no calibrated thresholds yet (see `docs/adr/0001-deliver-as-claude-code-plugin.md`).
+
 ## Layout
 
 ```
 backend/        Python 3.12 (uv): the agent, the `maintainability-lens` CLI and the FastAPI app.
                 Setup, configuration, tests, tracing: backend/README.md
 frontend/       the web chat UI (not started yet)
+.claude-plugin/ the Claude Code marketplace and plugin manifests; the repo root is the plugin
+plugin/         the plugin's skills
 docs/agents/    how the Claude Code skills use our issue tracker (GitHub Issues)
 scripts/        apply_branch_protection.sh (run manually by a repo admin)
 .github/        CI, Dependabot, PR template, CODEOWNERS, main-branch ruleset
