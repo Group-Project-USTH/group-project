@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from maintainability_agent.agent.read_only_filesystem_backend import (
+from maintainability_lens.agent.read_only_filesystem_backend import (
     READ_ONLY_ERROR,
     ReadOnlyFilesystemBackend,
 )

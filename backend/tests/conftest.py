@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from maintainability_agent.config import get_settings
+from maintainability_lens.config import get_settings
 
 _ENV_PREFIXES = ("LLM_", "OPENAI_", "LANGFUSE_")
 

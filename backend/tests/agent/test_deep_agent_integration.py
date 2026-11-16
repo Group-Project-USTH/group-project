@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
-from maintainability_agent.agent import evaluate_characteristic
-from maintainability_agent.config import get_settings
-from maintainability_agent.observability import new_run_id
-from maintainability_agent.schemas import Characteristic, Finding
+from maintainability_lens.agent import evaluate_characteristic
+from maintainability_lens.config import get_settings
+from maintainability_lens.observability import new_run_id
+from maintainability_lens.schemas import Characteristic, Finding
 
 SAMPLE = Path(__file__).parents[1] / "fixtures" / "sample_project"
 

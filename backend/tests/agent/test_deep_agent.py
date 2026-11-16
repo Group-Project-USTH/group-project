@@ -11,8 +11,8 @@ from langchain_core.language_models import BaseChatModel
 from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage, ToolMessage
 
-from maintainability_agent.agent import AgentOutputError, build_agent, evaluate_characteristic
-from maintainability_agent.schemas import Characteristic, Evidence, Verdict
+from maintainability_lens.agent import AgentOutputError, build_agent, evaluate_characteristic
+from maintainability_lens.schemas import Characteristic, Evidence, Verdict
 
 SAMPLE = Path(__file__).parents[1] / "fixtures" / "sample_project"
 
@@ -112,8 +112,8 @@ def test_build_agent_requires_existing_directory(tmp_path: Path) -> None:
 
 
 def test_build_model_names_llm_calls_by_operation() -> None:
-    from maintainability_agent.agent.deep_agent import LLM_CALL_NAME, build_model
-    from maintainability_agent.config import Settings
+    from maintainability_lens.agent.deep_agent import LLM_CALL_NAME, build_model
+    from maintainability_lens.config import Settings
 
     model = build_model(Settings(llm_model="openai:some-model", openai_api_key="sk-test"))
     assert model.get_name() == LLM_CALL_NAME

@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from maintainability_agent.api.routers import health
+from maintainability_lens.api.routers import health
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="maintainability-agent")
+    app = FastAPI(title="maintainability-lens")
     app.include_router(health.router)
     return app

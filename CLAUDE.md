@@ -17,9 +17,9 @@ uv run ruff check                                  # lint
 uv run ruff format --check                         # format check (`uv run ruff format` to fix)
 uv run mypy                                        # type-check (strict, src/)
 uv run pytest                                      # unit tests + coverage, integration excluded
-uv run uvicorn --factory maintainability_agent.api:create_app --reload   # API on :8000, docs at /docs
-uv run maintainability-agent measure --target tests/fixtures/sample_project # Measures as JSON, no LLM
-uv run maintainability-agent smoke --target tests/fixtures/sample_project   # real LLM, needs .env
+uv run uvicorn --factory maintainability_lens.api:create_app --reload   # API on :8000, docs at /docs
+uv run maintainability-lens measure --target tests/fixtures/sample_project # Measures as JSON, no LLM
+uv run maintainability-lens smoke --target tests/fixtures/sample_project   # real LLM, needs .env
 uv run pytest -m integration --no-cov              # real LLM end-to-end, needs .env
 ```
 
@@ -29,7 +29,7 @@ Langfuse keys.
 ## Repo map
 
 - `backend/`: the Python project (own `pyproject.toml`, `uv.lock`, `.env`)
-  - `src/maintainability_agent/`: the package (the agent in `agent/`, per-function Measures in
+  - `src/maintainability_lens/`: the package (the agent in `agent/`, per-function Measures in
     `measures/`, FastAPI app `api/`, shared `schemas.py` and `config.py`, Langfuse adapter
     `observability.py` + `masking.py`, `cli.py`)
   - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target

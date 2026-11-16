@@ -1278,7 +1278,7 @@ wheels = [
 ]
 
 [[package]]
-name = "maintainability-agent"
+name = "maintainability-lens"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
