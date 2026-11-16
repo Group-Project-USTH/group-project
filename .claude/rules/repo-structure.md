@@ -9,6 +9,8 @@ Goal: a layout that is easy to navigate, scale and maintain.
 | `backend/` | the Python project (own `pyproject.toml`, `uv.lock`, `.env`) |
 | `backend/src/maintainability_lens/` | the only Python package (src layout) |
 | `backend/tests/` | mirrors `backend/src/maintainability_lens/` |
+| `.claude-plugin/` | `marketplace.json` and `plugin.json`: the repo root is the Claude Code plugin, so its MCP server runs from the installed copy's `backend/` |
+| `plugin/` | the plugin's own skills (later agents and hooks); `.claude/skills/` stays for third-party skills |
 | `frontend/` | the web chat UI (not started); its own toolchain, never imports the backend |
 | `scripts/` | one-off or ops scripts for the repo; never imported by the package |
 | `docs/` | skill config in `docs/agents/`; later `architecture.md`, ADRs in `docs/adr/`, research notes in `docs/research/` |

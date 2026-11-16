@@ -1,0 +1,14 @@
+{
+  "name": "maintainability-lens",
+  "description": "ISO/IEC 25010 maintainability Measures and Verdicts for Python projects.",
+  "owner": {
+    "name": "Group-Project-USTH"
+  },
+  "plugins": [
+    {
+      "name": "maintainability-lens",
+      "source": "./",
+      "description": "Measures Python functions and gives a pass/fail/unknown Verdict per maintainability Characteristic, with Evidence."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "maintainability-lens",
+  "version": "0.1.0",
+  "description": "Measures Python functions and gives a pass/fail/unknown Verdict per ISO/IEC 25010 maintainability Characteristic, with Evidence.",
+  "author": {
+    "name": "Group-Project-USTH"
+  },
+  "repository": "https://github.com/Group-Project-USTH/group-project",
+  "keywords": ["maintainability", "iso-25010", "python", "measures"],
+  "skills": ["./plugin/skills/"],
+  "mcpServers": {
+    "maintainability-lens": {
+      "command": "uvx",
+      "args": ["--from", "${CLAUDE_PLUGIN_ROOT}/backend", "maintainability-lens", "mcp"]
+    }
+  }
+}

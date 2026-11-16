@@ -34,6 +34,8 @@ Langfuse keys.
     `measures/`, FastAPI app `api/`, shared `schemas.py` and `config.py`, Langfuse adapter
     `observability.py` + `masking.py`, `cli.py`, MCP server `mcp_server.py`)
   - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
+- `.claude-plugin/`: marketplace and plugin manifests (the repo root is the Claude Code plugin);
+  `plugin/skills/`: the plugin's skills. Check with `claude plugin validate .`
 - `frontend/`: the web chat UI, not started
 - `scripts/`: ops scripts run by hand (e.g. branch protection, admins only)
 - `.github/`: CI workflow, Dependabot, PR template, CODEOWNERS, `main` ruleset
