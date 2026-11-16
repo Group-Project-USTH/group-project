@@ -54,6 +54,7 @@ class Measure(BaseModel):
     file: str = Field(min_length=1)
     line_start: int = Field(ge=1)
     line_end: int = Field(ge=1)
+    is_test_code: bool = False
 
 
 class ProjectMeasures(BaseModel):

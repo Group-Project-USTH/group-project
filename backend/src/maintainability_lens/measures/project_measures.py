@@ -5,6 +5,7 @@ from pathlib import Path
 from maintainability_lens.measures.cognitive_complexity import measure_cognitive_complexity
 from maintainability_lens.measures.file_volume import measure_file_volume
 from maintainability_lens.measures.function_measures import measure_functions
+from maintainability_lens.measures.production_test_split import is_test_file
 from maintainability_lens.measures.python_units import find_units
 from maintainability_lens.measures.unit_interfacing import measure_unit_interfacing
 from maintainability_lens.schemas import Measure, ProjectMeasures
@@ -43,7 +44,7 @@ def measure_file(path: Path, relative_file: str, source: str, tree: ast.Module) 
 def measure_project(target: Path) -> ProjectMeasures:
     if not target.is_dir():
         raise NotADirectoryError(f"target is not a directory: {target}")
-    measures = []
+    measures: list[Measure] = []
     unparsed_files = []
     for path in find_project_modules(target):
         relative_file = path.relative_to(target).as_posix()
@@ -52,5 +53,9 @@ def measure_project(target: Path) -> ProjectMeasures:
         if tree is None:
             unparsed_files.append(relative_file)
             continue
-        measures.extend(measure_file(path, relative_file, source, tree))
+        is_test_code = is_test_file(relative_file)
+        measures.extend(
+            measure.model_copy(update={"is_test_code": is_test_code})
+            for measure in measure_file(path, relative_file, source, tree)
+        )
     return ProjectMeasures(measures=measures, unparsed_files=unparsed_files)

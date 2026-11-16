@@ -287,3 +287,27 @@ def measure_values_by_file(root: Path, name: MeasureName) -> dict[str, int]:
         for measure in measure_project(root).measures
         if measure.name is name
     }
+
+
+@pytest.mark.parametrize(
+    ("relative_path", "is_test_code"),
+    [
+        pytest.param("test_app.py", True, id="test-prefix"),
+        pytest.param("app_test.py", True, id="test-suffix"),
+        pytest.param("conftest.py", True, id="pytest-conftest"),
+        pytest.param("tests/helpers.py", True, id="inside-tests-folder"),
+        pytest.param("shop/test/factories.py", True, id="inside-nested-test-folder"),
+        pytest.param("app.py", False, id="production"),
+        pytest.param("testing_tools.py", False, id="test-is-only-a-prefix-of-a-word"),
+        pytest.param("latest.py", False, id="test-is-only-a-suffix-of-a-word"),
+        pytest.param("contest/app.py", False, id="folder-name-only-ends-in-test"),
+    ],
+)
+def test_measures_of_test_files_are_tagged_as_test_code(
+    tmp_path: Path, relative_path: str, is_test_code: bool
+) -> None:
+    write_module(tmp_path, relative_path, "def check():\n    return 1\n")
+
+    assert {measure.is_test_code for measure in measure_project(tmp_path).measures} == {
+        is_test_code
+    }
