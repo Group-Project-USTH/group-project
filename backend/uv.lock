@@ -1281,20 +1281,23 @@ wheels = [
 name = "maintainability-lens"
 version = "0.1.0"
 source = { editable = "." }
+default-groups = ["agent", "dev"]
 dependencies = [
     { name = "complexipy" },
+    { name = "lizard" },
+    { name = "pydantic" },
+]
+
+[package.dev-dependencies]
+agent = [
     { name = "deepagents" },
     { name = "fastapi" },
     { name = "langchain" },
     { name = "langchain-openai" },
     { name = "langfuse" },
-    { name = "lizard" },
-    { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "uvicorn" },
 ]
-
-[package.dev-dependencies]
 dev = [
     { name = "httpx" },
     { name = "mypy" },
@@ -1307,18 +1310,20 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "complexipy", specifier = ">=8.3.0,<9" },
+    { name = "lizard", specifier = ">=1.26.0,<2" },
+    { name = "pydantic", specifier = ">=2.14.3,<3" },
+]
+
+[package.metadata.requires-dev]
+agent = [
     { name = "deepagents", specifier = ">=0.7.37,<0.8" },
     { name = "fastapi", specifier = ">=0.162.5,<0.163" },
     { name = "langchain", specifier = ">=1.4.6,<2" },
     { name = "langchain-openai", specifier = ">=1.7.4,<2" },
     { name = "langfuse", specifier = ">=5.2.0,<6" },
-    { name = "lizard", specifier = ">=1.26.0,<2" },
-    { name = "pydantic", specifier = ">=2.14.3,<3" },
     { name = "pydantic-settings", specifier = ">=2.16.2,<3" },
     { name = "uvicorn", specifier = ">=0.54.0,<0.55" },
 ]
-
-[package.metadata.requires-dev]
 dev = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "mypy", specifier = ">=2.4.1" },
