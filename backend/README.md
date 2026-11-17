@@ -154,16 +154,25 @@ npx langfuse-cli api observations list --session-id repeat-2026-10-12 --is-root-
 npx langfuse-cli api observations list --level ERROR --is-root-observation
 ```
 
-## Serve the Measures over MCP
+## Serve the Measures and Ratings over MCP
 
 ```bash
 uv run maintainability-lens mcp
 ```
 
-Starts an MCP server over stdio with one tool, `measure_project(target, function_limit=20)`:
-every Measure of the `function_limit` functions with the highest cyclomatic complexity, the
-number of functions measured, and `unparsed_files`. File-level Measures are left out until
-the Ratings (phase 3) summarise them. Claude Code starts it through the plugin.
+Starts an MCP server over stdio with two tools. Claude Code starts it through the plugin.
+
+- `rate_project(target)`: a Rating (`++` to `--`) per Characteristic, averaged from the
+  System properties that have one, with `is_partial` and `missing` naming those that don't.
+  Also each System property's Rating or 4-star check with its threshold source, the Risk
+  profiles, production and test lines of code, the duplicated percentage, and the production
+  files with the most duplicated lines and the highest fan-in. Test code is left out of every
+  Rating. Unit complexity and duplication use the Heitlager et al. 2007 tables; unit size,
+  unit interfacing and module coupling get only a check against the SIG/TÜV NORD guidance
+  V18.1 4-star limit (see ADR 0001, decision 8).
+- `measure_project(target, function_limit=20)`: every Measure of the `function_limit`
+  functions with the highest cyclomatic complexity, the number of functions measured, and
+  `unparsed_files`.
 
 ## Layout
 
@@ -176,7 +185,8 @@ src/maintainability_lens/
   cli.py                `maintainability-lens` entry point
   mcp_server.py         MCP server over stdio: the `measure_project` tool
   agent/                DeepAgents agent with read-only file access
-  measures/             per-function Measures (lizard, complexipy), no LLM
+  measures/             per-function and per-file Measures, no LLM
+  ratings/              Risk profiles and Ratings from the Measures, no LLM
   api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
 ```

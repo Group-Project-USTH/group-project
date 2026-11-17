@@ -87,18 +87,26 @@ def rate_unit_complexity(profile: RiskProfile) -> SystemPropertyRating:
     )
 
 
-def rate_duplication(project_measures: ProjectMeasures) -> SystemPropertyRating:
-    def production_total(name: MeasureName) -> int:
-        return sum(
-            measure.value
-            for measure in project_measures.measures
-            if measure.name is name and not measure.is_test_code
-        )
+def total_of(project_measures: ProjectMeasures, name: MeasureName, is_test_code: bool) -> int:
+    return sum(
+        measure.value
+        for measure in project_measures.measures
+        if measure.name is name and measure.is_test_code is is_test_code
+    )
 
-    lines_of_code = production_total(MeasureName.FILE_LINES_OF_CODE)
+
+def find_duplicated_percentage(project_measures: ProjectMeasures) -> Fraction | None:
+    lines_of_code = total_of(project_measures, MeasureName.FILE_LINES_OF_CODE, False)
+    if not lines_of_code:
+        return None
+    duplicated = total_of(project_measures, MeasureName.DUPLICATED_LINES, False)
+    return percentage(duplicated, lines_of_code)
+
+
+def rate_duplication(project_measures: ProjectMeasures) -> SystemPropertyRating:
+    duplicated = find_duplicated_percentage(project_measures)
     rating = None
-    if lines_of_code:
-        duplicated = percentage(production_total(MeasureName.DUPLICATED_LINES), lines_of_code)
+    if duplicated is not None:
         rating = next(
             (rating for rating, limit in DUPLICATION_RATING_LIMITS if duplicated <= limit),
             Rating.MINUS_MINUS,
