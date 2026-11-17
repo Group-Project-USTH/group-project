@@ -50,6 +50,16 @@ One verdict for one characteristic, with its evidence and rationale. A pass or f
 finding must cite evidence.
 _Avoid_: result, assessment, issue, report
 
+**Evaluation set**:
+The Python files, each at a pinned commit, on which Raters and the tool both give Verdicts so
+that the two can be compared.
+_Avoid_: dataset, benchmark, rated set
+
+**Rater**:
+A team member who gives Verdicts on the Evaluation set by hand, blind to the tool's output and
+to other Raters. The Raters' consensus is what the tool is scored against.
+_Avoid_: expert, labeller, annotator
+
 **Run**:
 One evaluation of one characteristic by the agent, identified by a `run_id` and traced in
 Langfuse.
