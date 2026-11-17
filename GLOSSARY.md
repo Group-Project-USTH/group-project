@@ -31,8 +31,9 @@ unit is one function or method. Each System property feeds one or more Character
 _Avoid_: factor, dimension, aspect
 
 **Risk profile**:
-For one System property, the share of lines of code in each risk band (low, moderate, high,
-very high), from the Measures of every function.
+For one System property, the share of production lines of code in each risk band (low,
+moderate, high, very high). Each unit (or, for module coupling, each file) adds its lines of
+code to the band its Measure falls in.
 _Avoid_: distribution, histogram
 
 **Rating**:
