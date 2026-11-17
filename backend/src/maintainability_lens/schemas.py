@@ -124,6 +124,18 @@ class CharacteristicRating(BaseModel):
     missing: list[SystemProperty]
 
 
+class ProjectRatings(BaseModel):
+    characteristic_ratings: list[CharacteristicRating]
+    system_property_ratings: list[SystemPropertyRating]
+    risk_profiles: list[RiskProfile]
+    production_lines_of_code: int = Field(ge=0)
+    test_lines_of_code: int = Field(ge=0)
+    duplicated_percentage: float | None
+    most_duplicated_files: list[Measure]
+    highest_fan_in_files: list[Measure]
+    unparsed_files: list[str]
+
+
 class Finding(BaseModel):
     """One verdict for one characteristic."""
 

@@ -18,9 +18,11 @@ claude plugin install maintainability-lens@maintainability-lens
 ```
 
 Then ask Claude about a Python project's maintainability, or run
-`/maintainability-lens:evaluate`. The plugin's MCP server computes the Measures; the skill
-turns them into a Verdict per Characteristic. This is the phase 1 walking skeleton: the
-Verdicts have no calibrated thresholds yet (see `docs/adr/0001-deliver-as-claude-code-plugin.md`).
+`/maintainability-lens:evaluate`. The plugin's MCP server computes the Measures and a Rating
+per Characteristic from fixed, cited thresholds; the skill reads the code and gives a Verdict
+per Characteristic with that Rating in hand. Only unit complexity and duplication have
+published Rating tables so far, so some Ratings are partial and modularity and reusability
+have none yet; see `docs/adr/0001-deliver-as-claude-code-plugin.md`, decision 8.
 
 ## Layout
 

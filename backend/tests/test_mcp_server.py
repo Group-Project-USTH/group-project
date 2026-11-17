@@ -10,10 +10,10 @@ from maintainability_lens.measures import measure_project
 SAMPLE = Path(__file__).parent / "fixtures" / "sample_project"
 
 
-def call_tool(arguments: dict[str, Any]) -> Any:
+def call_tool(arguments: dict[str, Any], tool: str = "measure_project") -> Any:
     async def call() -> Any:
         async with Client(server) as client:
-            return await client.call_tool("measure_project", arguments)
+            return await client.call_tool(tool, arguments)
 
     return asyncio.run(call())
 
@@ -56,3 +56,42 @@ def test_measure_tool_leaves_out_file_measures_even_for_a_function_on_line_one(
     result = call_tool({"target": str(tmp_path), "function_limit": 1})
 
     assert {measure["function"] for measure in result.structured_content["measures"]} == {"f"}
+
+
+def test_rate_tool_rates_each_characteristic_from_the_rated_system_properties() -> None:
+    result = call_tool({"target": str(SAMPLE)}, tool="rate_project")
+
+    assert not result.is_error
+    ratings = result.structured_content
+    assert {
+        entry["characteristic"]: (entry["rating"], entry["is_partial"])
+        for entry in ratings["characteristic_ratings"]
+    } == {
+        "modularity": (None, False),
+        "reusability": (None, False),
+        "analysability": ("++", True),
+        "modifiability": ("++", True),
+        "testability": ("++", True),
+    }
+    assert (ratings["production_lines_of_code"], ratings["test_lines_of_code"]) == (22, 3)
+    assert ratings["duplicated_percentage"] == 0.0
+
+
+def test_rate_tool_lists_the_files_with_the_most_duplication_and_fan_in(tmp_path: Path) -> None:
+    block = "".join(f"value_{index} = {index}\n" for index in range(6))
+    (tmp_path / "copy_a.py").write_text(block)
+    (tmp_path / "copy_b.py").write_text(block + "import copy_a\n")
+    (tmp_path / "unique.py").write_text("import copy_a\n")
+
+    ratings = call_tool({"target": str(tmp_path)}, tool="rate_project").structured_content
+
+    assert [
+        (measure["file"], measure["value"]) for measure in ratings["most_duplicated_files"]
+    ] == [("copy_a.py", 6), ("copy_b.py", 6)]
+    assert [(measure["file"], measure["value"]) for measure in ratings["highest_fan_in_files"]] == [
+        ("copy_a.py", 2)
+    ]
+
+
+def test_rate_tool_reports_a_missing_target_as_an_error(tmp_path: Path) -> None:
+    assert call_tool({"target": str(tmp_path / "nope")}, tool="rate_project").is_error
