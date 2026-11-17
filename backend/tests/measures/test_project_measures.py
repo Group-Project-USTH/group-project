@@ -107,6 +107,7 @@ def test_sample_project_process_order_measures() -> None:
         MeasureName.CYCLOMATIC_COMPLEXITY: 7,
         MeasureName.COGNITIVE_COMPLEXITY: 8,
         MeasureName.FUNCTION_LINES_OF_CODE: 19,
+        MeasureName.PARAMETER_COUNT: 1,
     }
     assert {(m.file, m.line_start, m.line_end) for m in process_order.values()} == {
         ("app.py", 6, 25)
@@ -161,6 +162,7 @@ def test_every_measure_of_a_method_names_its_class_and_shares_one_line_range(
         (MeasureName.CYCLOMATIC_COMPLEXITY, "Cart.make", 3, 6),
         (MeasureName.FUNCTION_LINES_OF_CODE, "Cart.make", 3, 6),
         (MeasureName.COGNITIVE_COMPLEXITY, "Cart.make", 3, 6),
+        (MeasureName.PARAMETER_COUNT, "Cart.make", 3, 6),
     }
 
 
@@ -201,3 +203,38 @@ def test_functions_defined_inside_if_and_try_blocks_are_measured(tmp_path: Path)
         for measure in measure_project(tmp_path).measures
         if measure.name is MeasureName.COGNITIVE_COMPLEXITY
     } == {("home", 3), ("home", 6), ("loads", 11)}
+
+
+PARAMETER_SHAPES = (
+    "class Cart:\n"
+    "    def add(self, item, qty=1):\n"
+    "        return item\n"
+    "\n"
+    "    @classmethod\n"
+    "    def build(cls, items):\n"
+    "        return cls()\n"
+    "\n"
+    "    @staticmethod\n"
+    "    def make(a, b):\n"
+    "        return a\n"
+    "\n"
+    "\n"
+    "def fetch(url, /, *, timeout=3):\n"
+    "    return url\n"
+    "\n"
+    "\n"
+    "def forward(*args, **kwargs):\n"
+    "    return args\n"
+)
+
+
+def test_parameter_count_skips_self_cls_and_the_bare_star(tmp_path: Path) -> None:
+    write_module(tmp_path, "cart.py", PARAMETER_SHAPES)
+
+    assert measure_values(tmp_path, MeasureName.PARAMETER_COUNT) == {
+        "Cart.add": 2,
+        "Cart.build": 1,
+        "Cart.make": 2,
+        "fetch": 2,
+        "forward": 2,
+    }

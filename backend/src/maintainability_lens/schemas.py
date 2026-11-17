@@ -43,6 +43,7 @@ class MeasureName(StrEnum):
     CYCLOMATIC_COMPLEXITY = "cyclomatic_complexity"
     FUNCTION_LINES_OF_CODE = "function_lines_of_code"
     COGNITIVE_COMPLEXITY = "cognitive_complexity"
+    PARAMETER_COUNT = "parameter_count"
 
 
 class Measure(BaseModel):

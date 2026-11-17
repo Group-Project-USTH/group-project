@@ -55,7 +55,8 @@ uv run maintainability-lens measure --target tests/fixtures/sample_project
 ```
 
 It prints the project's Measures as JSON: cyclomatic complexity (lizard's definition),
-cognitive complexity (complexipy) and lines of code for every function, each with its file,
+cognitive complexity (complexipy), lines of code and parameter count (without `self`/`cls`)
+for every function, each with its file,
 line range and qualified name (`Cart.add`, `outer.inner`), plus any `unparsed_files`. The
 units come from Python's `ast`, so both tools' numbers land on the same unit. It needs no
 LLM or Langfuse keys.

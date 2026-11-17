@@ -15,8 +15,9 @@ server = MCPServer("maintainability-lens")
 @server.tool(
     name="measure_project",
     description=(
-        "Compute Measures (cyclomatic complexity, cognitive complexity, lines of code) for the "
-        "Python functions under `target`, an absolute directory path. Returns every Measure of "
+        "Compute Measures (cyclomatic complexity, cognitive complexity, lines of code, "
+        "parameter count) for the Python functions under `target`, an absolute directory "
+        "path. Returns every Measure of "
         "the `function_limit` functions with the highest cyclomatic complexity, the number of "
         "functions measured, and files that could not be parsed."
     ),

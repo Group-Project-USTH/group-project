@@ -4,6 +4,7 @@ from pathlib import Path
 from maintainability_lens.measures.cognitive_complexity import measure_cognitive_complexity
 from maintainability_lens.measures.function_measures import measure_functions
 from maintainability_lens.measures.python_units import PythonUnit, find_units
+from maintainability_lens.measures.unit_interfacing import measure_unit_interfacing
 from maintainability_lens.schemas import ProjectMeasures
 
 NOT_PROJECT_FOLDERS = frozenset({"venv", "__pycache__", "node_modules", "site-packages"})
@@ -40,4 +41,5 @@ def measure_project(target: Path) -> ProjectMeasures:
             continue
         measures.extend(measure_functions(path, relative_file, units))
         measures.extend(measure_cognitive_complexity(path, relative_file, units))
+        measures.extend(measure_unit_interfacing(relative_file, units))
     return ProjectMeasures(measures=measures, unparsed_files=unparsed_files)

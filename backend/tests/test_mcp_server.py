@@ -36,6 +36,7 @@ def test_measure_tool_keeps_only_the_most_complex_functions() -> None:
         ("process_order", "cyclomatic_complexity"),
         ("process_order", "function_lines_of_code"),
         ("process_order", "cognitive_complexity"),
+        ("process_order", "parameter_count"),
     }
     assert result.structured_content["function_count"] == 3
 
