@@ -64,7 +64,10 @@ Langfuse keys.
 - **Per file** (`function` is `null`, lines 1 to the last): lines of code, skipping
   docstrings, comments and blank lines; and duplicated lines, the lines in any block of 6 or
   more lines that appears again anywhere in the project, ignoring indentation (SIG's
-  definition).
+  definition); and fan-in, the number of production files that import it. Imports resolve
+  the way Python does: a file's name is the chain of package folders (with `__init__.py`)
+  above it plus its stem, so src layouts, scripts and a target that is itself a package
+  all work.
 - **Every Measure** has `is_test_code`: true for `test_*.py`, `*_test.py`, `conftest.py` and
   anything under a `test/` or `tests/` folder.
 

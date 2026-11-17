@@ -5,6 +5,7 @@ from maintainability_lens.measures.cognitive_complexity import measure_cognitive
 from maintainability_lens.measures.duplication import measure_duplication
 from maintainability_lens.measures.file_volume import measure_file_volume
 from maintainability_lens.measures.function_measures import measure_functions
+from maintainability_lens.measures.module_coupling import measure_module_coupling
 from maintainability_lens.measures.parsed_file import ParsedFile, parse_file
 from maintainability_lens.measures.production_test_split import is_test_file
 from maintainability_lens.measures.python_units import find_units
@@ -51,6 +52,7 @@ def measure_project(target: Path) -> ProjectMeasures:
     measures = [
         *(measure for parsed_file in parsed_files for measure in measure_file(parsed_file)),
         *measure_duplication(parsed_files),
+        *measure_module_coupling(parsed_files, target.resolve().name),
     ]
     return ProjectMeasures(
         measures=[

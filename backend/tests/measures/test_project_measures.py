@@ -354,3 +354,135 @@ def test_a_copied_block_shorter_than_six_lines_is_not_duplication(tmp_path: Path
     write_module(tmp_path, "b.py", "def second(items):\n" + five_line_body)
 
     assert measure_values_by_file(tmp_path, MeasureName.DUPLICATED_LINES) == {"a.py": 0, "b.py": 0}
+
+
+def fan_in_of(root: Path, files: dict[str, str]) -> dict[str, int]:
+    for relative_path, source in files.items():
+        write_module(root, relative_path, source)
+    return measure_values_by_file(root, MeasureName.FILE_FAN_IN)
+
+
+def test_fan_in_counts_the_files_that_import_a_module(tmp_path: Path) -> None:
+    assert fan_in_of(
+        tmp_path,
+        {
+            "shop/__init__.py": "",
+            "shop/pricing.py": "def price():\n    return 1\n",
+            "shop/orders.py": "from shop.pricing import price\n",
+            "shop/cart.py": "import shop.pricing\nimport json\n",
+            "app.py": "from shop import orders\n",
+        },
+    ) == {
+        "shop/__init__.py": 0,
+        "shop/pricing.py": 2,
+        "shop/orders.py": 1,
+        "shop/cart.py": 0,
+        "app.py": 0,
+    }
+
+
+def test_fan_in_follows_relative_imports(tmp_path: Path) -> None:
+    assert (
+        fan_in_of(
+            tmp_path,
+            {
+                "pkg/__init__.py": "from .b import f\n",
+                "pkg/a.py": "from .b import f\n",
+                "pkg/b.py": "def f():\n    return 1\n",
+                "pkg/c.py": "from . import b\n",
+                "pkg/sub/__init__.py": "",
+                "pkg/sub/d.py": "from ..b import f\n",
+            },
+        )["pkg/b.py"]
+        == 4
+    )
+
+
+def test_fan_in_resolves_src_layout_and_script_style_imports(tmp_path: Path) -> None:
+    assert fan_in_of(
+        tmp_path,
+        {
+            "src/app/__init__.py": "",
+            "src/app/config.py": "DEBUG = True\n",
+            "src/app/main.py": "from app.config import DEBUG\n",
+            "scripts/helpers.py": "def run():\n    return 1\n",
+            "scripts/deploy.py": "from helpers import run\n",
+            "tools/helpers.py": "def run():\n    return 2\n",
+        },
+    ) == {
+        "src/app/__init__.py": 0,
+        "src/app/config.py": 1,
+        "src/app/main.py": 0,
+        "scripts/helpers.py": 1,
+        "scripts/deploy.py": 0,
+        "tools/helpers.py": 0,
+    }
+
+
+def test_fan_in_counts_each_production_importer_once(tmp_path: Path) -> None:
+    assert (
+        fan_in_of(
+            tmp_path,
+            {
+                "pricing.py": "def price():\n    return 1\n",
+                "orders.py": (
+                    "import pricing\nfrom pricing import price\n\n\ndef f():\n    import pricing\n"
+                ),
+                "tests/test_pricing.py": "from pricing import price\n",
+            },
+        )["pricing.py"]
+        == 1
+    )
+
+
+def test_fan_in_of_a_package_measured_on_its_own_follows_imports_up_to_the_target(
+    tmp_path: Path,
+) -> None:
+    assert (
+        fan_in_of(
+            tmp_path,
+            {
+                "__init__.py": "",
+                "schemas.py": "class Measure:\n    pass\n",
+                "measures/__init__.py": "",
+                "measures/volume.py": (
+                    "from ..schemas import Measure\nfrom ...outside import thing\n"
+                ),
+            },
+        )["schemas.py"]
+        == 1
+    )
+
+
+def test_fan_in_of_a_package_target_follows_imports_that_name_the_package(
+    tmp_path: Path,
+) -> None:
+    package = tmp_path.name
+    assert (
+        fan_in_of(
+            tmp_path,
+            {
+                "__init__.py": "",
+                "messages.py": "class Message:\n    pass\n",
+                "prompts/__init__.py": "",
+                "prompts/chat.py": f"from {package}.messages import Message\n",
+            },
+        )["messages.py"]
+        == 1
+    )
+
+
+def test_fan_in_ignores_a_standard_library_import_named_like_a_project_module(
+    tmp_path: Path,
+) -> None:
+    assert (
+        fan_in_of(
+            tmp_path,
+            {
+                "utils/__init__.py": "",
+                "utils/uuid.py": "def short_id():\n    return 'a'\n",
+                "app.py": "from uuid import uuid4\n",
+            },
+        )["utils/uuid.py"]
+        == 0
+    )
