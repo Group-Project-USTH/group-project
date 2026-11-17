@@ -25,9 +25,10 @@ SonarQube and other tools call a "metric" is a Measure here.
 _Avoid_: metric, score, statistic
 
 **System property**:
-One of the eight SIG properties rated from Measures: volume, duplication, unit size, unit
-complexity, unit interfacing, module coupling, component balance, component independence. A
-unit is one function or method. Each System property feeds one or more Characteristics.
+One of the SIG properties rated from Measures, as listed in the SIG/TÜV NORD criteria V18.0
+(2026): duplication, unit size, unit complexity, unit interfacing, module coupling, component
+independence, component entanglement. A unit is one function or method. Each System property
+feeds one or more Characteristics. Volume (lines of code) is reported but not rated.
 _Avoid_: factor, dimension, aspect
 
 **Risk profile**:
@@ -40,7 +41,8 @@ _Avoid_: distribution, histogram
 `++`, `+`, `o`, `-` or `--` for one System property or Characteristic, computed by our code
 from Risk profiles and fixed thresholds, never by the LLM. A Verdict is decided with the
 Rating in hand, not replaced by it. A System property without a published five-level table
-gets no Rating, only a check against its source's 4-star limit.
+gets no Rating, only a check against its source's 4-star limit. A Characteristic's Rating is
+the average of its rated System properties, and is partial when some of them are not rated.
 _Avoid_: score, grade, stars, rank
 
 **Finding**:

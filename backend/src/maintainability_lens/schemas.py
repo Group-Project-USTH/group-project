@@ -76,6 +76,8 @@ class SystemProperty(StrEnum):
     UNIT_INTERFACING = "unit_interfacing"
     MODULE_COUPLING = "module_coupling"
     DUPLICATION = "duplication"
+    COMPONENT_INDEPENDENCE = "component_independence"
+    COMPONENT_ENTANGLEMENT = "component_entanglement"
 
 
 class RiskBand(StrEnum):
@@ -112,6 +114,14 @@ class SystemPropertyRating(BaseModel):
     rating: Rating | None = None
     meets_four_star_limit: bool | None = None
     threshold_source: str
+
+
+class CharacteristicRating(BaseModel):
+    characteristic: Characteristic
+    rating: Rating | None
+    is_partial: bool
+    rated_from: list[SystemProperty]
+    missing: list[SystemProperty]
 
 
 class Finding(BaseModel):
