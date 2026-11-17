@@ -3,7 +3,7 @@
 from enum import StrEnum
 from typing import Self
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, computed_field, model_validator
 
 
 class Characteristic(StrEnum):
@@ -68,6 +68,34 @@ class ProjectMeasureSummary(BaseModel):
     measures: list[Measure]
     function_count: int = Field(ge=0)
     unparsed_files: list[str]
+
+
+class SystemProperty(StrEnum):
+    UNIT_SIZE = "unit_size"
+    UNIT_COMPLEXITY = "unit_complexity"
+    UNIT_INTERFACING = "unit_interfacing"
+    MODULE_COUPLING = "module_coupling"
+
+
+class RiskBand(StrEnum):
+    LOW = "low"
+    MODERATE = "moderate"
+    HIGH = "high"
+    VERY_HIGH = "very_high"
+
+
+class RiskProfile(BaseModel):
+    system_property: SystemProperty
+    lines_of_code_per_band: dict[RiskBand, int]
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def percentage_per_band(self) -> dict[RiskBand, float]:
+        total = sum(self.lines_of_code_per_band.values())
+        return {
+            band: round(100 * self.lines_of_code_per_band.get(band, 0) / total, 1) if total else 0.0
+            for band in RiskBand
+        }
 
 
 class Finding(BaseModel):

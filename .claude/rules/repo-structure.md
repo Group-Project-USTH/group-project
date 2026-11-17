@@ -38,6 +38,8 @@ in `backend/` or `frontend/`.
   them; `duplication.py` finds 6-line blocks repeated across files; `module_coupling.py`
   resolves imports to project files and counts each file's fan-in;
   `production_test_split.py` decides which files are test code.
+- `ratings/`: Risk profiles and Ratings computed from the Measures, never by the LLM.
+  `risk_profiles.py` holds the risk bands; every threshold is a constant citing its source.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures to Claude Code. MCP only: the work happens in `measures/`.
 - `api/`: the FastAPI app, laid out as in FastAPI's
@@ -56,7 +58,7 @@ in `backend/` or `frontend/`.
 ## Dependency direction
 
 ```
-cli, api, mcp_server ──> agent ──> measures, adapters (observability, masking) ──> schemas, config
+cli, api, mcp_server ──> agent ──> measures, ratings, adapters (observability, masking) ──> schemas, config
 ```
 
 - Imports only point down; no cycles. If two packages need the same code, move it down
