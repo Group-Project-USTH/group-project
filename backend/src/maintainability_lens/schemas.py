@@ -45,6 +45,7 @@ class MeasureName(StrEnum):
     COGNITIVE_COMPLEXITY = "cognitive_complexity"
     PARAMETER_COUNT = "parameter_count"
     FILE_LINES_OF_CODE = "file_lines_of_code"
+    DUPLICATED_LINES = "duplicated_lines"
 
 
 class Measure(BaseModel):

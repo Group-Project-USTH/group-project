@@ -311,3 +311,46 @@ def test_measures_of_test_files_are_tagged_as_test_code(
     assert {measure.is_test_code for measure in measure_project(tmp_path).measures} == {
         is_test_code
     }
+
+
+TOTAL_AS_FUNCTION = (
+    "def total(items):\n"
+    "    subtotal = 0\n"
+    "    for item in items:\n"
+    "        subtotal += item.price\n"
+    "    tax = subtotal * 0.1\n"
+    "    shipping = 5\n"
+    "    return subtotal + tax + shipping\n"
+)
+TOTAL_AS_METHOD_WITH_A_COMMENT = (
+    "class Cart:\n"
+    "    def total(self, items):\n"
+    "        subtotal = 0\n"
+    "        for item in items:\n"
+    "            subtotal += item.price\n"
+    "\n"
+    "        # ten percent\n"
+    "        tax = subtotal * 0.1\n"
+    "        shipping = 5\n"
+    "        return subtotal + tax + shipping\n"
+)
+
+
+def test_a_six_line_block_copied_across_files_is_duplicated_in_both(tmp_path: Path) -> None:
+    write_module(tmp_path, "orders.py", TOTAL_AS_FUNCTION)
+    write_module(tmp_path, "cart.py", TOTAL_AS_METHOD_WITH_A_COMMENT)
+    write_module(tmp_path, "unique.py", "def ping():\n    return 'pong'\n")
+
+    assert measure_values_by_file(tmp_path, MeasureName.DUPLICATED_LINES) == {
+        "orders.py": 6,
+        "cart.py": 6,
+        "unique.py": 0,
+    }
+
+
+def test_a_copied_block_shorter_than_six_lines_is_not_duplication(tmp_path: Path) -> None:
+    five_line_body = "".join(TOTAL_AS_FUNCTION.splitlines(keepends=True)[1:6])
+    write_module(tmp_path, "a.py", "def first(items):\n" + five_line_body)
+    write_module(tmp_path, "b.py", "def second(items):\n" + five_line_body)
+
+    assert measure_values_by_file(tmp_path, MeasureName.DUPLICATED_LINES) == {"a.py": 0, "b.py": 0}
