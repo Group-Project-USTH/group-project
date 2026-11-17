@@ -75,6 +75,7 @@ class SystemProperty(StrEnum):
     UNIT_COMPLEXITY = "unit_complexity"
     UNIT_INTERFACING = "unit_interfacing"
     MODULE_COUPLING = "module_coupling"
+    DUPLICATION = "duplication"
 
 
 class RiskBand(StrEnum):
@@ -96,6 +97,21 @@ class RiskProfile(BaseModel):
             band: round(100 * self.lines_of_code_per_band.get(band, 0) / total, 1) if total else 0.0
             for band in RiskBand
         }
+
+
+class Rating(StrEnum):
+    PLUS_PLUS = "++"
+    PLUS = "+"
+    NEUTRAL = "o"
+    MINUS = "-"
+    MINUS_MINUS = "--"
+
+
+class SystemPropertyRating(BaseModel):
+    system_property: SystemProperty
+    rating: Rating | None = None
+    meets_four_star_limit: bool | None = None
+    threshold_source: str
 
 
 class Finding(BaseModel):

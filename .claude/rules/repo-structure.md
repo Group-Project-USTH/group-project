@@ -39,7 +39,8 @@ in `backend/` or `frontend/`.
   resolves imports to project files and counts each file's fan-in;
   `production_test_split.py` decides which files are test code.
 - `ratings/`: Risk profiles and Ratings computed from the Measures, never by the LLM.
-  `risk_profiles.py` holds the risk bands; every threshold is a constant citing its source.
+  `risk_profiles.py` holds the risk bands, `system_property_ratings.py` the Rating tables and
+  4-star limits; every threshold is a constant citing its source.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures to Claude Code. MCP only: the work happens in `measures/`.
 - `api/`: the FastAPI app, laid out as in FastAPI's
