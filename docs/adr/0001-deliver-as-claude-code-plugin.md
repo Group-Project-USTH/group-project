@@ -51,9 +51,22 @@ The research found that:
 7. **Evaluation set.** Every team member rates the same set of about 30 Python files, per
    Characteristic. Agreement among the raters is reported next to the tool's agreement with
    their consensus.
-8. **Thresholds.** The SIG 2007 risk bands and rating tables (Heitlager, Kuipers and Visser,
-   "A Practical Model for Measuring Maintainability", QUATIC 2007), as summarised in the
-   course material. Each threshold is a named constant whose why-comment cites that paper.
+8. **Thresholds.** *Amended 2026-11-17, before phase 3.* Public five-level tables exist only
+   for unit complexity and duplication; the evidence is in
+   `docs/research/sig-rating-thresholds.md`.
+   - Unit complexity and duplication are rated with the SIG 2007 tables (Heitlager, Kuipers
+     and Visser, "A Practical Model for Measuring Maintainability", QUATIC 2007), which the
+     course material summarises.
+   - Unit size, unit interfacing and module coupling get Risk profiles on the bands of the
+     SIG/TÜV NORD *Guidance for Producers* V18.1 (2026), and a check against its 4-star
+     limit, but no five-level Rating until phase 4 calibrates one on Python code.
+   - Volume is not rated: V18 dropped it, and no source gives a Python man-years factor.
+     Lines of code stay a Measure.
+   - Characteristics follow the V18.0 (2026) matrix, as an equal-weight average of the
+     System properties that are rated. A Characteristic with some of them unrated gets a
+     partial Rating that lists the missing ones; with none rated, it gets no Rating.
+   - Each threshold is a named constant whose why-comment cites its source and page. Output
+     never claims SIG or TÜV NORD certification and never calls its Ratings "SIG stars".
 
 ## Consequences
 
@@ -63,8 +76,9 @@ The research found that:
   2. Fill the Measure gaps: file- and project-level Measures, unit interfacing, volume,
      duplication, module coupling, and a production/test split.
   3. Rate: Risk profiles, System property Ratings, and the mapping onto Characteristics.
-  4. Evaluate: the rated Python set, agreement and stability scoring, and baselines (size
-     only, Ratings only, the DeepAgents agent, the Claude Code skill).
+  4. Evaluate: the rated Python set, agreement and stability scoring, baselines (size
+     only, Ratings only, the DeepAgents agent, the Claude Code skill), and our own
+     five-level thresholds calibrated on Python code.
   5. Judge well: rubrics per Characteristic, Evidence first, user claims left out.
   6. Remove the agent, the API and Langfuse; rewrite README, CLAUDE.md, GLOSSARY and
      `repo-structure.md`.
