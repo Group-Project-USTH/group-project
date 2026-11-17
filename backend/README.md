@@ -178,6 +178,25 @@ With `file` (relative to `target`), both tools cover that one file: its Ratings 
 own Measures, but its duplication and fan-in are still counted against the whole project.
 Phase 4 uses this to rate each file of the Evaluation set.
 
+## Record Findings on the Evaluation set
+
+```bash
+uv run maintainability-lens evaluate-set --approach size-only --checkouts ../.checkouts --output path/to/findings
+```
+
+Checks out each file's project at its pinned commit (reused on later runs), applies one
+Approach to every file of `evaluation/evaluation_set.json`, and appends a Finding per file and
+Characteristic to `<output>/<approach>.jsonl`. Files already recorded are skipped, so an
+interrupted run resumes. `--repetitions N` records each file N times, for stability.
+
+- `size-only`: `pass` on every Characteristic when the file has at most 275 lines of code
+  (Borg, Ezzouhri and Tornhill, ICSME 2024), otherwise `fail`.
+- `ratings-only`: `pass` when the file's Characteristic Rating is `+` or `++`, `fail` below,
+  `unknown` with no Rating.
+
+Keep tool Findings out of the repo until every Rater has submitted
+(`docs/evaluation/rating-protocol.md`).
+
 ## Layout
 
 ```
@@ -191,6 +210,7 @@ src/maintainability_lens/
   agent/                DeepAgents agent with read-only file access
   measures/             per-function and per-file Measures, no LLM
   ratings/              Risk profiles and Ratings from the Measures, no LLM
+  evaluation/           phase 4 harness: Evaluation set checkouts, Approaches, recorded Findings
   api/                  FastAPI app: main.py (create_app()), routers/ (one per area: health)
 tests/                  unit tests; fixtures/sample_project is the smoke-test target
 ```

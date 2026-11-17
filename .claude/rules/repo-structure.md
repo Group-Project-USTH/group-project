@@ -43,6 +43,10 @@ in `backend/` or `frontend/`.
   `risk_profiles.py` holds the risk bands, `system_property_ratings.py` the Rating tables and
   4-star limits, `characteristic_ratings.py` the mapping onto Characteristics; every
   threshold is a constant citing its source.
+- `evaluation/`: the phase 4 harness. `evaluation_set.py` loads the Evaluation set and checks
+  out each project at its pinned commit; one module per Approach (`size_only.py`,
+  `ratings_only.py`) turns a file into Findings; `recorded_findings.py` appends them to JSONL;
+  `approach_runs.py` runs an Approach over the set and skips what is already recorded.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures and Ratings to Claude Code. MCP only: the work happens in `measures/` and
   `ratings/`.
@@ -62,7 +66,7 @@ in `backend/` or `frontend/`.
 ## Dependency direction
 
 ```
-cli, api, mcp_server ──> agent ──> measures, ratings, adapters (observability, masking) ──> schemas, config
+cli, api, mcp_server ──> evaluation ──> agent ──> measures, ratings, adapters (observability, masking) ──> schemas, config
 ```
 
 - Imports only point down; no cycles. If two packages need the same code, move it down

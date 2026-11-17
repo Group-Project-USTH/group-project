@@ -50,6 +50,11 @@ One verdict for one characteristic, with its evidence and rationale. A pass or f
 finding must cite evidence.
 _Avoid_: result, assessment, issue, report
 
+**Approach**:
+One way of giving Verdicts on the Evaluation set, scored against the Raters' consensus: size
+only, Ratings only, the DeepAgents agent, or the Claude Code skill.
+_Avoid_: baseline, executor, method, strategy
+
 **Run**:
 One evaluation of one characteristic by the agent, identified by a `run_id` and traced in
 Langfuse.

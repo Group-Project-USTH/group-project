@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintainability-lens smoke|measure|mcp`."""
+"""Command-line entry point: `maintainability-lens smoke|measure|mcp|evaluate-set`."""
 
 import argparse
 import logging
@@ -6,6 +6,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from maintainability_lens.evaluation import Approach, load_evaluation_set, run_approach
 from maintainability_lens.measures import measure_project
 from maintainability_lens.schemas import Characteristic
 
@@ -30,6 +31,20 @@ def _parser() -> argparse.ArgumentParser:
     measure = sub.add_parser("measure", help="Print the project's Measures as JSON.")
     measure.add_argument("--target", type=Path, required=True, help="Project directory to measure.")
     sub.add_parser("mcp", help="Serve the Measures as an MCP server over stdio.")
+    evaluate_set = sub.add_parser(
+        "evaluate-set", help="Record one Approach's Findings on every file of the Evaluation set."
+    )
+    evaluate_set.add_argument("--approach", type=Approach, choices=list(Approach), required=True)
+    evaluate_set.add_argument(
+        "--evaluation-set", type=Path, default=Path("evaluation") / "evaluation_set.json"
+    )
+    evaluate_set.add_argument(
+        "--checkouts", type=Path, required=True, help="Folder for the pinned project checkouts."
+    )
+    evaluate_set.add_argument(
+        "--output", type=Path, required=True, help="Folder for the <approach>.jsonl Findings."
+    )
+    evaluate_set.add_argument("--repetitions", type=int, default=1)
     return parser
 
 
@@ -40,6 +55,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return run_measure(args.target)
     if args.command == "mcp":
         return run_mcp_server()
+    if args.command == "evaluate-set":
+        return run_evaluate_set(args)
     return run_smoke(args)
 
 
@@ -50,6 +67,18 @@ def run_measure(target: Path) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     print(project_measures.model_dump_json(indent=2))
+    return 0
+
+
+def run_evaluate_set(args: argparse.Namespace) -> int:
+    newly_recorded = run_approach(
+        args.approach,
+        load_evaluation_set(args.evaluation_set),
+        args.checkouts,
+        args.output,
+        repetitions=args.repetitions,
+    )
+    print(f"{newly_recorded} new Findings in {args.output / f'{args.approach}.jsonl'}")
     return 0
 
 

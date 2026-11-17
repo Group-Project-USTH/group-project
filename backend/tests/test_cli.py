@@ -126,3 +126,51 @@ def test_smoke_without_the_llm_stack_fails_clearly() -> None:
 
     assert completed.returncode == 1
     assert "error: smoke needs the agent dependency group" in completed.stderr
+
+
+def test_evaluate_set_records_the_findings_of_an_approach(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    upstream = tmp_path / "upstream"
+    git = ["git", "-C", str(upstream), "-c", "user.name=test", "-c", "user.email=test@example.com"]
+    subprocess.run(["git", "init", "-q", str(upstream)], check=True)
+    (upstream / "app.py").write_text("def f(x):\n    return x\n")
+    subprocess.run([*git, "add", "."], check=True)
+    subprocess.run([*git, "commit", "-q", "-m", "app"], check=True)
+    commit = subprocess.run(
+        [*git, "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+    ).stdout.strip()
+    evaluation_set_file = tmp_path / "evaluation_set.json"
+    evaluation_set_file.write_text(
+        json.dumps(
+            [
+                {
+                    "file_id": "F01",
+                    "project": "upstream",
+                    "licence": "MIT",
+                    "repository_url": upstream.as_uri(),
+                    "commit": commit,
+                    "path": "app.py",
+                    "url": upstream.as_uri(),
+                }
+            ]
+        )
+    )
+
+    code = cli.main(
+        [
+            "evaluate-set",
+            "--approach",
+            "size-only",
+            "--evaluation-set",
+            str(evaluation_set_file),
+            "--checkouts",
+            str(tmp_path / "checkouts"),
+            "--output",
+            str(tmp_path / "out"),
+        ]
+    )
+
+    assert code == 0
+    assert len((tmp_path / "out" / "size-only.jsonl").read_text().splitlines()) == 5
+    assert "5 new Findings" in capsys.readouterr().out
