@@ -60,7 +60,9 @@ for every function, each with its file,
 line range and qualified name (`Cart.add`, `outer.inner`); lines of code for every file
 (docstrings, comments and blank lines excluded; `function` is `null`); plus any
 `unparsed_files`. The units come from Python's `ast`, so both tools' numbers land on the
-same unit. It needs no LLM or Langfuse keys.
+same unit. Every Measure has `is_test_code`: true for `test_*.py`, `*_test.py`,
+`conftest.py` and anything under a `test/` or `tests/` folder. It needs no LLM or Langfuse
+keys.
 
 ## Run the smoke test
 

@@ -75,6 +75,7 @@ def test_measure_prints_project_measures_json(capsys: pytest.CaptureFixture[str]
         "file": "app.py",
         "line_start": 6,
         "line_end": 25,
+        "is_test_code": False,
     } in payload["measures"]
     assert payload["unparsed_files"] == []
 
