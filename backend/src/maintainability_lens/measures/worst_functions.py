@@ -6,8 +6,8 @@ from maintainability_lens.schemas import (
 )
 
 
-def function_location(measure: Measure) -> tuple[str, int]:
-    return measure.file, measure.line_start
+def function_location(measure: Measure) -> tuple[str, str | None, int]:
+    return measure.file, measure.function, measure.line_start
 
 
 def summarise_worst_functions(

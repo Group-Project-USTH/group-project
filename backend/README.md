@@ -57,9 +57,10 @@ uv run maintainability-lens measure --target tests/fixtures/sample_project
 It prints the project's Measures as JSON: cyclomatic complexity (lizard's definition),
 cognitive complexity (complexipy), lines of code and parameter count (without `self`/`cls`)
 for every function, each with its file,
-line range and qualified name (`Cart.add`, `outer.inner`), plus any `unparsed_files`. The
-units come from Python's `ast`, so both tools' numbers land on the same unit. It needs no
-LLM or Langfuse keys.
+line range and qualified name (`Cart.add`, `outer.inner`); lines of code for every file
+(docstrings, comments and blank lines excluded; `function` is `null`); plus any
+`unparsed_files`. The units come from Python's `ast`, so both tools' numbers land on the
+same unit. It needs no LLM or Langfuse keys.
 
 ## Run the smoke test
 
@@ -152,7 +153,8 @@ uv run maintainability-lens mcp
 
 Starts an MCP server over stdio with one tool, `measure_project(target, function_limit=20)`:
 every Measure of the `function_limit` functions with the highest cyclomatic complexity, the
-number of functions measured, and `unparsed_files`. Claude Code starts it through the plugin.
+number of functions measured, and `unparsed_files`. File-level Measures are left out until
+the Ratings (phase 3) summarise them. Claude Code starts it through the plugin.
 
 ## Layout
 
