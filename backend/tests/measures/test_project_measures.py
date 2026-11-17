@@ -137,3 +137,67 @@ def test_unparsable_file_is_listed_and_the_rest_is_still_measured(tmp_path: Path
 
     assert project_measures.unparsed_files == ["broken.py"]
     assert {measure.file for measure in project_measures.measures} == {"good.py"}
+
+
+DECORATED_METHOD = (
+    "class Cart:\n"
+    "    @staticmethod\n"
+    "    def make(a):\n"
+    "        if a:\n"
+    "            return a\n"
+    "        return None\n"
+)
+
+
+def test_every_measure_of_a_method_names_its_class_and_shares_one_line_range(
+    tmp_path: Path,
+) -> None:
+    write_module(tmp_path, "cart.py", DECORATED_METHOD)
+
+    assert {
+        (measure.name, measure.function, measure.line_start, measure.line_end)
+        for measure in measure_project(tmp_path).measures
+    } == {
+        (MeasureName.CYCLOMATIC_COMPLEXITY, "Cart.make", 3, 6),
+        (MeasureName.FUNCTION_LINES_OF_CODE, "Cart.make", 3, 6),
+        (MeasureName.COGNITIVE_COMPLEXITY, "Cart.make", 3, 6),
+    }
+
+
+NESTED_FUNCTION = "def outer(x):\n    def inner(y):\n        return y\n    return inner(x)\n"
+
+
+def test_a_nested_function_is_named_after_its_enclosing_function(tmp_path: Path) -> None:
+    write_module(tmp_path, "app.py", NESTED_FUNCTION)
+
+    assert {
+        measure.function
+        for measure in measure_project(tmp_path).measures
+        if measure.name is MeasureName.CYCLOMATIC_COMPLEXITY
+    } == {"outer", "outer.inner"}
+
+
+CONDITIONAL_DEFINITIONS = (
+    "import sys\n"
+    "if sys.platform == 'win32':\n"
+    "    def home():\n"
+    "        return 'C:'\n"
+    "else:\n"
+    "    def home():\n"
+    "        return '/'\n"
+    "try:\n"
+    "    import ujson\n"
+    "except ImportError:\n"
+    "    def loads(text):\n"
+    "        return text\n"
+)
+
+
+def test_functions_defined_inside_if_and_try_blocks_are_measured(tmp_path: Path) -> None:
+    write_module(tmp_path, "compat.py", CONDITIONAL_DEFINITIONS)
+
+    assert {
+        (measure.function, measure.line_start)
+        for measure in measure_project(tmp_path).measures
+        if measure.name is MeasureName.COGNITIVE_COMPLEXITY
+    } == {("home", 3), ("home", 6), ("loads", 11)}
