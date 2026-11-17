@@ -39,7 +39,8 @@ _Avoid_: distribution, histogram
 **Rating**:
 `++`, `+`, `o`, `-` or `--` for one System property or Characteristic, computed by our code
 from Risk profiles and fixed thresholds, never by the LLM. A Verdict is decided with the
-Rating in hand, not replaced by it.
+Rating in hand, not replaced by it. A System property without a published five-level table
+gets no Rating, only a check against its source's 4-star limit.
 _Avoid_: score, grade, stars, rank
 
 **Finding**:
