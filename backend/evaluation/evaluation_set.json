@@ -1,0 +1,272 @@
+[
+  {
+    "file_id": "F01",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/yandexdisk.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/yandexdisk.py"
+  },
+  {
+    "file_id": "F02",
+    "project": "tqdm",
+    "licence": "MPL-2.0 and MIT",
+    "repository_url": "https://github.com/tqdm/tqdm",
+    "commit": "9cf5a12b1f955468a17f0ba3c59092b23e4258ac",
+    "path": "tqdm/cli.py",
+    "url": "https://github.com/tqdm/tqdm/blob/9cf5a12b1f955468a17f0ba3c59092b23e4258ac/tqdm/cli.py"
+  },
+  {
+    "file_id": "F03",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beets/util/artresizer.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beets/util/artresizer.py"
+  },
+  {
+    "file_id": "F04",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/markdown.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/markdown.py"
+  },
+  {
+    "file_id": "F05",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/_log_render.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/_log_render.py"
+  },
+  {
+    "file_id": "F06",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beetsplug/importfeeds.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beetsplug/importfeeds.py"
+  },
+  {
+    "file_id": "F07",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beetsplug/bucket.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beetsplug/bucket.py"
+  },
+  {
+    "file_id": "F08",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beetsplug/lastgenre/client.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beetsplug/lastgenre/client.py"
+  },
+  {
+    "file_id": "F09",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/rai.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/rai.py"
+  },
+  {
+    "file_id": "F10",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/arkena.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/arkena.py"
+  },
+  {
+    "file_id": "F11",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/urplay.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/urplay.py"
+  },
+  {
+    "file_id": "F12",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/_win32_console.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/_win32_console.py"
+  },
+  {
+    "file_id": "F13",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beetsplug/bpsync.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beetsplug/bpsync.py"
+  },
+  {
+    "file_id": "F14",
+    "project": "httpx",
+    "licence": "BSD-3-Clause",
+    "repository_url": "https://github.com/encode/httpx",
+    "commit": "7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016",
+    "path": "httpx/_main.py",
+    "url": "https://github.com/encode/httpx/blob/7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016/httpx/_main.py"
+  },
+  {
+    "file_id": "F15",
+    "project": "requests",
+    "licence": "Apache-2.0",
+    "repository_url": "https://github.com/psf/requests",
+    "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "path": "src/requests/api.py",
+    "url": "https://github.com/psf/requests/blob/3c7baaa05ab4aa49cc819ce3a819d260de19c157/src/requests/api.py"
+  },
+  {
+    "file_id": "F16",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/threeqsdn.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/threeqsdn.py"
+  },
+  {
+    "file_id": "F17",
+    "project": "beets",
+    "licence": "MIT",
+    "repository_url": "https://github.com/beetbox/beets",
+    "commit": "d3631b205a1bc47f62639b95b2cfcb0c124ec909",
+    "path": "beetsplug/edit.py",
+    "url": "https://github.com/beetbox/beets/blob/d3631b205a1bc47f62639b95b2cfcb0c124ec909/beetsplug/edit.py"
+  },
+  {
+    "file_id": "F18",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/_inspect.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/_inspect.py"
+  },
+  {
+    "file_id": "F19",
+    "project": "requests",
+    "licence": "Apache-2.0",
+    "repository_url": "https://github.com/psf/requests",
+    "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "path": "src/requests/auth.py",
+    "url": "https://github.com/psf/requests/blob/3c7baaa05ab4aa49cc819ce3a819d260de19c157/src/requests/auth.py"
+  },
+  {
+    "file_id": "F20",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/ansi.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/ansi.py"
+  },
+  {
+    "file_id": "F21",
+    "project": "requests",
+    "licence": "Apache-2.0",
+    "repository_url": "https://github.com/psf/requests",
+    "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "path": "src/requests/cookies.py",
+    "url": "https://github.com/psf/requests/blob/3c7baaa05ab4aa49cc819ce3a819d260de19c157/src/requests/cookies.py"
+  },
+  {
+    "file_id": "F22",
+    "project": "requests",
+    "licence": "Apache-2.0",
+    "repository_url": "https://github.com/psf/requests",
+    "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "path": "src/requests/sessions.py",
+    "url": "https://github.com/psf/requests/blob/3c7baaa05ab4aa49cc819ce3a819d260de19c157/src/requests/sessions.py"
+  },
+  {
+    "file_id": "F23",
+    "project": "tqdm",
+    "licence": "MPL-2.0 and MIT",
+    "repository_url": "https://github.com/tqdm/tqdm",
+    "commit": "9cf5a12b1f955468a17f0ba3c59092b23e4258ac",
+    "path": "tqdm/utils.py",
+    "url": "https://github.com/tqdm/tqdm/blob/9cf5a12b1f955468a17f0ba3c59092b23e4258ac/tqdm/utils.py"
+  },
+  {
+    "file_id": "F24",
+    "project": "httpx",
+    "licence": "BSD-3-Clause",
+    "repository_url": "https://github.com/encode/httpx",
+    "commit": "7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016",
+    "path": "httpx/_urlparse.py",
+    "url": "https://github.com/encode/httpx/blob/7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016/httpx/_urlparse.py"
+  },
+  {
+    "file_id": "F25",
+    "project": "tqdm",
+    "licence": "MPL-2.0 and MIT",
+    "repository_url": "https://github.com/tqdm/tqdm",
+    "commit": "9cf5a12b1f955468a17f0ba3c59092b23e4258ac",
+    "path": "tqdm/gui.py",
+    "url": "https://github.com/tqdm/tqdm/blob/9cf5a12b1f955468a17f0ba3c59092b23e4258ac/tqdm/gui.py"
+  },
+  {
+    "file_id": "F26",
+    "project": "youtube-dl",
+    "licence": "Unlicense",
+    "repository_url": "https://github.com/ytdl-org/youtube-dl",
+    "commit": "bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb",
+    "path": "youtube_dl/extractor/nbc.py",
+    "url": "https://github.com/ytdl-org/youtube-dl/blob/bc069d2bb40bcbc5bdfdf352ca15bf586c7792cb/youtube_dl/extractor/nbc.py"
+  },
+  {
+    "file_id": "F27",
+    "project": "httpx",
+    "licence": "BSD-3-Clause",
+    "repository_url": "https://github.com/encode/httpx",
+    "commit": "7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016",
+    "path": "httpx/_urls.py",
+    "url": "https://github.com/encode/httpx/blob/7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016/httpx/_urls.py"
+  },
+  {
+    "file_id": "F28",
+    "project": "rich",
+    "licence": "MIT",
+    "repository_url": "https://github.com/Textualize/rich",
+    "commit": "3a109ccdffe5b2d0e30684a304fbd388e99ce57b",
+    "path": "rich/box.py",
+    "url": "https://github.com/Textualize/rich/blob/3a109ccdffe5b2d0e30684a304fbd388e99ce57b/rich/box.py"
+  },
+  {
+    "file_id": "F29",
+    "project": "requests",
+    "licence": "Apache-2.0",
+    "repository_url": "https://github.com/psf/requests",
+    "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "path": "src/requests/adapters.py",
+    "url": "https://github.com/psf/requests/blob/3c7baaa05ab4aa49cc819ce3a819d260de19c157/src/requests/adapters.py"
+  },
+  {
+    "file_id": "F30",
+    "project": "httpx",
+    "licence": "BSD-3-Clause",
+    "repository_url": "https://github.com/encode/httpx",
+    "commit": "7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016",
+    "path": "httpx/_exceptions.py",
+    "url": "https://github.com/encode/httpx/blob/7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016/httpx/_exceptions.py"
+  }
+]
