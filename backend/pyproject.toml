@@ -5,7 +5,7 @@ description = "A DeepAgents agent that evaluates ISO/IEC 25010 maintainability."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "complexipy>=8.3.0,<9",
+    "complexipy>=8.3.0,<10",
     "lizard>=1.26.0,<2",
     "mcp>=2.3.0,<3",
     "pydantic>=2.14.3,<3",
