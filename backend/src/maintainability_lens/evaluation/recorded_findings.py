@@ -10,6 +10,7 @@ class Approach(StrEnum):
     SIZE_ONLY = "size-only"
     RATINGS_ONLY = "ratings-only"
     CLAUDE_CODE_SKILL = "claude-code-skill"
+    DEEPAGENTS_AGENT = "deepagents-agent"
 
 
 class FileFindings(BaseModel):

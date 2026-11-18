@@ -10,6 +10,7 @@ import pytest
 from langchain_core.language_models import BaseChatModel
 from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage, ToolMessage
+from pydantic import Field
 
 from maintainability_lens.agent import AgentOutputError, build_agent, evaluate_characteristic
 from maintainability_lens.schemas import Characteristic, Evidence, Verdict
@@ -117,3 +118,21 @@ def test_build_model_names_llm_calls_by_operation() -> None:
 
     model = build_model(Settings(llm_model="openai:some-model", openai_api_key="sk-test"))
     assert model.get_name() == LLM_CALL_NAME
+
+
+class RecordingChatModel(ScriptedChatModel):
+    prompts: list[str] = Field(default_factory=list)
+
+    def _generate(self, messages: list[Any], *args: Any, **kwargs: Any) -> Any:
+        self.prompts.extend(str(message.content) for message in messages)
+        return super()._generate(messages, *args, **kwargs)
+
+
+def test_evaluate_characteristic_can_ask_about_one_file(project: Path) -> None:
+    model = RecordingChatModel(messages=iter([ANSWER_FAIL]))
+
+    evaluate_characteristic(
+        project, Characteristic.TESTABILITY, run_id="t2", model=model, file="app.py"
+    )
+
+    assert any("testability of the file `/app.py`" in prompt for prompt in model.prompts)

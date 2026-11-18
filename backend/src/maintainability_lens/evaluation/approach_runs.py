@@ -9,6 +9,7 @@ from maintainability_lens.evaluation.claude_code_skill import (
     ClaudeCodeOptions,
     decide_with_claude_code,
 )
+from maintainability_lens.evaluation.deepagents_agent import decide_with_deepagents_agent
 from maintainability_lens.evaluation.evaluation_set import EvaluationFile, check_out
 from maintainability_lens.evaluation.ratings_only import decide_by_ratings
 from maintainability_lens.evaluation.recorded_findings import (
@@ -36,6 +37,8 @@ def build_decider(approach: Approach, claude_code_options: ClaudeCodeOptions | N
         return decide_by_size
     if approach is Approach.RATINGS_ONLY:
         return decide_by_ratings
+    if approach is Approach.DEEPAGENTS_AGENT:
+        return decide_with_deepagents_agent
     if claude_code_options is None:
         raise ValueError(f"{approach} needs ClaudeCodeOptions")
     return partial(decide_with_claude_code, claude_code_options)

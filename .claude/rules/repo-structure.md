@@ -46,7 +46,8 @@ in `backend/` or `frontend/`.
   threshold is a constant citing its source.
 - `evaluation/`: the phase 4 harness. `evaluation_set.py` loads the Evaluation set and checks
   out each project at its pinned commit; one module per Approach (`size_only.py`,
-  `ratings_only.py`, `claude_code_skill.py`) turns a file into Findings; `recorded_findings.py` appends them to JSONL;
+  `ratings_only.py`, `claude_code_skill.py`, `deepagents_agent.py`) turns a file into
+  Findings; `recorded_findings.py` appends them to JSONL;
   `approach_runs.py` runs an Approach over the set and skips what is already recorded.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures and Ratings to Claude Code. MCP only: the work happens in `measures/` and

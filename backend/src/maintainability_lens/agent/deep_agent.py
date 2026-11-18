@@ -20,7 +20,7 @@ from maintainability_lens.schemas import Characteristic, Evidence, Finding, Verd
 
 # Bump whenever SYSTEM_PROMPT or the agent's tools/output schema change. Sent to Langfuse
 # as the observation `version`, so runs of different prompt iterations can be compared.
-PROMPT_VERSION = "1.0"
+PROMPT_VERSION = "1.1"
 # Observation name for every LLM call in the agent loop (traces name the operation,
 # not the model class; the model id is recorded separately on each generation).
 LLM_CALL_NAME = "decide-next-action"
@@ -116,20 +116,27 @@ def evaluate_characteristic(
     model: BaseChatModel | None = None,
     session_id: str | None = None,
     on_trace_url: Callable[[str], None] | None = None,
+    file: str | None = None,
 ) -> Finding:
     """Ask the agent about one characteristic of `target` and return a validated Finding.
 
     `on_trace_url` is called with the Langfuse trace URL before the agent starts, if tracing.
     """
     agent = build_agent(target, model or build_model(settings or get_settings()))
+    subject = "the project at `/`" if file is None else f"the file `/{file}` in the project at `/`"
     question = (
-        f"Evaluate the {characteristic.value} of the project at `/`. "
+        f"Evaluate the {characteristic.value} of {subject}. "
         "Answer PASS, FAIL or UNKNOWN and cite file + line."
     )
     with traced_run(
         run_id=run_id,
         characteristic=characteristic,
-        input={"target": str(target), "characteristic": characteristic.value, "question": question},
+        input={
+            "target": str(target),
+            "file": file,
+            "characteristic": characteristic.value,
+            "question": question,
+        },
         session_id=session_id,
         component_version=PROMPT_VERSION,
     ) as run:
