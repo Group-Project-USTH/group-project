@@ -20,6 +20,7 @@ uv run pytest                                      # unit tests + coverage, inte
 uv run uvicorn --factory maintainability_lens.api:create_app --reload   # API on :8000, docs at /docs
 uv run maintainability-lens measure --target tests/fixtures/sample_project # Measures as JSON, no LLM
 uv run maintainability-lens mcp                    # Measures and Ratings as an MCP server (stdio)
+uv run maintainability-lens evaluate-set --approach size-only --checkouts DIR --output DIR  # phase 4 Findings
 uv run maintainability-lens smoke --target tests/fixtures/sample_project   # real LLM, needs .env
 uv run pytest -m integration --no-cov              # real LLM end-to-end, needs .env
 ```
@@ -31,9 +32,9 @@ Langfuse keys.
 
 - `backend/`: the Python project (own `pyproject.toml`, `uv.lock`, `.env`)
   - `src/maintainability_lens/`: the package (the agent in `agent/`, Measures in `measures/`,
-    Risk profiles and Ratings in `ratings/`, FastAPI app `api/`, shared `schemas.py` and
-    `config.py`, Langfuse adapter `observability.py` + `masking.py`, `cli.py`, MCP server
-    `mcp_server.py`)
+    Risk profiles and Ratings in `ratings/`, the phase 4 harness in `evaluation/`, FastAPI
+    app `api/`, shared `schemas.py` and `config.py`, Langfuse adapter `observability.py` +
+    `masking.py`, `cli.py`, MCP server `mcp_server.py`)
   - `tests/`: unit tests; `tests/fixtures/sample_project/` is the smoke-test target
 - `.claude-plugin/`: marketplace and plugin manifests (the repo root is the Claude Code plugin);
   `plugin/skills/`: the plugin's skills. Check with `claude plugin validate .`

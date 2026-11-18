@@ -60,6 +60,11 @@ A team member who gives Verdicts on the Evaluation set by hand, blind to the too
 to other Raters. The Raters' consensus is what the tool is scored against.
 _Avoid_: expert, labeller, annotator
 
+**Approach**:
+One way of giving Verdicts on the Evaluation set, scored against the Raters' consensus: size
+only, Ratings only, the DeepAgents agent, or the Claude Code skill.
+_Avoid_: baseline, executor, method, strategy
+
 **Run**:
 One evaluation of one characteristic by the agent, identified by a `run_id` and traced in
 Langfuse.
