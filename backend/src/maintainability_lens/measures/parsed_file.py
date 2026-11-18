@@ -26,8 +26,8 @@ class CodeLine:
 
 @dataclass(frozen=True)
 class ParsedFile:
-    path: Path
     relative_file: str
+    source: str
     tree: ast.Module
     line_count: int
     code_lines: list[CodeLine]
@@ -42,8 +42,8 @@ def parse_file(path: Path, relative_file: str) -> ParsedFile | None:
         return None
     lines = source.splitlines()
     return ParsedFile(
-        path=path,
         relative_file=relative_file,
+        source=source,
         tree=tree,
         line_count=len(lines),
         code_lines=[

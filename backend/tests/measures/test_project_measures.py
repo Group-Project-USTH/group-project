@@ -510,3 +510,21 @@ def test_file_that_cannot_be_decoded_is_reported_as_unparsed(tmp_path: Path) -> 
     project_measures = measure_project(tmp_path)
 
     assert project_measures.unparsed_files == ["garbled.py"]
+
+
+def test_units_in_a_file_with_a_non_utf8_coding_line_are_measured(tmp_path: Path) -> None:
+    source = (
+        "# -*- coding: big5 -*-\n"
+        "def f(x):\n    if x:\n        return '\u4e2d\u6587'\n    return x\n"
+    )
+    (tmp_path / "chinese.py").write_bytes(source.encode("big5"))
+
+    project_measures = measure_project(tmp_path)
+
+    measured = {
+        (measure.name, measure.value)
+        for measure in project_measures.measures
+        if measure.function == "f"
+    }
+    assert (MeasureName.CYCLOMATIC_COMPLEXITY, 2) in measured
+    assert (MeasureName.COGNITIVE_COMPLEXITY, 1) in measured

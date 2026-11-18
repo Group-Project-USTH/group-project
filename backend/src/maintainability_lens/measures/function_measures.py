@@ -1,12 +1,10 @@
-from pathlib import Path
-
 import lizard
 
 from maintainability_lens.measures.python_units import PythonUnit
 from maintainability_lens.schemas import Measure, MeasureName
 
 
-def measure_functions(path: Path, relative_file: str, units: list[PythonUnit]) -> list[Measure]:
+def measure_functions(source: str, relative_file: str, units: list[PythonUnit]) -> list[Measure]:
     units_by_def_line = {unit.line_start: unit for unit in units}
     return [
         Measure(
@@ -17,7 +15,7 @@ def measure_functions(path: Path, relative_file: str, units: list[PythonUnit]) -
             line_start=unit.line_start,
             line_end=unit.line_end,
         )
-        for function in lizard.analyze_file(str(path)).function_list
+        for function in lizard.analyze_file.analyze_source_code(relative_file, source).function_list
         if (unit := units_by_def_line.get(function.start_line))
         for name, value in [
             (MeasureName.CYCLOMATIC_COMPLEXITY, function.cyclomatic_complexity),
