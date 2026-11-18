@@ -37,6 +37,9 @@ dev = [
 
 [tool.uv]
 default-groups = ["dev", "agent"]
+# Why: the plugin starts the server with `uvx --from backend`, which by default rebuilds only
+# when pyproject.toml changes, so it would keep serving stale source.
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/**/*.py" }]
 
 [build-system]
 requires = ["uv_build>=0.13.8,<0.14"]
