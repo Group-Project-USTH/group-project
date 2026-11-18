@@ -1,12 +1,15 @@
 ---
 name: evaluate
-description: Evaluate the maintainability of a Python project for one or more ISO/IEC 25010 Characteristics (modularity, reusability, analysability, modifiability, testability), giving a pass, fail or unknown Verdict with file and line Evidence. Use when the user asks how maintainable, modular, analysable, modifiable, reusable or testable their Python code is.
+description: Evaluate the maintainability of a Python project, or of one file in it, for one or more ISO/IEC 25010 Characteristics (modularity, reusability, analysability, modifiability, testability), giving a pass, fail or unknown Verdict with file and line Evidence. Use when the user asks how maintainable, modular, analysable, modifiable, reusable or testable their Python code is.
 ---
 
 # Evaluate maintainability
 
 Give one Finding per Characteristic the user asks about. With no Characteristic named, give
 all five: modularity, reusability, analysability, modifiability, testability.
+
+When the user asks about one file, pass its path relative to the project directory as `file`
+to both tools below, and judge that file as it stands in its project.
 
 1. Call the `rate_project` tool of the `maintainability-lens` MCP server with the absolute
    path of the project directory as `target`. It returns a Rating (`++` to `--`) per

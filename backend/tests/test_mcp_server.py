@@ -95,3 +95,45 @@ def test_rate_tool_lists_the_files_with_the_most_duplication_and_fan_in(tmp_path
 
 def test_rate_tool_reports_a_missing_target_as_an_error(tmp_path: Path) -> None:
     assert call_tool({"target": str(tmp_path / "nope")}, tool="rate_project").is_error
+
+
+def test_rate_tool_with_a_file_rates_that_file_against_its_whole_project(tmp_path: Path) -> None:
+    block = "".join(f"value_{index} = {index}\n" for index in range(6))
+    (tmp_path / "copy_a.py").write_text(block)
+    (tmp_path / "copy_b.py").write_text(block + "import copy_a\n")
+    (tmp_path / "unique.py").write_text("import copy_a\n")
+
+    ratings = call_tool(
+        {"target": str(tmp_path), "file": "copy_a.py"}, tool="rate_project"
+    ).structured_content
+
+    assert ratings["production_lines_of_code"] == 6
+    assert ratings["duplicated_percentage"] == 100.0
+    assert [(measure["file"], measure["value"]) for measure in ratings["highest_fan_in_files"]] == [
+        ("copy_a.py", 2)
+    ]
+
+
+def test_rate_tool_reports_a_file_outside_the_project_as_an_error(tmp_path: Path) -> None:
+    (tmp_path / "app.py").write_text("def f(x):\n    return x\n")
+
+    result = call_tool({"target": str(tmp_path), "file": "missing.py"}, tool="rate_project")
+
+    assert result.is_error
+    assert "missing.py" in result.content[0].text
+
+
+def test_rate_tool_tells_the_model_why_a_target_is_rejected(tmp_path: Path) -> None:
+    result = call_tool({"target": str(tmp_path / "nope")}, tool="rate_project")
+
+    assert "not a directory" in result.content[0].text
+
+
+def test_measure_tool_with_a_file_returns_only_that_files_functions(tmp_path: Path) -> None:
+    (tmp_path / "first.py").write_text("def f(x):\n    if x:\n        return 1\n    return 0\n")
+    (tmp_path / "second.py").write_text("def g(x):\n    return x\n\n\ndef h(x):\n    return x\n")
+
+    result = call_tool({"target": str(tmp_path), "file": "second.py"})
+
+    assert {measure["function"] for measure in result.structured_content["measures"]} == {"g", "h"}
+    assert result.structured_content["function_count"] == 2

@@ -162,7 +162,7 @@ uv run maintainability-lens mcp
 
 Starts an MCP server over stdio with two tools. Claude Code starts it through the plugin.
 
-- `rate_project(target)`: a Rating (`++` to `--`) per Characteristic, averaged from the
+- `rate_project(target, file=None)`: a Rating (`++` to `--`) per Characteristic, averaged from the
   System properties that have one, with `is_partial` and `missing` naming those that don't.
   Also each System property's Rating or 4-star check with its threshold source, the Risk
   profiles, production and test lines of code, the duplicated percentage, and the production
@@ -170,9 +170,13 @@ Starts an MCP server over stdio with two tools. Claude Code starts it through th
   Rating. Unit complexity and duplication use the Heitlager et al. 2007 tables; unit size,
   unit interfacing and module coupling get only a check against the SIG/TÜV NORD guidance
   V18.1 4-star limit (see ADR 0001, decision 8).
-- `measure_project(target, function_limit=20)`: every Measure of the `function_limit`
-  functions with the highest cyclomatic complexity, the number of functions measured, and
-  `unparsed_files`.
+- `measure_project(target, function_limit=20, file=None)`: every Measure of the
+  `function_limit` functions with the highest cyclomatic complexity, the number of functions
+  measured, and `unparsed_files`.
+
+With `file` (relative to `target`), both tools cover that one file: its Ratings come from its
+own Measures, but its duplication and fan-in are still counted against the whole project.
+Phase 4 uses this to rate each file of the Evaluation set.
 
 ## Layout
 
@@ -183,7 +187,7 @@ src/maintainability_lens/
   observability.py      Langfuse tracing: root observation, attributes, no-op without keys
   masking.py            secret redaction applied to traces before export
   cli.py                `maintainability-lens` entry point
-  mcp_server.py         MCP server over stdio: the `measure_project` tool
+  mcp_server.py         MCP server over stdio: the `rate_project` and `measure_project` tools
   agent/                DeepAgents agent with read-only file access
   measures/             per-function and per-file Measures, no LLM
   ratings/              Risk profiles and Ratings from the Measures, no LLM
