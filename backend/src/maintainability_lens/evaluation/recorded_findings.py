@@ -9,11 +9,13 @@ from maintainability_lens.schemas import Finding
 class Approach(StrEnum):
     SIZE_ONLY = "size-only"
     RATINGS_ONLY = "ratings-only"
+    CLAUDE_CODE_SKILL = "claude-code-skill"
 
 
 class FileFindings(BaseModel):
     findings: list[Finding]
     cost_usd: float | None = None
+    model: str | None = None
 
 
 class RecordedFileFindings(FileFindings):
