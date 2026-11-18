@@ -210,6 +210,25 @@ unrecorded, so the next run retries it; the command then exits with 1.
 Keep tool Findings out of the repo until every Rater has submitted
 (`docs/evaluation/rating-protocol.md`).
 
+## Score the Approaches
+
+```bash
+uv run maintainability-lens score-evaluation --rater-verdicts path/to/rater_verdicts.json --findings path/to/findings [--json-output scores.json]
+```
+
+`rater_verdicts.json` is a list of `{rater, file_id, characteristic, verdict}`, with Raters
+under pseudonyms. The command prints, as fixed in the rating protocol:
+
+- Krippendorff's alpha (nominal) among Raters, per Characteristic and overall.
+- Each Approach's accuracy against the Raters' strict-majority consensus (at least three
+  Raters), per Characteristic and overall, averaged over repetitions. `unknown` matches only an
+  `unknown` consensus, so an Approach that abstains loses accuracy.
+- Each Rater's accuracy against the consensus of the others.
+- Leniency: the Raters' and each Approach's share of `pass`.
+- Stability, when an Approach has several repetitions: the share of file and Characteristic
+  pairs with one Verdict in every repetition, and Krippendorff's alpha across repetitions.
+- Total cost, when recorded.
+
 ## Layout
 
 ```

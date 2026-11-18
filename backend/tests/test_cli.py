@@ -193,3 +193,59 @@ def test_evaluate_set_with_the_claude_code_skill_needs_a_model(
 
     assert code == 2
     assert "--model" in capsys.readouterr().err
+
+
+def test_score_evaluation_prints_each_approachs_accuracy(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    rater_verdicts_file = tmp_path / "rater_verdicts.json"
+    rater_verdicts_file.write_text(
+        json.dumps(
+            [
+                {
+                    "rater": rater,
+                    "file_id": "F01",
+                    "characteristic": "testability",
+                    "verdict": "pass",
+                }
+                for rater in ("rater-a", "rater-b", "rater-c")
+            ]
+        )
+    )
+    findings = tmp_path / "findings"
+    findings.mkdir()
+    (findings / "size-only.jsonl").write_text(
+        json.dumps(
+            {
+                "file_id": "F01",
+                "approach": "size-only",
+                "repetition": 0,
+                "findings": [
+                    {
+                        "characteristic": "testability",
+                        "verdict": "fail",
+                        "evidence": [{"file": "app.py", "line_start": 1}],
+                        "rationale": "300 lines of code",
+                    }
+                ],
+            }
+        )
+        + "\n"
+    )
+
+    code = cli.main(
+        [
+            "score-evaluation",
+            "--rater-verdicts",
+            str(rater_verdicts_file),
+            "--findings",
+            str(findings),
+            "--json-output",
+            str(tmp_path / "scores.json"),
+        ]
+    )
+
+    report = capsys.readouterr().out
+    assert code == 0
+    assert "| testability | n/a | 0.00 |" in report
+    assert json.loads((tmp_path / "scores.json").read_text())["rater_count"] == 3

@@ -48,7 +48,9 @@ in `backend/` or `frontend/`.
   out each project at its pinned commit; one module per Approach (`size_only.py`,
   `ratings_only.py`, `claude_code_skill.py`, `deepagents_agent.py`) turns a file into
   Findings; `recorded_findings.py` appends them to JSONL;
-  `approach_runs.py` runs an Approach over the set and skips what is already recorded.
+  `approach_runs.py` runs an Approach over the set and skips what is already recorded;
+  `rater_verdicts.py` loads the Raters' Verdicts, `agreement.py` holds Krippendorff's alpha and
+  the consensus rule, `evaluation_scores.py` scores every Approach, `score_report.py` prints it.
 - `mcp_server.py`: the MCP server (`maintainability-lens mcp`, stdio) that serves the
   Measures and Ratings to Claude Code. MCP only: the work happens in `measures/` and
   `ratings/`.
