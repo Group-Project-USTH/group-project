@@ -28,7 +28,9 @@ def test_a_run_records_one_finding_per_file_and_characteristic(
     run_approach(Approach.SIZE_ONLY, evaluation_set, tmp_path / "checkouts", tmp_path / "out")
 
     recorded = load_recorded_findings(tmp_path / "out" / "size-only.jsonl")
-    assert sorted((entry.file_id, entry.finding.characteristic) for entry in recorded) == sorted(
+    assert sorted(
+        (entry.file_id, finding.characteristic) for entry in recorded for finding in entry.findings
+    ) == sorted(
         (file_id, characteristic) for file_id in ("F01", "F02") for characteristic in Characteristic
     )
     assert {(entry.approach, entry.repetition) for entry in recorded} == {(Approach.SIZE_ONLY, 0)}
@@ -43,7 +45,7 @@ def test_a_second_run_skips_files_already_recorded(tmp_path: Path, upstream: Ups
     )
 
     assert newly_recorded == 0
-    assert len(load_recorded_findings(tmp_path / "out" / "ratings-only.jsonl")) == 10
+    assert len(load_recorded_findings(tmp_path / "out" / "ratings-only.jsonl")) == 2
 
 
 def test_repetitions_record_each_file_once_per_repetition(

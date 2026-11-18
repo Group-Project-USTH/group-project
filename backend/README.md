@@ -185,8 +185,9 @@ uv run maintainability-lens evaluate-set --approach size-only --checkouts ../.ch
 ```
 
 Checks out each file's project at its pinned commit (reused on later runs), applies one
-Approach to every file of `evaluation/evaluation_set.json`, and appends a Finding per file and
-Characteristic to `<output>/<approach>.jsonl`. Files already recorded are skipped, so an
+Approach to every file of `evaluation/evaluation_set.json`, and appends one line per file to
+`<output>/<approach>.jsonl`: its Finding for each Characteristic, and the cost in USD when an
+LLM gave them. Files already recorded are skipped, so an
 interrupted run resumes. `--repetitions N` records each file N times, for stability.
 
 - `size-only`: `pass` on every Characteristic when the file has at most 275 lines of code

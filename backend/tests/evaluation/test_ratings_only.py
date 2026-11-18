@@ -17,7 +17,8 @@ def simple_function(name: str) -> str:
 
 def verdicts_by_characteristic(checkout: Path, file: str) -> dict[Characteristic, Verdict]:
     return {
-        finding.characteristic: finding.verdict for finding in decide_by_ratings(checkout, file)
+        finding.characteristic: finding.verdict
+        for finding in decide_by_ratings(checkout, file).findings
     }
 
 
@@ -51,7 +52,8 @@ def test_a_neutral_rating_fails(tmp_path: Path) -> None:
     (tmp_path / "app.py").write_text(moderate + simple)
 
     findings = {
-        finding.characteristic: finding for finding in decide_by_ratings(tmp_path, "app.py")
+        finding.characteristic: finding
+        for finding in decide_by_ratings(tmp_path, "app.py").findings
     }
 
     assert "rated o" in findings[Characteristic.TESTABILITY].rationale

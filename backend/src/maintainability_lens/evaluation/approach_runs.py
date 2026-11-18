@@ -5,14 +5,14 @@ from maintainability_lens.evaluation.evaluation_set import EvaluationFile, check
 from maintainability_lens.evaluation.ratings_only import decide_by_ratings
 from maintainability_lens.evaluation.recorded_findings import (
     Approach,
-    RecordedFinding,
+    FileFindings,
+    RecordedFileFindings,
     append_recorded_findings,
     load_recorded_findings,
 )
 from maintainability_lens.evaluation.size_only import decide_by_size
-from maintainability_lens.schemas import Finding
 
-DECIDERS: dict[Approach, Callable[[Path, str], list[Finding]]] = {
+DECIDERS: dict[Approach, Callable[[Path, str], FileFindings]] = {
     Approach.SIZE_ONLY: decide_by_size,
     Approach.RATINGS_ONLY: decide_by_ratings,
 }
@@ -39,18 +39,15 @@ def run_approach(
             if (evaluation_file.file_id, repetition) in recorded:
                 continue
             checkout = check_out(evaluation_file, checkouts)
-            findings = DECIDERS[approach](checkout, evaluation_file.path)
+            file_findings = DECIDERS[approach](checkout, evaluation_file.path)
             append_recorded_findings(
                 findings_file,
-                [
-                    RecordedFinding(
-                        file_id=evaluation_file.file_id,
-                        approach=approach,
-                        repetition=repetition,
-                        finding=finding,
-                    )
-                    for finding in findings
-                ],
+                RecordedFileFindings(
+                    **file_findings.model_dump(),
+                    file_id=evaluation_file.file_id,
+                    approach=approach,
+                    repetition=repetition,
+                ),
             )
-            newly_recorded += len(findings)
+            newly_recorded += len(file_findings.findings)
     return newly_recorded

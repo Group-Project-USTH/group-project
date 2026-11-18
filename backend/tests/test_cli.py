@@ -172,5 +172,5 @@ def test_evaluate_set_records_the_findings_of_an_approach(
     )
 
     assert code == 0
-    assert len((tmp_path / "out" / "size-only.jsonl").read_text().splitlines()) == 5
+    assert len((tmp_path / "out" / "size-only.jsonl").read_text().splitlines()) == 1
     assert "5 new Findings" in capsys.readouterr().out

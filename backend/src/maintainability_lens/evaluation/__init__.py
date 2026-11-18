@@ -7,7 +7,8 @@ from maintainability_lens.evaluation.evaluation_set import (
 from maintainability_lens.evaluation.ratings_only import decide_by_ratings
 from maintainability_lens.evaluation.recorded_findings import (
     Approach,
-    RecordedFinding,
+    FileFindings,
+    RecordedFileFindings,
     load_recorded_findings,
 )
 from maintainability_lens.evaluation.size_only import decide_by_size
@@ -15,7 +16,8 @@ from maintainability_lens.evaluation.size_only import decide_by_size
 __all__ = [
     "Approach",
     "EvaluationFile",
-    "RecordedFinding",
+    "FileFindings",
+    "RecordedFileFindings",
     "check_out",
     "decide_by_ratings",
     "decide_by_size",

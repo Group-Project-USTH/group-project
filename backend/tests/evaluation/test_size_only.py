@@ -13,7 +13,7 @@ def write_assignments(root: Path, relative_path: str, count: int) -> None:
 def test_a_file_at_the_size_limit_passes_every_characteristic(tmp_path: Path) -> None:
     write_assignments(tmp_path, "small.py", 275)
 
-    findings = decide_by_size(tmp_path, "small.py")
+    findings = decide_by_size(tmp_path, "small.py").findings
 
     assert [finding.characteristic for finding in findings] == list(Characteristic)
     assert {finding.verdict for finding in findings} == {Verdict.PASS}
@@ -22,7 +22,7 @@ def test_a_file_at_the_size_limit_passes_every_characteristic(tmp_path: Path) ->
 def test_a_file_over_the_size_limit_fails_every_characteristic(tmp_path: Path) -> None:
     write_assignments(tmp_path, "large.py", 276)
 
-    findings = decide_by_size(tmp_path, "large.py")
+    findings = decide_by_size(tmp_path, "large.py").findings
 
     assert {finding.verdict for finding in findings} == {Verdict.FAIL}
 
@@ -30,7 +30,7 @@ def test_a_file_over_the_size_limit_fails_every_characteristic(tmp_path: Path) -
 def test_size_only_cites_the_whole_file_and_its_lines_of_code(tmp_path: Path) -> None:
     write_assignments(tmp_path, "large.py", 276)
 
-    finding = decide_by_size(tmp_path, "large.py")[0]
+    finding = decide_by_size(tmp_path, "large.py").findings[0]
 
     assert [
         (evidence.file, evidence.line_start, evidence.line_end) for evidence in finding.evidence
@@ -41,6 +41,6 @@ def test_size_only_cites_the_whole_file_and_its_lines_of_code(tmp_path: Path) ->
 def test_an_unparsed_file_is_unknown_on_every_characteristic(tmp_path: Path) -> None:
     (tmp_path / "broken.py").write_text("def f(:\n")
 
-    findings = decide_by_size(tmp_path, "broken.py")
+    findings = decide_by_size(tmp_path, "broken.py").findings
 
     assert {finding.verdict for finding in findings} == {Verdict.UNKNOWN}

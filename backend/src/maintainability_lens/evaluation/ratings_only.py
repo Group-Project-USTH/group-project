@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from maintainability_lens.evaluation.recorded_findings import FileFindings
 from maintainability_lens.evaluation.scoped_measures import measure_file_in_project
 from maintainability_lens.ratings import rate_project
 from maintainability_lens.schemas import (
@@ -43,7 +44,7 @@ def decide_from_rating(
     )
 
 
-def decide_by_ratings(checkout: Path, file: str) -> list[Finding]:
+def decide_by_ratings(checkout: Path, file: str) -> FileFindings:
     file_measures = measure_file_in_project(checkout, file)
     evidence = [
         Evidence(file=file, line_start=measure.line_start, line_end=measure.line_end)
@@ -51,7 +52,9 @@ def decide_by_ratings(checkout: Path, file: str) -> list[Finding]:
         if measure.name is MeasureName.FILE_LINES_OF_CODE
     ]
     ratings = rate_project(file_measures)
-    return [
-        decide_from_rating(characteristic_rating, evidence)
-        for characteristic_rating in ratings.characteristic_ratings
-    ]
+    return FileFindings(
+        findings=[
+            decide_from_rating(characteristic_rating, evidence)
+            for characteristic_rating in ratings.characteristic_ratings
+        ]
+    )
