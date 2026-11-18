@@ -34,10 +34,11 @@ class ParsedFile:
 
 
 def parse_file(path: Path, relative_file: str) -> ParsedFile | None:
-    source = path.read_text(encoding="utf-8")
     try:
+        with tokenize.open(path) as source_file:
+            source = source_file.read()
         tree = ast.parse(source)
-    except (SyntaxError, ValueError):
+    except (SyntaxError, UnicodeDecodeError, ValueError):
         return None
     lines = source.splitlines()
     return ParsedFile(
