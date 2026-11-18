@@ -174,3 +174,22 @@ def test_evaluate_set_records_the_findings_of_an_approach(
     assert code == 0
     assert len((tmp_path / "out" / "size-only.jsonl").read_text().splitlines()) == 1
     assert "5 new Findings" in capsys.readouterr().out
+
+
+def test_evaluate_set_with_the_claude_code_skill_needs_a_model(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    code = cli.main(
+        [
+            "evaluate-set",
+            "--approach",
+            "claude-code-skill",
+            "--checkouts",
+            str(tmp_path / "checkouts"),
+            "--output",
+            str(tmp_path / "out"),
+        ]
+    )
+
+    assert code == 2
+    assert "--model" in capsys.readouterr().err

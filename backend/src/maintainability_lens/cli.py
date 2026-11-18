@@ -6,7 +6,12 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from maintainability_lens.evaluation import Approach, load_evaluation_set, run_approach
+from maintainability_lens.evaluation import (
+    Approach,
+    ClaudeCodeOptions,
+    load_evaluation_set,
+    run_approach,
+)
 from maintainability_lens.measures import measure_project
 from maintainability_lens.schemas import Characteristic
 
@@ -45,6 +50,13 @@ def _parser() -> argparse.ArgumentParser:
         "--output", type=Path, required=True, help="Folder for the <approach>.jsonl Findings."
     )
     evaluate_set.add_argument("--repetitions", type=int, default=1)
+    evaluate_set.add_argument("--model", help="Claude model id; required for claude-code-skill.")
+    evaluate_set.add_argument(
+        "--max-budget-usd", type=float, default=2.0, help="Spending cap per file and repetition."
+    )
+    evaluate_set.add_argument(
+        "--plugin-dir", type=Path, default=Path(".."), help="The plugin root (the repo root)."
+    )
     return parser
 
 
@@ -71,14 +83,29 @@ def run_measure(target: Path) -> int:
 
 
 def run_evaluate_set(args: argparse.Namespace) -> int:
-    newly_recorded = run_approach(
+    claude_code_options = None
+    if args.approach is Approach.CLAUDE_CODE_SKILL:
+        if args.model is None:
+            print("error: claude-code-skill needs --model", file=sys.stderr)
+            return 2
+        claude_code_options = ClaudeCodeOptions(
+            plugin_directory=args.plugin_dir.resolve(),
+            model=args.model,
+            max_budget_usd=args.max_budget_usd,
+        )
+    summary = run_approach(
         args.approach,
         load_evaluation_set(args.evaluation_set),
         args.checkouts,
         args.output,
         repetitions=args.repetitions,
+        claude_code_options=claude_code_options,
     )
-    print(f"{newly_recorded} new Findings in {args.output / f'{args.approach}.jsonl'}")
+    print(f"{summary.recorded_findings} new Findings in {args.output / f'{args.approach}.jsonl'}")
+    if summary.failed_file_ids:
+        failed = ", ".join(summary.failed_file_ids)
+        print(f"failed: {failed}; run again to retry them", file=sys.stderr)
+        return 1
     return 0
 
 

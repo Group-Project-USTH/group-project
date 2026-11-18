@@ -194,6 +194,14 @@ interrupted run resumes. `--repetitions N` records each file N times, for stabil
   (Borg, Ezzouhri and Tornhill, ICSME 2024), otherwise `fail`.
 - `ratings-only`: `pass` when the file's Characteristic Rating is `+` or `++`, `fail` below,
   `unknown` with no Rating.
+- `claude-code-skill`: runs `claude -p` in the checkout with the plugin's evaluate skill and
+  its MCP server, and nothing else from your setup: no user settings, plugins or claude.ai
+  connectors, read-only tools only, structured output through `--json-schema`. Needs
+  `--model`; `--max-budget-usd` (default 2) caps each file, `--plugin-dir` (default `..`)
+  points at the repo root. Each line records the model and `total_cost_usd`.
+
+A file whose Approach fails (an error, a timeout, an invalid answer) is reported and left
+unrecorded, so the next run retries it; the command then exits with 1.
 
 Keep tool Findings out of the repo until every Rater has submitted
 (`docs/evaluation/rating-protocol.md`).

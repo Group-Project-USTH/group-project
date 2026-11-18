@@ -1,6 +1,14 @@
+import logging
 from collections.abc import Callable
+from dataclasses import dataclass, field
+from functools import partial
 from pathlib import Path
 
+from maintainability_lens.evaluation.approach_error import ApproachError
+from maintainability_lens.evaluation.claude_code_skill import (
+    ClaudeCodeOptions,
+    decide_with_claude_code,
+)
 from maintainability_lens.evaluation.evaluation_set import EvaluationFile, check_out
 from maintainability_lens.evaluation.ratings_only import decide_by_ratings
 from maintainability_lens.evaluation.recorded_findings import (
@@ -12,10 +20,25 @@ from maintainability_lens.evaluation.recorded_findings import (
 )
 from maintainability_lens.evaluation.size_only import decide_by_size
 
-DECIDERS: dict[Approach, Callable[[Path, str], FileFindings]] = {
-    Approach.SIZE_ONLY: decide_by_size,
-    Approach.RATINGS_ONLY: decide_by_ratings,
-}
+Decider = Callable[[Path, str], FileFindings]
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class ApproachRunSummary:
+    recorded_findings: int = 0
+    failed_file_ids: list[str] = field(default_factory=list)
+
+
+def build_decider(approach: Approach, claude_code_options: ClaudeCodeOptions | None) -> Decider:
+    if approach is Approach.SIZE_ONLY:
+        return decide_by_size
+    if approach is Approach.RATINGS_ONLY:
+        return decide_by_ratings
+    if claude_code_options is None:
+        raise ValueError(f"{approach} needs ClaudeCodeOptions")
+    return partial(decide_with_claude_code, claude_code_options)
 
 
 def findings_file_of(approach: Approach, output_directory: Path) -> Path:
@@ -28,18 +51,25 @@ def run_approach(
     checkouts: Path,
     output_directory: Path,
     repetitions: int = 1,
-) -> int:
+    claude_code_options: ClaudeCodeOptions | None = None,
+) -> ApproachRunSummary:
+    decide = build_decider(approach, claude_code_options)
     findings_file = findings_file_of(approach, output_directory)
     recorded = {
         (entry.file_id, entry.repetition) for entry in load_recorded_findings(findings_file)
     }
-    newly_recorded = 0
+    summary = ApproachRunSummary()
     for repetition in range(repetitions):
         for evaluation_file in evaluation_set:
             if (evaluation_file.file_id, repetition) in recorded:
                 continue
             checkout = check_out(evaluation_file, checkouts)
-            file_findings = DECIDERS[approach](checkout, evaluation_file.path)
+            try:
+                file_findings = decide(checkout, evaluation_file.path)
+            except ApproachError as error:
+                logger.warning("%s failed on %s: %s", approach, evaluation_file.file_id, error)
+                summary.failed_file_ids.append(evaluation_file.file_id)
+                continue
             append_recorded_findings(
                 findings_file,
                 RecordedFileFindings(
@@ -49,5 +79,5 @@ def run_approach(
                     repetition=repetition,
                 ),
             )
-            newly_recorded += len(file_findings.findings)
-    return newly_recorded
+            summary.recorded_findings += len(file_findings.findings)
+    return summary

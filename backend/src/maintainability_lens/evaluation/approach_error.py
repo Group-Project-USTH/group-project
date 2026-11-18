@@ -1,0 +1,2 @@
+class ApproachError(RuntimeError):
+    pass
