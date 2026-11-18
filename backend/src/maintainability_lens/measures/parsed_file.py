@@ -26,23 +26,24 @@ class CodeLine:
 
 @dataclass(frozen=True)
 class ParsedFile:
-    path: Path
     relative_file: str
+    source: str
     tree: ast.Module
     line_count: int
     code_lines: list[CodeLine]
 
 
 def parse_file(path: Path, relative_file: str) -> ParsedFile | None:
-    source = path.read_text(encoding="utf-8")
     try:
+        with tokenize.open(path) as source_file:
+            source = source_file.read()
         tree = ast.parse(source)
-    except (SyntaxError, ValueError):
+    except (SyntaxError, UnicodeDecodeError, ValueError):
         return None
     lines = source.splitlines()
     return ParsedFile(
-        path=path,
         relative_file=relative_file,
+        source=source,
         tree=tree,
         line_count=len(lines),
         code_lines=[

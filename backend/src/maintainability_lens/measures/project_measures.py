@@ -27,11 +27,11 @@ def find_project_modules(target: Path) -> Iterator[Path]:
 
 
 def measure_file(parsed_file: ParsedFile) -> list[Measure]:
-    path, relative_file = parsed_file.path, parsed_file.relative_file
+    source, relative_file = parsed_file.source, parsed_file.relative_file
     units = find_units(parsed_file.tree)
     return [
-        *measure_functions(path, relative_file, units),
-        *measure_cognitive_complexity(path, relative_file, units),
+        *measure_functions(source, relative_file, units),
+        *measure_cognitive_complexity(source, relative_file, units),
         *measure_unit_interfacing(relative_file, units),
         measure_file_volume(parsed_file),
     ]

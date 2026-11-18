@@ -486,3 +486,45 @@ def test_fan_in_ignores_a_standard_library_import_named_like_a_project_module(
         )["utils/uuid.py"]
         == 0
     )
+
+
+def test_file_in_the_encoding_its_coding_line_declares_is_measured(tmp_path: Path) -> None:
+    source = "# -*- coding: latin-1 -*-\ndef f(x):\n    return 'café' + x\n"
+    (tmp_path / "latin.py").write_bytes(source.encode("latin-1"))
+
+    project_measures = measure_project(tmp_path)
+
+    lines_of_code = [
+        measure.value
+        for measure in project_measures.measures
+        if measure.name is MeasureName.FILE_LINES_OF_CODE
+    ]
+    assert lines_of_code == [2]
+    assert project_measures.unparsed_files == []
+
+
+def test_file_that_cannot_be_decoded_is_reported_as_unparsed(tmp_path: Path) -> None:
+    (tmp_path / "garbled.py").write_bytes(b"def f():\n    return '\xfa'\n")
+    write_module(tmp_path, "fine.py", "def g(x):\n    return x\n")
+
+    project_measures = measure_project(tmp_path)
+
+    assert project_measures.unparsed_files == ["garbled.py"]
+
+
+def test_units_in_a_file_with_a_non_utf8_coding_line_are_measured(tmp_path: Path) -> None:
+    source = (
+        "# -*- coding: big5 -*-\n"
+        "def f(x):\n    if x:\n        return '\u4e2d\u6587'\n    return x\n"
+    )
+    (tmp_path / "chinese.py").write_bytes(source.encode("big5"))
+
+    project_measures = measure_project(tmp_path)
+
+    measured = {
+        (measure.name, measure.value)
+        for measure in project_measures.measures
+        if measure.function == "f"
+    }
+    assert (MeasureName.CYCLOMATIC_COMPLEXITY, 2) in measured
+    assert (MeasureName.COGNITIVE_COMPLEXITY, 1) in measured
