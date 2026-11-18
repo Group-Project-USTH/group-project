@@ -4,6 +4,7 @@ from maintainability_lens.evaluation.claude_code_skill import (
     ClaudeCodeOptions,
     decide_with_claude_code,
 )
+from maintainability_lens.evaluation.deepagents_agent import decide_with_deepagents_agent
 from maintainability_lens.evaluation.evaluation_set import (
     EvaluationFile,
     check_out,
@@ -29,6 +30,7 @@ __all__ = [
     "decide_by_ratings",
     "decide_by_size",
     "decide_with_claude_code",
+    "decide_with_deepagents_agent",
     "load_evaluation_set",
     "load_recorded_findings",
     "run_approach",

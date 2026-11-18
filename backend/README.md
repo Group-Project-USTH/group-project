@@ -199,6 +199,10 @@ interrupted run resumes. `--repetitions N` records each file N times, for stabil
   connectors, read-only tools only, structured output through `--json-schema`. Needs
   `--model`; `--max-budget-usd` (default 2) caps each file, `--plugin-dir` (default `..`)
   points at the repo root. Each line records the model and `total_cost_usd`.
+- `deepagents-agent`: asks the DeepAgents agent about the file once per Characteristic
+  (`PROMPT_VERSION` 1.1), with the model and keys from `.env`, traced in Langfuse under the
+  session `evaluation-set`. Needs the `agent` dependency group; cost is not recorded here, it
+  is in Langfuse.
 
 A file whose Approach fails (an error, a timeout, an invalid answer) is reported and left
 unrecorded, so the next run retries it; the command then exits with 1.
