@@ -1,4 +1,4 @@
-"""Command-line entry point: `maintainability-lens smoke|measure|mcp|evaluate-set`."""
+"""Command-line entry point: `maintainability-lens <command>`, see `--help`."""
 
 import argparse
 import logging
@@ -9,8 +9,12 @@ from pathlib import Path
 from maintainability_lens.evaluation import (
     Approach,
     ClaudeCodeOptions,
+    format_score_report,
     load_evaluation_set,
+    load_rater_verdicts,
+    load_recorded_findings,
     run_approach,
+    score_evaluation,
 )
 from maintainability_lens.measures import measure_project
 from maintainability_lens.schemas import Characteristic
@@ -57,6 +61,14 @@ def _parser() -> argparse.ArgumentParser:
     evaluate_set.add_argument(
         "--plugin-dir", type=Path, default=Path(".."), help="The plugin root (the repo root)."
     )
+    score = sub.add_parser(
+        "score-evaluation", help="Score every Approach's Findings against the Raters' Verdicts."
+    )
+    score.add_argument("--rater-verdicts", type=Path, required=True)
+    score.add_argument(
+        "--findings", type=Path, required=True, help="Folder of <approach>.jsonl Findings."
+    )
+    score.add_argument("--json-output", type=Path, help="Also write the scores as JSON here.")
     return parser
 
 
@@ -69,6 +81,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return run_mcp_server()
     if args.command == "evaluate-set":
         return run_evaluate_set(args)
+    if args.command == "score-evaluation":
+        return run_score_evaluation(args)
     return run_smoke(args)
 
 
@@ -106,6 +120,19 @@ def run_evaluate_set(args: argparse.Namespace) -> int:
         failed = ", ".join(summary.failed_file_ids)
         print(f"failed: {failed}; run again to retry them", file=sys.stderr)
         return 1
+    return 0
+
+
+def run_score_evaluation(args: argparse.Namespace) -> int:
+    recorded_per_approach = {
+        approach: load_recorded_findings(args.findings / f"{approach}.jsonl")
+        for approach in Approach
+        if (args.findings / f"{approach}.jsonl").exists()
+    }
+    scores = score_evaluation(load_rater_verdicts(args.rater_verdicts), recorded_per_approach)
+    if args.json_output is not None:
+        args.json_output.write_text(scores.model_dump_json(indent=2) + "\n")
+    print(format_score_report(scores))
     return 0
 
 

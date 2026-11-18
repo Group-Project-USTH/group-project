@@ -21,6 +21,7 @@ uv run uvicorn --factory maintainability_lens.api:create_app --reload   # API on
 uv run maintainability-lens measure --target tests/fixtures/sample_project # Measures as JSON, no LLM
 uv run maintainability-lens mcp                    # Measures and Ratings as an MCP server (stdio)
 uv run maintainability-lens evaluate-set --approach size-only --checkouts DIR --output DIR  # phase 4 Findings
+uv run maintainability-lens score-evaluation --rater-verdicts FILE --findings DIR   # phase 4 scores
 uv run maintainability-lens smoke --target tests/fixtures/sample_project   # real LLM, needs .env
 uv run pytest -m integration --no-cov              # real LLM end-to-end, needs .env
 ```
