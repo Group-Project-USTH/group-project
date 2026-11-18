@@ -33,7 +33,8 @@ frontend/       the web chat UI (not started yet)
 .claude-plugin/ the Claude Code marketplace and plugin manifests; the repo root is the plugin
 plugin/         the plugin's skills
 docs/agents/    how the Claude Code skills use our issue tracker (GitHub Issues)
-scripts/        apply_branch_protection.sh (run manually by a repo admin)
+docs/evaluation/ the protocol Raters follow for the phase 4 Evaluation set
+scripts/        apply_branch_protection.sh (run manually by a repo admin), select_evaluation_set.py
 .github/        CI, Dependabot, PR template, CODEOWNERS, main-branch ruleset
 .claude/        shared Claude Code settings, rules and third-party skills (see CLAUDE.md)
 GLOSSARY.md     domain terms (Characteristic, Verdict, Finding, ...); use exactly these
