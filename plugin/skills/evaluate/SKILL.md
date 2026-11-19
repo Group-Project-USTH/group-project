@@ -22,7 +22,7 @@ to both tools below, and judge that file as it stands in its project.
    - The Rating informs the Verdict; it does not replace it. A Verdict that goes against
      the Rating must say why, from code you read.
    - A partial Rating covers only the System properties in `rated_from`. Judge those in
-     `missing` from the Measures, the 4-star checks and the code, or say they are not judged.
+     `missing` from the Measures and the code, or say they are not judged.
    - With no Rating (`rating` is null), decide from the Measures and the code alone.
    - `pass` or `fail` only when the Measures and the code you read support it. Cite at least
      one piece of Evidence, and name the Measure or Rating, its value and its threshold
@@ -40,7 +40,7 @@ to both tools below, and judge that file as it stands in its project.
   "evidence": [
     {"file": "app.py", "line_start": 6, "line_end": 25, "snippet": "def process_order(order):"}
   ],
-  "rationale": "Analysability is rated ++ but partial: duplication only (Heitlager 2007). Unit size is not rated; judged from the code it goes against the Rating: process_order mixes validation, pricing, persistence and output in 19 lines; ..."
+  "rationale": "Analysability is rated o: duplication ++ (Heitlager 2007) and unit size -- (calibrated on 100 Python projects), since 90% of the code is in process_order, 19 lines that mix validation, pricing, persistence and output; ..."
 }
 ```
 

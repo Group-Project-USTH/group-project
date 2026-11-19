@@ -20,7 +20,10 @@ UNIT_COMPLEXITY_BAND_LIMITS: BandLimits = (10, 20, 50)
 # Producers V18.1 (2026-03-31), section 3.
 UNIT_SIZE_BAND_LIMITS: BandLimits = (15, 30, 60)
 UNIT_INTERFACING_BAND_LIMITS: BandLimits = (2, 4, 6)
-MODULE_COUPLING_BAND_LIMITS: BandLimits = (10, 20, 50)
+# docs/evaluation/rating-calibration.md: V18.1's 10/20/50 count invocations, our file fan-in
+# counts importing files, so these are derived from the Calibration set (Alves, Ypma and
+# Visser 2010: where 70/80/90 % of the code lies at or below the fan-in).
+MODULE_COUPLING_BAND_LIMITS: BandLimits = (3, 5, 10)
 
 
 @dataclass(frozen=True)

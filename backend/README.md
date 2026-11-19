@@ -162,14 +162,14 @@ uv run maintainability-lens mcp
 
 Starts an MCP server over stdio with two tools. Claude Code starts it through the plugin.
 
-- `rate_project(target, file=None)`: a Rating (`++` to `--`) per Characteristic, averaged from the
-  System properties that have one, with `is_partial` and `missing` naming those that don't.
-  Also each System property's Rating or 4-star check with its threshold source, the Risk
-  profiles, production and test lines of code, the duplicated percentage, and the production
-  files with the most duplicated lines and the highest fan-in. Test code is left out of every
-  Rating. Unit complexity and duplication use the Heitlager et al. 2007 tables; unit size,
-  unit interfacing and module coupling get only a check against the SIG/TÜV NORD guidance
-  V18.1 4-star limit (see ADR 0001, decision 8).
+- `rate_project(target, file=None)`: a Rating (`++` to `--`) per Characteristic, averaged from its
+  System properties, with `is_partial` and `missing` naming those not measured (component
+  independence and entanglement). Also each System property's Rating with its threshold
+  source, the Risk profiles, production and test lines of code, the duplicated percentage,
+  and the production files with the most duplicated lines and the highest fan-in. Test code is
+  left out of every Rating. Unit complexity and duplication use the Heitlager et al. 2007
+  tables; unit size, unit interfacing and module coupling use limits calibrated on 100 Python
+  projects (`docs/evaluation/rating-calibration.md`; ADR 0001, decision 8).
 - `measure_project(target, function_limit=20, file=None)`: every Measure of the
   `function_limit` functions with the highest cyclomatic complexity, the number of functions
   measured, and `unparsed_files`.

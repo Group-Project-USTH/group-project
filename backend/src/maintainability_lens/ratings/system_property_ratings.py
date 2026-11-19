@@ -12,7 +12,7 @@ from maintainability_lens.schemas import (
 )
 
 HEITLAGER_2007 = "Heitlager, Kuipers and Visser 2007"
-GUIDANCE_V18_1_FOUR_STAR = "SIG/TÜV NORD Guidance for Producers V18.1 (2026), 4-star limit"
+CALIBRATION = "maintainability-lens calibration on 100 Python projects (2026-11)"
 
 BandShares = tuple[Fraction, Fraction, Fraction]
 
@@ -34,12 +34,36 @@ DUPLICATION_RATING_LIMITS: tuple[tuple[Rating, Fraction], ...] = (
     (Rating.NEUTRAL, Fraction(10)),
     (Rating.MINUS, Fraction(20)),
 )
-# SIG/TÜV NORD Guidance for Producers V18.1 (2026-03-31), section 3: the most LOC (%) in
-# the moderate-or-worse, high-or-worse and very high bands for 4 stars (cumulative).
-FOUR_STAR_LIMITS: dict[SystemProperty, BandShares] = {
-    SystemProperty.UNIT_SIZE: (Fraction("48.0"), Fraction("24.2"), Fraction("9.1")),
-    SystemProperty.UNIT_INTERFACING: (Fraction("15.4"), Fraction("3.4"), Fraction("0.9")),
-    SystemProperty.MODULE_COUPLING: (Fraction("9.7"), Fraction("5.3"), Fraction("1.8")),
+# docs/evaluation/rating-calibration.md: the most LOC (%) in the moderate-or-worse,
+# high-or-worse and very high bands (cumulative) for each Rating, calibrated so that the
+# 100 projects of the Calibration set fall 5/30/30/30/5 % into ++ ... --.
+CALIBRATED_RATING_LIMITS: dict[SystemProperty, tuple[tuple[Rating, BandShares], ...]] = {
+    system_property: tuple(
+        (rating, (Fraction(moderate), Fraction(high), Fraction(very_high)))
+        for rating, (moderate, high, very_high) in zip(
+            (Rating.PLUS_PLUS, Rating.PLUS, Rating.NEUTRAL, Rating.MINUS), limits, strict=True
+        )
+    )
+    for system_property, limits in {
+        SystemProperty.UNIT_SIZE: (
+            ("31.1", "9.3", "0.0"),
+            ("54.8", "27.8", "9.3"),
+            ("66.4", "43.5", "21.4"),
+            ("78.7", "63.2", "37.8"),
+        ),
+        SystemProperty.UNIT_INTERFACING: (
+            ("16.4", "2.1", "0.0"),
+            ("32.0", "12.8", "6.4"),
+            ("40.9", "22.7", "11.9"),
+            ("62.1", "38.4", "30.7"),
+        ),
+        SystemProperty.MODULE_COUPLING: (
+            ("0.0", "0.0", "0.0"),
+            ("23.7", "16.4", "2.8"),
+            ("39.0", "29.9", "15.0"),
+            ("62.1", "52.1", "29.7"),
+        ),
+    }.items()
 }
 
 
@@ -121,14 +145,20 @@ def find_cumulative_band_shares(profile: RiskProfile) -> BandShares | None:
     return None if shares is None else cumulative(shares)
 
 
-def check_four_star_limit(profile: RiskProfile) -> SystemPropertyRating:
+def rate_with_calibrated_limits(profile: RiskProfile) -> SystemPropertyRating:
     shares = find_cumulative_band_shares(profile)
+    rating = None
+    if shares is not None:
+        rating = next(
+            (
+                rating
+                for rating, limits in CALIBRATED_RATING_LIMITS[profile.system_property]
+                if is_within(shares, limits)
+            ),
+            Rating.MINUS_MINUS,
+        )
     return SystemPropertyRating(
-        system_property=profile.system_property,
-        meets_four_star_limit=(
-            None if shares is None else is_within(shares, FOUR_STAR_LIMITS[profile.system_property])
-        ),
-        threshold_source=GUIDANCE_V18_1_FOUR_STAR,
+        system_property=profile.system_property, rating=rating, threshold_source=CALIBRATION
     )
 
 
@@ -139,5 +169,8 @@ def rate_system_properties(project_measures: ProjectMeasures) -> list[SystemProp
     return [
         rate_unit_complexity(profiles[SystemProperty.UNIT_COMPLEXITY]),
         rate_duplication(project_measures),
-        *(check_four_star_limit(profiles[system_property]) for system_property in FOUR_STAR_LIMITS),
+        *(
+            rate_with_calibrated_limits(profiles[system_property])
+            for system_property in CALIBRATED_RATING_LIMITS
+        ),
     ]

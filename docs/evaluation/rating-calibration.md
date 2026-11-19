@@ -3,7 +3,7 @@
 [ADR 0001](../adr/0001-deliver-as-claude-code-plugin.md), decision 8, rates unit size, unit
 interfacing and module coupling only against a 4-star limit, because no public source gives
 their five-level tables. Phase 4 calibrates those tables on Python code. This page records how,
-and the tables that came out. The Ratings do not use them yet; that is a separate change.
+and the tables that came out; the Ratings use them (`ratings/system_property_ratings.py`).
 
 ## The Calibration set
 

@@ -12,8 +12,8 @@ from maintainability_lens.schemas import (
     Verdict,
 )
 
-# Why: `+` matches the 4-star level whose limits the tool already checks (ADR 0001,
-# decision 8); `o` is the benchmark average, not good maintainability.
+# Why: `+` is the 4-star level of SIG's 5/30/30/30/5 split (ADR 0001, decision 8); `o` is
+# the benchmark average, not good maintainability.
 PASSING_RATINGS = frozenset({Rating.PLUS_PLUS, Rating.PLUS})
 
 
