@@ -116,14 +116,17 @@ def rate_duplication(project_measures: ProjectMeasures) -> SystemPropertyRating:
     )
 
 
-def check_four_star_limit(profile: RiskProfile) -> SystemPropertyRating:
+def find_cumulative_band_shares(profile: RiskProfile) -> BandShares | None:
     shares = band_shares(profile)
+    return None if shares is None else cumulative(shares)
+
+
+def check_four_star_limit(profile: RiskProfile) -> SystemPropertyRating:
+    shares = find_cumulative_band_shares(profile)
     return SystemPropertyRating(
         system_property=profile.system_property,
         meets_four_star_limit=(
-            None
-            if shares is None
-            else is_within(cumulative(shares), FOUR_STAR_LIMITS[profile.system_property])
+            None if shares is None else is_within(shares, FOUR_STAR_LIMITS[profile.system_property])
         ),
         threshold_source=GUIDANCE_V18_1_FOUR_STAR,
     )
