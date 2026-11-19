@@ -112,7 +112,6 @@ class Rating(StrEnum):
 class SystemPropertyRating(BaseModel):
     system_property: SystemProperty
     rating: Rating | None = None
-    meets_four_star_limit: bool | None = None
     threshold_source: str
 
 

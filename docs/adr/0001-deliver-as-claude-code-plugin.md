@@ -67,6 +67,13 @@ The research found that:
      partial Rating that lists the missing ones; with none rated, it gets no Rating.
    - Each threshold is a named constant whose why-comment cites its source and page. Output
      never claims SIG or TÜV NORD certification and never calls its Ratings "SIG stars".
+   - *Amended 2026-11-19, in phase 4.* Unit size, unit interfacing and module coupling are
+     rated with five-level limits calibrated on a Calibration set of 100 top-PyPI projects,
+     so that they fall 5/30/30/30/5 % into `++` ... `--` (V18.0 §5); the 4-star check is
+     dropped. Unit size and unit interfacing keep the V18.1 bands. Module coupling uses bands
+     of 3/5/10 derived from the same projects (Alves, Ypma and Visser 2010), because our
+     fan-in counts importing files, not invocations. Method and tables:
+     `docs/evaluation/rating-calibration.md`.
 
 ## Consequences
 

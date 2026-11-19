@@ -22,7 +22,7 @@ def verdicts_by_characteristic(checkout: Path, file: str) -> dict[Characteristic
     }
 
 
-def test_simple_code_passes_the_rated_characteristics_and_leaves_the_rest_unknown(
+def test_simple_code_passes_every_characteristic(
     tmp_path: Path,
 ) -> None:
     (tmp_path / "app.py").write_text(simple_function("f") + simple_function("g"))
@@ -30,8 +30,8 @@ def test_simple_code_passes_the_rated_characteristics_and_leaves_the_rest_unknow
     verdicts = verdicts_by_characteristic(tmp_path, "app.py")
 
     assert verdicts == {
-        Characteristic.MODULARITY: Verdict.UNKNOWN,
-        Characteristic.REUSABILITY: Verdict.UNKNOWN,
+        Characteristic.MODULARITY: Verdict.PASS,
+        Characteristic.REUSABILITY: Verdict.PASS,
         Characteristic.ANALYSABILITY: Verdict.PASS,
         Characteristic.MODIFIABILITY: Verdict.PASS,
         Characteristic.TESTABILITY: Verdict.PASS,

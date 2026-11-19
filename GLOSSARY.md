@@ -41,8 +41,8 @@ _Avoid_: distribution, histogram
 `++`, `+`, `o`, `-` or `--` for one System property or Characteristic, computed by our code
 from Risk profiles and fixed thresholds, never by the LLM. A Verdict is decided with the
 Rating in hand, not replaced by it. A System property without a published five-level table
-gets no Rating, only a check against its source's 4-star limit. A Characteristic's Rating is
-the average of its rated System properties, and is partial when some of them are not rated.
+is rated with limits calibrated on the Calibration set. A Characteristic's Rating is the
+average of its rated System properties, and is partial when some of them are not measured.
 _Avoid_: score, grade, stars, rank
 
 **Finding**:

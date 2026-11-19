@@ -134,21 +134,21 @@ def test_test_code_is_left_out_of_every_risk_profile() -> None:
         ),
         pytest.param(
             SystemProperty.MODULE_COUPLING,
-            file_measures("a.py", 1, fan_in=10),
+            file_measures("a.py", 1, fan_in=3),
             RiskBand.LOW,
-            id="fan-in-10-is-low",
+            id="fan-in-3-is-low",
+        ),
+        pytest.param(
+            SystemProperty.MODULE_COUPLING,
+            file_measures("a.py", 1, fan_in=4),
+            RiskBand.MODERATE,
+            id="fan-in-4-is-moderate",
         ),
         pytest.param(
             SystemProperty.MODULE_COUPLING,
             file_measures("a.py", 1, fan_in=11),
-            RiskBand.MODERATE,
-            id="fan-in-11-is-moderate",
-        ),
-        pytest.param(
-            SystemProperty.MODULE_COUPLING,
-            file_measures("a.py", 1, fan_in=51),
             RiskBand.VERY_HIGH,
-            id="fan-in-51-is-very-high",
+            id="fan-in-11-is-very-high",
         ),
     ],
 )
@@ -164,7 +164,7 @@ def test_each_unit_or_file_lands_in_the_band_of_its_measure(
 
 def test_module_coupling_profile_weighs_each_file_by_its_lines_of_code() -> None:
     measures = [
-        *file_measures("hub.py", lines_of_code=300, fan_in=25),
+        *file_measures("hub.py", lines_of_code=300, fan_in=8),
         *file_measures("leaf.py", lines_of_code=100, fan_in=0),
     ]
 

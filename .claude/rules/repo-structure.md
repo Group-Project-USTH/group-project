@@ -41,8 +41,8 @@ in `backend/` or `frontend/`.
   `production_test_split.py` decides which files are test code; `file_scope.py` narrows a
   project's Measures to one file.
 - `ratings/`: Risk profiles and Ratings computed from the Measures, never by the LLM.
-  `risk_profiles.py` holds the risk bands, `system_property_ratings.py` the Rating tables and
-  4-star limits, `characteristic_ratings.py` the mapping onto Characteristics; every
+  `risk_profiles.py` holds the risk bands, `system_property_ratings.py` the Rating tables
+  (published and calibrated), `characteristic_ratings.py` the mapping onto Characteristics; every
   threshold is a constant citing its source.
 - `evaluation/`: the phase 4 harness. `evaluation_set.py` loads the Evaluation set and checks
   out each project at its pinned commit; one module per Approach (`size_only.py`,

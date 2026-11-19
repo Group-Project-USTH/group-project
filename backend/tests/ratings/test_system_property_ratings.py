@@ -12,6 +12,7 @@ from maintainability_lens.schemas import (
 
 COMPLEXITY_PER_BAND = {"low": 1, "moderate": 15, "high": 30, "very_high": 60}
 SIZE_PER_BAND = {"low": 10, "moderate": 20, "high": 40, "very_high": 80}
+CALIBRATION = "maintainability-lens calibration on 100 Python projects (2026-11)"
 
 
 def unit(
@@ -130,61 +131,59 @@ def units_with_size_lines(low: int, moderate: int, high: int, very_high: int) ->
 
 
 @pytest.mark.parametrize(
-    ("low", "moderate", "high", "very_high", "meets_limit"),
+    ("low", "moderate", "high", "very_high", "expected"),
     [
-        pytest.param(520, 240, 160, 80, True, id="48-24-8-meets"),
-        pytest.param(500, 260, 160, 80, False, id="50%-moderate-or-worse-fails"),
-        pytest.param(520, 240, 80, 160, False, id="16%-very-high-fails"),
+        pytest.param(700, 220, 80, 0, Rating.PLUS_PLUS, id="30-8-0-is-++"),
+        pytest.param(480, 280, 160, 80, Rating.PLUS, id="52-24-8-is-+"),
+        pytest.param(360, 240, 240, 160, Rating.NEUTRAL, id="64-40-16-is-o"),
+        pytest.param(220, 180, 280, 320, Rating.MINUS, id="78-60-32-is--"),
+        pytest.param(200, 200, 200, 400, Rating.MINUS_MINUS, id="80-60-40-is---"),
     ],
 )
-def test_unit_size_has_no_rating_but_is_checked_against_the_four_star_limit(
-    low: int, moderate: int, high: int, very_high: int, meets_limit: bool
+def test_unit_size_is_rated_with_the_calibrated_limits(
+    low: int, moderate: int, high: int, very_high: int, expected: Rating
 ) -> None:
     measures = units_with_size_lines(low, moderate, high, very_high)
 
-    unit_size = rating_of(measures, SystemProperty.UNIT_SIZE)
-
-    assert unit_size.rating is None
-    assert unit_size.meets_four_star_limit is meets_limit
+    assert rating_of(measures, SystemProperty.UNIT_SIZE).rating is expected
 
 
-def test_unit_interfacing_under_every_four_star_limit_meets_it() -> None:
-    measures = [
-        *unit(1000, parameter_count=0, index=0),
-        *unit(120, parameter_count=3, index=1),
-        *unit(25, parameter_count=5, index=2),
-        *unit(9, parameter_count=7, index=3),
+def test_unit_interfacing_exactly_at_a_calibrated_limit_meets_it() -> None:
+    measures = [*unit(936, index=0), *unit(64, parameter_count=7, index=1)]
+
+    assert rating_of(measures, SystemProperty.UNIT_INTERFACING).rating is Rating.PLUS
+
+
+def test_unit_interfacing_just_over_a_calibrated_limit_gets_the_next_rating() -> None:
+    measures = [*unit(935, index=0), *unit(65, parameter_count=7, index=1)]
+
+    assert rating_of(measures, SystemProperty.UNIT_INTERFACING).rating is Rating.NEUTRAL
+
+
+@pytest.mark.parametrize(
+    ("fan_in", "lines_of_code", "expected"),
+    [
+        pytest.param(3, 300, Rating.PLUS_PLUS, id="fan-in-3-is-low-risk"),
+        pytest.param(4, 300, Rating.NEUTRAL, id="fan-in-4-is-moderate-risk"),
+        pytest.param(11, 20, Rating.PLUS, id="2%-at-fan-in-11"),
+    ],
+)
+def test_module_coupling_is_rated_on_the_bands_derived_from_python_code(
+    fan_in: int, lines_of_code: int, expected: Rating
+) -> None:
+    hub = a_file(lines_of_code=lines_of_code, fan_in=fan_in)
+    rest = [
+        measure.model_copy(update={"file": "rest.py"})
+        for measure in a_file(lines_of_code=1000 - lines_of_code)
     ]
 
-    assert rating_of(measures, SystemProperty.UNIT_INTERFACING).meets_four_star_limit is True
-
-
-def test_a_share_exactly_at_the_four_star_limit_meets_it() -> None:
-    measures = [*unit(991, index=0), *unit(9, parameter_count=7, index=1)]
-
-    assert rating_of(measures, SystemProperty.UNIT_INTERFACING).meets_four_star_limit is True
-
-
-def test_a_share_just_over_the_four_star_limit_fails_it() -> None:
-    measures = [*unit(990, index=0), *unit(10, parameter_count=7, index=1)]
-
-    assert rating_of(measures, SystemProperty.UNIT_INTERFACING).meets_four_star_limit is False
-
-
-def test_module_coupling_is_checked_against_the_four_star_limit() -> None:
-    hub = a_file(lines_of_code=20, fan_in=60)
-    rest = [measure.model_copy(update={"file": "rest.py"}) for measure in a_file(lines_of_code=980)]
-
-    module_coupling = rating_of([*hub, *rest], SystemProperty.MODULE_COUPLING)
-
-    assert module_coupling.rating is None
-    assert module_coupling.meets_four_star_limit is False
+    assert rating_of([*hub, *rest], SystemProperty.MODULE_COUPLING).rating is expected
 
 
 def test_a_project_without_production_code_has_nothing_rated() -> None:
     ratings = rate_system_properties(ProjectMeasures(measures=[]))
 
-    assert {(rating.rating, rating.meets_four_star_limit) for rating in ratings} == {(None, None)}
+    assert {rating.rating for rating in ratings} == {None}
 
 
 def test_every_rating_names_the_source_of_its_thresholds() -> None:
@@ -193,11 +192,7 @@ def test_every_rating_names_the_source_of_its_thresholds() -> None:
     assert {rating.system_property: rating.threshold_source for rating in ratings} == {
         SystemProperty.UNIT_COMPLEXITY: "Heitlager, Kuipers and Visser 2007",
         SystemProperty.DUPLICATION: "Heitlager, Kuipers and Visser 2007",
-        SystemProperty.UNIT_SIZE: "SIG/TÜV NORD Guidance for Producers V18.1 (2026), 4-star limit",
-        SystemProperty.UNIT_INTERFACING: (
-            "SIG/TÜV NORD Guidance for Producers V18.1 (2026), 4-star limit"
-        ),
-        SystemProperty.MODULE_COUPLING: (
-            "SIG/TÜV NORD Guidance for Producers V18.1 (2026), 4-star limit"
-        ),
+        SystemProperty.UNIT_SIZE: CALIBRATION,
+        SystemProperty.UNIT_INTERFACING: CALIBRATION,
+        SystemProperty.MODULE_COUPLING: CALIBRATION,
     }

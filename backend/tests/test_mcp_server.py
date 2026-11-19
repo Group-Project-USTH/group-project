@@ -67,10 +67,10 @@ def test_rate_tool_rates_each_characteristic_from_the_rated_system_properties() 
         entry["characteristic"]: (entry["rating"], entry["is_partial"])
         for entry in ratings["characteristic_ratings"]
     } == {
-        "modularity": (None, False),
-        "reusability": (None, False),
-        "analysability": ("++", True),
-        "modifiability": ("++", True),
+        "modularity": ("++", True),
+        "reusability": ("o", False),
+        "analysability": ("o", False),
+        "modifiability": ("++", False),
         "testability": ("++", True),
     }
     assert (ratings["production_lines_of_code"], ratings["test_lines_of_code"]) == (22, 3)
