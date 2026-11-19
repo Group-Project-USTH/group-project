@@ -1,0 +1,708 @@
+{
+  "snapshot": {
+    "url": "https://hugovk.github.io/top-pypi-packages/top-pypi-packages.min.json",
+    "last_update": "2026-11-01 06:41:05"
+  },
+  "systems": [
+    {
+      "project": "boto3",
+      "download_rank": 1,
+      "repository_url": "https://github.com/boto/boto3",
+      "commit": "b227dd16318b4a8eb6a10370f4fd642bd6aa8a9d",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "packaging",
+      "download_rank": 2,
+      "repository_url": "https://github.com/pypa/packaging",
+      "commit": "6a69a83d8d89c6a01d554a8ad1b420cbb45fb4bc",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "typing-extensions",
+      "download_rank": 3,
+      "repository_url": "https://github.com/python/typing_extensions",
+      "commit": "a2024556ab75799fbd2f41d1c2d114dd6372de12",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "idna",
+      "download_rank": 5,
+      "repository_url": "https://github.com/kjd/idna",
+      "commit": "d357725082245ff90f5cf8800a3fc297b1f2319a",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "urllib3",
+      "download_rank": 6,
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "commit": "d9f9b0ad5b99247e06aa9a50b7a5747aa5c2e35d",
+      "licence": "MIT"
+    },
+    {
+      "project": "charset-normalizer",
+      "download_rank": 7,
+      "repository_url": "https://github.com/jawah/charset_normalizer",
+      "commit": "7d74fe4a8341ae27a8f42c759793301dbd304e10",
+      "licence": "MIT"
+    },
+    {
+      "project": "cryptography",
+      "download_rank": 9,
+      "repository_url": "https://github.com/pyca/cryptography",
+      "commit": "758772aa3486a0e2ad7b289dd25a97040f3bdd2d",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "cffi",
+      "download_rank": 10,
+      "repository_url": "https://github.com/python-cffi/cffi",
+      "commit": "8919eff9c6ce1ff86070444a2d516e2709bd8458",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "pluggy",
+      "download_rank": 11,
+      "repository_url": "https://github.com/pytest-dev/pluggy",
+      "commit": "cd05478c8ead668f969cc0da17d85baf46bf413f",
+      "licence": "MIT"
+    },
+    {
+      "project": "pyyaml",
+      "download_rank": 12,
+      "repository_url": "https://github.com/yaml/pyyaml",
+      "commit": "f5e4504a92f169f65350a1047dccb23bc97028be",
+      "licence": "MIT"
+    },
+    {
+      "project": "pycparser",
+      "download_rank": 13,
+      "repository_url": "https://github.com/eliben/pycparser",
+      "commit": "c1f7fe5a5902d8d1d23bb9151f50712e885fd50e",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "pygments",
+      "download_rank": 14,
+      "repository_url": "https://github.com/pygments/pygments",
+      "commit": "156d85fdd18d34427fe893527e71da91dcfb0eb5",
+      "licence": "BSD-2-Clause"
+    },
+    {
+      "project": "python-dateutil",
+      "download_rank": 15,
+      "repository_url": "https://github.com/dateutil/dateutil",
+      "commit": "261e2913961865300032cf30df1d59f4f0ff6f1a",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "setuptools",
+      "download_rank": 17,
+      "repository_url": "https://github.com/pypa/setuptools",
+      "commit": "049ae8e3083514378aedb352a2017fbc306bd126",
+      "licence": "MIT"
+    },
+    {
+      "project": "pydantic",
+      "download_rank": 18,
+      "repository_url": "https://github.com/pydantic/pydantic",
+      "commit": "e56f60fd32273d1d7c397a3ac46bba05e6a73454",
+      "licence": "MIT"
+    },
+    {
+      "project": "click",
+      "download_rank": 20,
+      "repository_url": "https://github.com/pallets/click",
+      "commit": "08b803cf32ceb2ae6a772c62d5da42757a897d44",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "numpy",
+      "download_rank": 21,
+      "repository_url": "https://github.com/numpy/numpy",
+      "commit": "f7fdace610a999f8babe4d3be21e1ed855aaf478",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "botocore",
+      "download_rank": 22,
+      "repository_url": "https://github.com/boto/botocore",
+      "commit": "6a124739de9b37821c634ec5695623915ecb874e",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "anyio",
+      "download_rank": 23,
+      "repository_url": "https://github.com/agronholm/anyio",
+      "commit": "9a22293d8ce0ca33e40146e9878b64f7a67c44bc",
+      "licence": "MIT"
+    },
+    {
+      "project": "pytest",
+      "download_rank": 25,
+      "repository_url": "https://github.com/pytest-dev/pytest",
+      "commit": "36eed6b7b0eb59760fc4b33e90bdaac5057388f0",
+      "licence": "MIT"
+    },
+    {
+      "project": "h11",
+      "download_rank": 28,
+      "repository_url": "https://github.com/python-hyper/h11",
+      "commit": "62c5068c971579d61fa1b55373390e12f25fd856",
+      "licence": "MIT"
+    },
+    {
+      "project": "attrs",
+      "download_rank": 29,
+      "repository_url": "https://github.com/python-attrs/attrs",
+      "commit": "2a1fb86d44816afcc60e86d57956ce3604820326",
+      "licence": "MIT"
+    },
+    {
+      "project": "httpcore",
+      "download_rank": 32,
+      "repository_url": "https://github.com/encode/httpcore",
+      "commit": "10a658221deb38a4c5b16db55ab554b0bf731707",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "s3transfer",
+      "download_rank": 33,
+      "repository_url": "https://github.com/boto/s3transfer",
+      "commit": "87ca003a6044279c2e246687c5bcdea2a1d1a76d",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "pyjwt",
+      "download_rank": 36,
+      "repository_url": "https://github.com/jpadilla/pyjwt",
+      "commit": "16231abfd1d8eab4953e8779b3017b859c88565e",
+      "licence": "MIT"
+    },
+    {
+      "project": "jinja2",
+      "download_rank": 37,
+      "repository_url": "https://github.com/pallets/jinja",
+      "commit": "5ef70112a1ff19c05324ff889dd30405b1002044",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "pandas",
+      "download_rank": 38,
+      "repository_url": "https://github.com/pandas-dev/pandas",
+      "commit": "269b4876efc1bfc114db37e465fb008512670b9e",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "aiobotocore",
+      "download_rank": 39,
+      "repository_url": "https://github.com/aio-libs/aiobotocore",
+      "commit": "4c288e3b01f21b895d92dc4a4affa43a1988165b",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "starlette",
+      "download_rank": 40,
+      "repository_url": "https://github.com/Kludex/starlette",
+      "commit": "271c277da0ff64e2048a4d46ecc812b9d61db5f6",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "opentelemetry-api",
+      "download_rank": 41,
+      "repository_url": "https://github.com/open-telemetry/opentelemetry-python",
+      "commit": "c5144239ad80f948b596ebf4c66d723a3e9a9a7f",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "platformdirs",
+      "download_rank": 42,
+      "repository_url": "https://github.com/tox-dev/platformdirs",
+      "commit": "76a7a95cd4119c0334af10e88637b8c92865ca7f",
+      "licence": "MIT"
+    },
+    {
+      "project": "pillow",
+      "download_rank": 43,
+      "repository_url": "https://github.com/python-pillow/Pillow",
+      "commit": "af77f16a7f871cec0d7112107d5e786a696adb30",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "uvicorn",
+      "download_rank": 44,
+      "repository_url": "https://github.com/Kludex/uvicorn",
+      "commit": "a99c1b76ee9caea67ff98e2ccc457bd372db193f",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "pathspec",
+      "download_rank": 45,
+      "repository_url": "https://github.com/cpburnz/python-pathspec",
+      "commit": "3dfbd9192ae36b0058b0e306ea44da132a5a025c",
+      "licence": "MIT"
+    },
+    {
+      "project": "fsspec",
+      "download_rank": 47,
+      "repository_url": "https://github.com/fsspec/filesystem_spec",
+      "commit": "0cb6da13ca4e330566ac8f18470649656db03c63",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "jsonschema",
+      "download_rank": 48,
+      "repository_url": "https://github.com/python-jsonschema/jsonschema",
+      "commit": "64b62de5df4ec52d7679c770427329e86a22c395",
+      "licence": "MIT"
+    },
+    {
+      "project": "filelock",
+      "download_rank": 49,
+      "repository_url": "https://github.com/tox-dev/filelock",
+      "commit": "f80f6a8d09315ad314a388523b1e470d1f08c986",
+      "licence": "MIT"
+    },
+    {
+      "project": "jmespath",
+      "download_rank": 50,
+      "repository_url": "https://github.com/jmespath/jmespath.py",
+      "commit": "2812594e69d43098ef60f81f4efc404c071b0418",
+      "licence": "MIT"
+    },
+    {
+      "project": "referencing",
+      "download_rank": 52,
+      "repository_url": "https://github.com/python-jsonschema/referencing",
+      "commit": "45e3c7f0b8191f6f433417d26a59e1e2857f0fcb",
+      "licence": "MIT"
+    },
+    {
+      "project": "tomlkit",
+      "download_rank": 53,
+      "repository_url": "https://github.com/python-poetry/tomlkit",
+      "commit": "7bf7284dbd622557d9909f8fee017a4cb169a139",
+      "licence": "MIT"
+    },
+    {
+      "project": "multidict",
+      "download_rank": 55,
+      "repository_url": "https://github.com/aio-libs/multidict",
+      "commit": "cc51105d805ff8e43ff306861bbec84b9cd06651",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "markdown-it-py",
+      "download_rank": 56,
+      "repository_url": "https://github.com/executablebooks/markdown-it-py",
+      "commit": "d504583a458edfa399ee800074244fceec288862",
+      "licence": "MIT"
+    },
+    {
+      "project": "aiohttp",
+      "download_rank": 58,
+      "repository_url": "https://github.com/aio-libs/aiohttp",
+      "commit": "b2350c3d330608165c9b51c3d291a5123c4364b9",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "yarl",
+      "download_rank": 59,
+      "repository_url": "https://github.com/aio-libs/yarl",
+      "commit": "ae2c11b30077fa17ead6827c6c1e95c004a2bebb",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "pip",
+      "download_rank": 62,
+      "repository_url": "https://github.com/pypa/pip",
+      "commit": "4b71f36fb4dfbc87ce65ac4710eeccf81d379f55",
+      "licence": "MIT"
+    },
+    {
+      "project": "websockets",
+      "download_rank": 64,
+      "repository_url": "https://github.com/python-websockets/websockets",
+      "commit": "dfd37f0717e03b854e5bd584f96b2954ffd6f733",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "fastapi",
+      "download_rank": 65,
+      "repository_url": "https://github.com/fastapi/fastapi",
+      "commit": "b2831196bfee3eb9ce303a3c6440f2a104832954",
+      "licence": "MIT"
+    },
+    {
+      "project": "pydantic-settings",
+      "download_rank": 74,
+      "repository_url": "https://github.com/pydantic/pydantic-settings",
+      "commit": "4af040bf35186ef4cdd9f949b71ce9242c4527b0",
+      "licence": "MIT"
+    },
+    {
+      "project": "wrapt",
+      "download_rank": 75,
+      "repository_url": "https://github.com/GrahamDumpleton/wrapt",
+      "commit": "71835a81186ff45c1f335d26d4c15fb262cbd1a1",
+      "licence": "BSD-2-Clause"
+    },
+    {
+      "project": "python-multipart",
+      "download_rank": 76,
+      "repository_url": "https://github.com/Kludex/python-multipart",
+      "commit": "c511ff0a76fa4dd4282b00730b92ac9708a81314",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "lxml",
+      "download_rank": 81,
+      "repository_url": "https://github.com/lxml/lxml",
+      "commit": "74e94856b8385b16e845c834087b038438c2ceb7",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "tenacity",
+      "download_rank": 82,
+      "repository_url": "https://github.com/jd/tenacity",
+      "commit": "aac059c906170ee7b6ce1aa086a226f3aded5c99",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "importlib-metadata",
+      "download_rank": 83,
+      "repository_url": "https://github.com/python/importlib_metadata",
+      "commit": "7e35ac1e6f23e92c66279837b17ce3847434c846",
+      "licence": "unknown"
+    },
+    {
+      "project": "sqlalchemy",
+      "download_rank": 86,
+      "repository_url": "https://github.com/sqlalchemy/sqlalchemy",
+      "commit": "6f924b05d72c763b1c1c2336404c2e3880746f36",
+      "licence": "MIT"
+    },
+    {
+      "project": "hatchling",
+      "download_rank": 89,
+      "repository_url": "https://github.com/pypa/hatch",
+      "commit": "893fa13ccd6129550194a4964c22c1cc6b63bc0d",
+      "licence": "MIT"
+    },
+    {
+      "project": "wheel",
+      "download_rank": 90,
+      "repository_url": "https://github.com/pypa/wheel",
+      "commit": "bfb01fb441d579c289556c305280e08168e23c5f",
+      "licence": "MIT"
+    },
+    {
+      "project": "pyparsing",
+      "download_rank": 91,
+      "repository_url": "https://github.com/pyparsing/pyparsing",
+      "commit": "810199f89bf916590426e1c5cb3d612584f11a2f",
+      "licence": "MIT"
+    },
+    {
+      "project": "truststore",
+      "download_rank": 94,
+      "repository_url": "https://github.com/sethmlarson/truststore",
+      "commit": "187fb20e410ee14d9911fc9ce879603674fc6879",
+      "licence": "MIT"
+    },
+    {
+      "project": "scipy",
+      "download_rank": 95,
+      "repository_url": "https://github.com/scipy/scipy",
+      "commit": "d4f15000d32a91c46515f4aba6959c619a3160ba",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "openai",
+      "download_rank": 97,
+      "repository_url": "https://github.com/openai/openai-python",
+      "commit": "30944c6b583947fb69b52c74b80cfbbadb052f60",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "httpx2",
+      "download_rank": 98,
+      "repository_url": "https://github.com/pydantic/httpx2",
+      "commit": "0022c4b4bf1f0af848b287d86df012b2e8e2c935",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "psutil",
+      "download_rank": 101,
+      "repository_url": "https://github.com/giampaolo/psutil",
+      "commit": "04ffb994682ac8bf5101a21b001683eb266e06a3",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "soupsieve",
+      "download_rank": 105,
+      "repository_url": "https://github.com/facelessuser/soupsieve",
+      "commit": "201706a0243b556b1166a3b8e3db455b772c8e43",
+      "licence": "MIT"
+    },
+    {
+      "project": "coverage",
+      "download_rank": 108,
+      "repository_url": "https://github.com/coveragepy/coveragepy",
+      "commit": "ec9e8a0d40924d0fc0e10a16433b5f635e1ba708",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "sse-starlette",
+      "download_rank": 112,
+      "repository_url": "https://github.com/sysid/sse-starlette",
+      "commit": "e023a93774b100ccd614aedb1251f60d70b6ec29",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "s3fs",
+      "download_rank": 113,
+      "repository_url": "https://github.com/fsspec/s3fs",
+      "commit": "dd194a3e4c46f424d51ef222af64b4e6d32b0184",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "typer",
+      "download_rank": 115,
+      "repository_url": "https://github.com/fastapi/typer",
+      "commit": "695d84504ab52fcb1a8145949ff10accee1e97b5",
+      "licence": "MIT"
+    },
+    {
+      "project": "mcp",
+      "download_rank": 116,
+      "repository_url": "https://github.com/modelcontextprotocol/python-sdk",
+      "commit": "77001c96f9507be0f4d009b83210a384a5e08bda",
+      "licence": "MIT"
+    },
+    {
+      "project": "huggingface-hub",
+      "download_rank": 121,
+      "repository_url": "https://github.com/huggingface/huggingface_hub",
+      "commit": "e0362b934eb8b73149db5cdaf528093c3eac4de4",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "dnspython",
+      "download_rank": 122,
+      "repository_url": "https://github.com/rthalley/dnspython",
+      "commit": "aaf79b283345d169c692b5659609093c5a6f45b1",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "cachetools",
+      "download_rank": 127,
+      "repository_url": "https://github.com/tkem/cachetools",
+      "commit": "498bd83c1938d9dd5d9aaf4dab3043fb15fb1e42",
+      "licence": "MIT"
+    },
+    {
+      "project": "docstring-parser",
+      "download_rank": 129,
+      "repository_url": "https://github.com/rr-/docstring_parser",
+      "commit": "a8e2a3ba5a4cdd906830735cb41a6a22c9346bf4",
+      "licence": "MIT"
+    },
+    {
+      "project": "oauthlib",
+      "download_rank": 131,
+      "repository_url": "https://github.com/oauthlib/oauthlib",
+      "commit": "179287a5f9067aac7b1c0d71c4c5e083ccbf58f2",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "werkzeug",
+      "download_rank": 132,
+      "repository_url": "https://github.com/pallets/werkzeug",
+      "commit": "0f43c6ebd426039e4b99ec22535c2c8a2ec2f69f",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "more-itertools",
+      "download_rank": 133,
+      "repository_url": "https://github.com/more-itertools/more-itertools",
+      "commit": "c0ede7fcd50340170bc7f428b7b658f6e767a34c",
+      "licence": "MIT"
+    },
+    {
+      "project": "virtualenv",
+      "download_rank": 134,
+      "repository_url": "https://github.com/pypa/virtualenv",
+      "commit": "93d5e3dc71588559d0059d994066986cc2e6a9ed",
+      "licence": "MIT"
+    },
+    {
+      "project": "defusedxml",
+      "download_rank": 135,
+      "repository_url": "https://github.com/tiran/defusedxml",
+      "commit": "c7445887f5e1bcea470a16f61369d29870cfcfe1",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "networkx",
+      "download_rank": 138,
+      "repository_url": "https://github.com/networkx/networkx",
+      "commit": "f9bd47b526e2d99aa61d8d3150f8f745ebb2044a",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "redis",
+      "download_rank": 140,
+      "repository_url": "https://github.com/redis/redis-py",
+      "commit": "3faeb53d53acc6ce23e4bab5779ef61e180c9358",
+      "licence": "MIT"
+    },
+    {
+      "project": "fonttools",
+      "download_rank": 144,
+      "repository_url": "https://github.com/fonttools/fonttools",
+      "commit": "c5caec43369fd36282c5b34313576049735cc54d",
+      "licence": "MIT"
+    },
+    {
+      "project": "mako",
+      "download_rank": 149,
+      "repository_url": "https://github.com/sqlalchemy/mako",
+      "commit": "14889bc0feacd12102ee61f0769677be2fddbc1b",
+      "licence": "MIT"
+    },
+    {
+      "project": "alembic",
+      "download_rank": 150,
+      "repository_url": "https://github.com/sqlalchemy/alembic",
+      "commit": "1bcba93ea0473c69b48e704f842ca96e9e5348f5",
+      "licence": "MIT"
+    },
+    {
+      "project": "requests-toolbelt",
+      "download_rank": 151,
+      "repository_url": "https://github.com/requests/toolbelt",
+      "commit": "bcd5f7be229e14089052be7e3b527ebcea0ae7b8",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "prompt-toolkit",
+      "download_rank": 153,
+      "repository_url": "https://github.com/prompt-toolkit/python-prompt-toolkit",
+      "commit": "6c7fbc1080dd331a031a2be1f96d4ebc0421f7ea",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "scikit-learn",
+      "download_rank": 155,
+      "repository_url": "https://github.com/scikit-learn/scikit-learn",
+      "commit": "3ed02efeadea03e52d6d5095da9eec28c2ce7d27",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "threadpoolctl",
+      "download_rank": 159,
+      "repository_url": "https://github.com/joblib/threadpoolctl",
+      "commit": "0645d76a7c82bb414f63950de47eb575aff833f5",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "mypy",
+      "download_rank": 160,
+      "repository_url": "https://github.com/python/mypy",
+      "commit": "22b03fed047204e80a76921957ab8b5f3b4d2896",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "flask",
+      "download_rank": 162,
+      "repository_url": "https://github.com/pallets/flask",
+      "commit": "49943b5a94413a530761350f04e896f76e8d620e",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "anthropic",
+      "download_rank": 164,
+      "repository_url": "https://github.com/anthropics/anthropic-sdk-python",
+      "commit": "10c82e8e8a968f624797df48d6115c4cc6b32551",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "nodeenv",
+      "download_rank": 165,
+      "repository_url": "https://github.com/ekalinin/nodeenv",
+      "commit": "007de341a1f71c0e40be7ffb17f7f223c176598b",
+      "licence": "NOASSERTION"
+    },
+    {
+      "project": "pyopenssl",
+      "download_rank": 166,
+      "repository_url": "https://github.com/pyca/pyopenssl",
+      "commit": "1487da3773b0db3977353c9e379ad74124002c43",
+      "licence": "Apache-2.0"
+    },
+    {
+      "project": "python-discovery",
+      "download_rank": 167,
+      "repository_url": "https://github.com/tox-dev/python-discovery",
+      "commit": "8023513d5c5fbeba5fa073ed1683327f09bfeb77",
+      "licence": "MIT"
+    },
+    {
+      "project": "joblib",
+      "download_rank": 169,
+      "repository_url": "https://github.com/joblib/joblib",
+      "commit": "6a12020870c37029e605aa10739a4502445e390f",
+      "licence": "BSD-3-Clause"
+    },
+    {
+      "project": "psycopg",
+      "download_rank": 170,
+      "repository_url": "https://github.com/psycopg/psycopg",
+      "commit": "bb758380cef3b764b95b32e5843fd10749b8ed01",
+      "licence": "LGPL-3.0"
+    },
+    {
+      "project": "matplotlib",
+      "download_rank": 172,
+      "repository_url": "https://github.com/matplotlib/matplotlib",
+      "commit": "1fedee5e33898e5c7550fc7def5b0a277c659695",
+      "licence": "unknown"
+    },
+    {
+      "project": "tzlocal",
+      "download_rank": 174,
+      "repository_url": "https://github.com/regebro/tzlocal",
+      "commit": "eeec91f748c2d36825b6e5aaa7a36a42241da512",
+      "licence": "MIT"
+    },
+    {
+      "project": "pytest-xdist",
+      "download_rank": 176,
+      "repository_url": "https://github.com/pytest-dev/pytest-xdist",
+      "commit": "9243bc1c844e27e2e8141f6223b33f12d9d5d39e",
+      "licence": "MIT"
+    },
+    {
+      "project": "h2",
+      "download_rank": 177,
+      "repository_url": "https://github.com/python-hyper/h2",
+      "commit": "2e4d22303af8710642f2f493c103860855710f02",
+      "licence": "MIT"
+    },
+    {
+      "project": "hpack",
+      "download_rank": 179,
+      "repository_url": "https://github.com/python-hyper/hpack",
+      "commit": "6aa8c0b2265f558f7184047aa09dcc573e625f82",
+      "licence": "MIT"
+    },
+    {
+      "project": "websocket-client",
+      "download_rank": 180,
+      "repository_url": "https://github.com/websocket-client/websocket-client",
+      "commit": "b6cff278b0bfa515884da4037a175e2fe9318c7e",
+      "licence": "Apache-2.0"
+    }
+  ]
+}

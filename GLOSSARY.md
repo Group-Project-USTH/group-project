@@ -55,6 +55,12 @@ The Python files, each at a pinned commit, on which Raters and the tool both giv
 that the two can be compared.
 _Avoid_: dataset, benchmark, rated set
 
+**Calibration set**:
+The Python projects, each at a pinned commit, whose Risk profiles set the Rating thresholds of
+the System properties that have no published five-level table. No project is in both the
+Calibration set and the Evaluation set.
+_Avoid_: benchmark, corpus, training set
+
 **Rater**:
 A team member who gives Verdicts on the Evaluation set by hand, blind to the tool's output and
 to other Raters. The Raters' consensus is what the tool is scored against.

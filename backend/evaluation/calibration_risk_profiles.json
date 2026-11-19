@@ -1,0 +1,4560 @@
+[
+  {
+    "project": "boto3",
+    "production_lines_of_code": 4541,
+    "duplicated_lines": 165,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1636,
+        "moderate": 941,
+        "high": 1090,
+        "very_high": 229
+      },
+      "unit_complexity": {
+        "low": 3808,
+        "moderate": 88,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1896,
+        "moderate": 1001,
+        "high": 439,
+        "very_high": 560
+      },
+      "module_coupling": {
+        "low": 4541,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 789,
+      "1": 1986,
+      "2": 1159,
+      "3": 336,
+      "4": 68,
+      "5": 33,
+      "6": 55,
+      "7": 115
+    }
+  },
+  {
+    "project": "packaging",
+    "production_lines_of_code": 9845,
+    "duplicated_lines": 667,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2674,
+        "moderate": 2129,
+        "high": 1641,
+        "very_high": 295
+      },
+      "unit_complexity": {
+        "low": 5079,
+        "moderate": 1255,
+        "high": 405,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 5579,
+        "moderate": 770,
+        "high": 390,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 8377,
+        "moderate": 1468,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2438,
+      "1": 2173,
+      "2": 1007,
+      "3": 2008,
+      "4": 421,
+      "5": 186,
+      "6": 133,
+      "8": 11,
+      "13": 744,
+      "15": 724
+    }
+  },
+  {
+    "project": "typing-extensions",
+    "production_lines_of_code": 2769,
+    "duplicated_lines": 84,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 831,
+        "moderate": 347,
+        "high": 510,
+        "very_high": 316
+      },
+      "unit_complexity": {
+        "low": 1278,
+        "moderate": 315,
+        "high": 411,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1185,
+        "moderate": 335,
+        "high": 348,
+        "very_high": 136
+      },
+      "module_coupling": {
+        "low": 2769,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 170,
+      "1": 2599
+    }
+  },
+  {
+    "project": "idna",
+    "production_lines_of_code": 19873,
+    "duplicated_lines": 3315,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 175,
+        "moderate": 60,
+        "high": 377,
+        "very_high": 86
+      },
+      "unit_complexity": {
+        "low": 288,
+        "moderate": 324,
+        "high": 86,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 428,
+        "moderate": 170,
+        "high": 100,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 19873,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 140,
+      "1": 17249,
+      "2": 1955,
+      "4": 529
+    }
+  },
+  {
+    "project": "urllib3",
+    "production_lines_of_code": 8814,
+    "duplicated_lines": 589,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2523,
+        "moderate": 1755,
+        "high": 1811,
+        "very_high": 912
+      },
+      "unit_complexity": {
+        "low": 5345,
+        "moderate": 1085,
+        "high": 571,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4185,
+        "moderate": 1131,
+        "high": 301,
+        "very_high": 1384
+      },
+      "module_coupling": {
+        "low": 6799,
+        "moderate": 2015,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1259,
+      "1": 1147,
+      "2": 1760,
+      "3": 249,
+      "4": 147,
+      "5": 349,
+      "6": 75,
+      "7": 571,
+      "8": 762,
+      "10": 480,
+      "11": 1870,
+      "18": 145
+    }
+  },
+  {
+    "project": "charset-normalizer",
+    "production_lines_of_code": 5858,
+    "duplicated_lines": 320,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 709,
+        "moderate": 353,
+        "high": 370,
+        "very_high": 1448
+      },
+      "unit_complexity": {
+        "low": 1395,
+        "moderate": 497,
+        "high": 410,
+        "very_high": 578
+      },
+      "unit_interfacing": {
+        "low": 1808,
+        "moderate": 264,
+        "high": 0,
+        "very_high": 808
+      },
+      "module_coupling": {
+        "low": 5858,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 650,
+      "1": 360,
+      "2": 1021,
+      "3": 810,
+      "4": 259,
+      "5": 20,
+      "6": 2438,
+      "7": 300
+    }
+  },
+  {
+    "project": "cryptography",
+    "production_lines_of_code": 12748,
+    "duplicated_lines": 1853,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4072,
+        "moderate": 1639,
+        "high": 1095,
+        "very_high": 693
+      },
+      "unit_complexity": {
+        "low": 6588,
+        "moderate": 729,
+        "high": 182,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 5601,
+        "moderate": 1315,
+        "high": 274,
+        "very_high": 309
+      },
+      "module_coupling": {
+        "low": 12304,
+        "moderate": 358,
+        "high": 86,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 3761,
+      "1": 2427,
+      "2": 3455,
+      "3": 867,
+      "4": 749,
+      "5": 126,
+      "6": 195,
+      "7": 10,
+      "8": 479,
+      "9": 235,
+      "11": 28,
+      "13": 103,
+      "17": 227,
+      "31": 86
+    }
+  },
+  {
+    "project": "cffi",
+    "production_lines_of_code": 11336,
+    "duplicated_lines": 1871,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4270,
+        "moderate": 2225,
+        "high": 1466,
+        "very_high": 842
+      },
+      "unit_complexity": {
+        "low": 7118,
+        "moderate": 998,
+        "high": 687,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 6642,
+        "moderate": 1564,
+        "high": 368,
+        "very_high": 229
+      },
+      "module_coupling": {
+        "low": 11309,
+        "moderate": 19,
+        "high": 8,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 5442,
+      "1": 3341,
+      "2": 155,
+      "3": 1866,
+      "4": 26,
+      "7": 479,
+      "12": 19,
+      "37": 8
+    }
+  },
+  {
+    "project": "pluggy",
+    "production_lines_of_code": 1950,
+    "duplicated_lines": 26,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 772,
+        "moderate": 231,
+        "high": 292,
+        "very_high": 91
+      },
+      "unit_complexity": {
+        "low": 1047,
+        "moderate": 248,
+        "high": 91,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1024,
+        "moderate": 334,
+        "high": 13,
+        "very_high": 15
+      },
+      "module_coupling": {
+        "low": 1950,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 646,
+      "1": 882,
+      "2": 22,
+      "3": 286,
+      "4": 80,
+      "5": 34
+    }
+  },
+  {
+    "project": "pyyaml",
+    "production_lines_of_code": 5051,
+    "duplicated_lines": 395,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1954,
+        "moderate": 1192,
+        "high": 884,
+        "very_high": 206
+      },
+      "unit_complexity": {
+        "low": 3073,
+        "moderate": 627,
+        "high": 536,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3390,
+        "moderate": 467,
+        "high": 202,
+        "very_high": 177
+      },
+      "module_coupling": {
+        "low": 5051,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 910,
+      "1": 1818,
+      "2": 1892,
+      "3": 268,
+      "5": 67,
+      "6": 31,
+      "10": 65
+    }
+  },
+  {
+    "project": "pycparser",
+    "production_lines_of_code": 5535,
+    "duplicated_lines": 652,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2277,
+        "moderate": 884,
+        "high": 872,
+        "very_high": 235
+      },
+      "unit_complexity": {
+        "low": 3278,
+        "moderate": 773,
+        "high": 217,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3651,
+        "moderate": 483,
+        "high": 50,
+        "very_high": 84
+      },
+      "module_coupling": {
+        "low": 2357,
+        "moderate": 3178,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 990,
+      "1": 687,
+      "4": 648,
+      "9": 32,
+      "12": 1983,
+      "13": 1195
+    }
+  },
+  {
+    "project": "pygments",
+    "production_lines_of_code": 107932,
+    "duplicated_lines": 4769,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4596,
+        "moderate": 2413,
+        "high": 2012,
+        "very_high": 5469
+      },
+      "unit_complexity": {
+        "low": 11866,
+        "moderate": 1389,
+        "high": 791,
+        "very_high": 444
+      },
+      "unit_interfacing": {
+        "low": 13432,
+        "moderate": 845,
+        "high": 110,
+        "very_high": 103
+      },
+      "module_coupling": {
+        "low": 106704,
+        "moderate": 226,
+        "high": 334,
+        "very_high": 668
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 31184,
+      "1": 54114,
+      "2": 8726,
+      "3": 5331,
+      "4": 993,
+      "5": 3028,
+      "6": 1351,
+      "7": 881,
+      "9": 85,
+      "10": 1011,
+      "13": 30,
+      "14": 196,
+      "49": 150,
+      "50": 184,
+      "229": 526,
+      "284": 142
+    }
+  },
+  {
+    "project": "python-dateutil",
+    "production_lines_of_code": 5042,
+    "duplicated_lines": 78,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1502,
+        "moderate": 917,
+        "high": 463,
+        "very_high": 1662
+      },
+      "unit_complexity": {
+        "low": 2224,
+        "moderate": 648,
+        "high": 1081,
+        "very_high": 591
+      },
+      "unit_interfacing": {
+        "low": 3303,
+        "moderate": 433,
+        "high": 385,
+        "very_high": 423
+      },
+      "module_coupling": {
+        "low": 5042,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 211,
+      "1": 1813,
+      "2": 2853,
+      "3": 129,
+      "4": 36
+    }
+  },
+  {
+    "project": "setuptools",
+    "production_lines_of_code": 38413,
+    "duplicated_lines": 2405,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 13833,
+        "moderate": 7581,
+        "high": 4961,
+        "very_high": 2963
+      },
+      "unit_complexity": {
+        "low": 22556,
+        "moderate": 3879,
+        "high": 1757,
+        "very_high": 1146
+      },
+      "unit_interfacing": {
+        "low": 20659,
+        "moderate": 6098,
+        "high": 1649,
+        "very_high": 932
+      },
+      "module_coupling": {
+        "low": 36055,
+        "moderate": 2062,
+        "high": 296,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 10886,
+      "1": 12957,
+      "2": 6727,
+      "3": 1422,
+      "4": 1052,
+      "5": 1077,
+      "6": 888,
+      "8": 885,
+      "9": 155,
+      "10": 6,
+      "11": 3,
+      "12": 102,
+      "14": 209,
+      "15": 1453,
+      "16": 36,
+      "17": 259,
+      "22": 72,
+      "24": 39,
+      "46": 185
+    }
+  },
+  {
+    "project": "pydantic",
+    "production_lines_of_code": 29566,
+    "duplicated_lines": 8974,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4822,
+        "moderate": 4544,
+        "high": 2755,
+        "very_high": 1785
+      },
+      "unit_complexity": {
+        "low": 10371,
+        "moderate": 2198,
+        "high": 1165,
+        "very_high": 172
+      },
+      "unit_interfacing": {
+        "low": 8347,
+        "moderate": 2405,
+        "high": 980,
+        "very_high": 2174
+      },
+      "module_coupling": {
+        "low": 23460,
+        "moderate": 5837,
+        "high": 269,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9164,
+      "1": 3069,
+      "2": 1170,
+      "3": 866,
+      "4": 2735,
+      "5": 53,
+      "6": 178,
+      "7": 526,
+      "8": 2685,
+      "9": 1740,
+      "10": 1274,
+      "12": 242,
+      "13": 354,
+      "14": 2439,
+      "15": 105,
+      "17": 219,
+      "20": 2478,
+      "21": 99,
+      "31": 170
+    }
+  },
+  {
+    "project": "click",
+    "production_lines_of_code": 7820,
+    "duplicated_lines": 272,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2882,
+        "moderate": 1638,
+        "high": 1160,
+        "very_high": 514
+      },
+      "unit_complexity": {
+        "low": 4956,
+        "moderate": 899,
+        "high": 339,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3611,
+        "moderate": 1423,
+        "high": 537,
+        "very_high": 623
+      },
+      "module_coupling": {
+        "low": 7699,
+        "moderate": 121,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1208,
+      "1": 887,
+      "2": 363,
+      "3": 1793,
+      "4": 482,
+      "6": 28,
+      "7": 229,
+      "8": 1983,
+      "9": 726,
+      "12": 121
+    }
+  },
+  {
+    "project": "numpy",
+    "production_lines_of_code": 62102,
+    "duplicated_lines": 4899,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 13987,
+        "moderate": 8027,
+        "high": 6460,
+        "very_high": 7727
+      },
+      "unit_complexity": {
+        "low": 22777,
+        "moderate": 6519,
+        "high": 4446,
+        "very_high": 2459
+      },
+      "unit_interfacing": {
+        "low": 20558,
+        "moderate": 8918,
+        "high": 3544,
+        "very_high": 3181
+      },
+      "module_coupling": {
+        "low": 59851,
+        "moderate": 424,
+        "high": 1085,
+        "very_high": 742
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9146,
+      "1": 21373,
+      "2": 9704,
+      "3": 7175,
+      "4": 5502,
+      "5": 2090,
+      "6": 2055,
+      "7": 2078,
+      "8": 1,
+      "9": 727,
+      "12": 52,
+      "14": 45,
+      "16": 169,
+      "18": 19,
+      "19": 139,
+      "23": 164,
+      "24": 38,
+      "25": 613,
+      "30": 141,
+      "34": 129,
+      "94": 742
+    }
+  },
+  {
+    "project": "botocore",
+    "production_lines_of_code": 25156,
+    "duplicated_lines": 1331,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 11220,
+        "moderate": 5497,
+        "high": 2606,
+        "very_high": 1515
+      },
+      "unit_complexity": {
+        "low": 19602,
+        "moderate": 1105,
+        "high": 131,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 13388,
+        "moderate": 4329,
+        "high": 1790,
+        "very_high": 1331
+      },
+      "module_coupling": {
+        "low": 21429,
+        "moderate": 571,
+        "high": 3156,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 316,
+      "1": 7772,
+      "2": 8274,
+      "3": 1190,
+      "4": 2288,
+      "5": 210,
+      "6": 1184,
+      "7": 195,
+      "13": 368,
+      "17": 203,
+      "27": 198,
+      "31": 2586,
+      "35": 372
+    }
+  },
+  {
+    "project": "anyio",
+    "production_lines_of_code": 11969,
+    "duplicated_lines": 1587,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5427,
+        "moderate": 2127,
+        "high": 1090,
+        "very_high": 360
+      },
+      "unit_complexity": {
+        "low": 8038,
+        "moderate": 746,
+        "high": 220,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 6422,
+        "moderate": 1804,
+        "high": 480,
+        "very_high": 298
+      },
+      "module_coupling": {
+        "low": 10354,
+        "moderate": 1408,
+        "high": 59,
+        "very_high": 148
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 4999,
+      "1": 1836,
+      "2": 1824,
+      "3": 716,
+      "4": 105,
+      "5": 543,
+      "7": 225,
+      "8": 106,
+      "13": 538,
+      "14": 34,
+      "15": 651,
+      "16": 185,
+      "29": 59,
+      "92": 148
+    }
+  },
+  {
+    "project": "pytest",
+    "production_lines_of_code": 39676,
+    "duplicated_lines": 3188,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 12722,
+        "moderate": 11381,
+        "high": 7842,
+        "very_high": 2726
+      },
+      "unit_complexity": {
+        "low": 30611,
+        "moderate": 3383,
+        "high": 677,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 28568,
+        "moderate": 3905,
+        "high": 1602,
+        "very_high": 596
+      },
+      "module_coupling": {
+        "low": 30191,
+        "moderate": 4866,
+        "high": 4619,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 16103,
+      "1": 3611,
+      "2": 2738,
+      "3": 1158,
+      "4": 1296,
+      "5": 2105,
+      "6": 102,
+      "7": 242,
+      "8": 415,
+      "9": 2331,
+      "10": 90,
+      "11": 1513,
+      "12": 1093,
+      "13": 604,
+      "15": 35,
+      "16": 503,
+      "17": 922,
+      "18": 121,
+      "19": 75,
+      "24": 165,
+      "25": 1616,
+      "26": 501,
+      "28": 437,
+      "39": 186,
+      "41": 1714
+    }
+  },
+  {
+    "project": "h11",
+    "production_lines_of_code": 1769,
+    "duplicated_lines": 56,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 530,
+        "moderate": 320,
+        "high": 261,
+        "very_high": 61
+      },
+      "unit_complexity": {
+        "low": 989,
+        "moderate": 183,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1021,
+        "moderate": 78,
+        "high": 73,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1769,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 539,
+      "1": 583,
+      "2": 63,
+      "3": 159,
+      "5": 169,
+      "6": 51,
+      "7": 205
+    }
+  },
+  {
+    "project": "attrs",
+    "production_lines_of_code": 4100,
+    "duplicated_lines": 332,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 990,
+        "moderate": 456,
+        "high": 530,
+        "very_high": 815
+      },
+      "unit_complexity": {
+        "low": 1862,
+        "moderate": 342,
+        "high": 587,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1235,
+        "moderate": 486,
+        "high": 471,
+        "very_high": 599
+      },
+      "module_coupling": {
+        "low": 4100,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 773,
+      "1": 463,
+      "2": 283,
+      "3": 410,
+      "4": 38,
+      "7": 20,
+      "10": 2113
+    }
+  },
+  {
+    "project": "httpcore",
+    "production_lines_of_code": 5189,
+    "duplicated_lines": 2875,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1834,
+        "moderate": 1152,
+        "high": 1040,
+        "very_high": 422
+      },
+      "unit_complexity": {
+        "low": 4158,
+        "moderate": 290,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2963,
+        "moderate": 719,
+        "high": 312,
+        "very_high": 454
+      },
+      "module_coupling": {
+        "low": 4543,
+        "moderate": 646,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 197,
+      "1": 215,
+      "2": 1349,
+      "3": 675,
+      "4": 1836,
+      "7": 176,
+      "10": 95,
+      "13": 199,
+      "17": 326,
+      "18": 121
+    }
+  },
+  {
+    "project": "s3transfer",
+    "production_lines_of_code": 5264,
+    "duplicated_lines": 748,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2390,
+        "moderate": 984,
+        "high": 834,
+        "very_high": 336
+      },
+      "unit_complexity": {
+        "low": 4544,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2244,
+        "moderate": 650,
+        "high": 983,
+        "very_high": 667
+      },
+      "module_coupling": {
+        "low": 5264,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1384,
+      "1": 2869,
+      "4": 164,
+      "5": 327,
+      "7": 40,
+      "8": 480
+    }
+  },
+  {
+    "project": "pyjwt",
+    "production_lines_of_code": 2263,
+    "duplicated_lines": 159,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 559,
+        "moderate": 286,
+        "high": 598,
+        "very_high": 218
+      },
+      "unit_complexity": {
+        "low": 1132,
+        "moderate": 445,
+        "high": 84,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1116,
+        "moderate": 138,
+        "high": 194,
+        "very_high": 213
+      },
+      "module_coupling": {
+        "low": 2263,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 107,
+      "1": 259,
+      "2": 821,
+      "3": 866,
+      "4": 45,
+      "5": 124,
+      "7": 41
+    }
+  },
+  {
+    "project": "jinja2",
+    "production_lines_of_code": 8788,
+    "duplicated_lines": 220,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3587,
+        "moderate": 1651,
+        "high": 1370,
+        "very_high": 578
+      },
+      "unit_complexity": {
+        "low": 5879,
+        "moderate": 917,
+        "high": 390,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4742,
+        "moderate": 1606,
+        "high": 505,
+        "very_high": 333
+      },
+      "module_coupling": {
+        "low": 6779,
+        "moderate": 2009,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 369,
+      "1": 1593,
+      "2": 1153,
+      "3": 582,
+      "4": 1439,
+      "5": 1026,
+      "10": 617,
+      "12": 704,
+      "13": 386,
+      "16": 919
+    }
+  },
+  {
+    "project": "pandas",
+    "production_lines_of_code": 141861,
+    "duplicated_lines": 15494,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 37641,
+        "moderate": 27347,
+        "high": 26862,
+        "very_high": 20629
+      },
+      "unit_complexity": {
+        "low": 75466,
+        "moderate": 21643,
+        "high": 13784,
+        "very_high": 1586
+      },
+      "unit_interfacing": {
+        "low": 58537,
+        "moderate": 27019,
+        "high": 13029,
+        "very_high": 13894
+      },
+      "module_coupling": {
+        "low": 108184,
+        "moderate": 20507,
+        "high": 9606,
+        "very_high": 3564
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 14066,
+      "1": 18710,
+      "2": 14656,
+      "3": 15377,
+      "4": 9211,
+      "5": 7813,
+      "6": 8575,
+      "7": 5534,
+      "8": 2188,
+      "9": 11224,
+      "10": 830,
+      "11": 1360,
+      "12": 946,
+      "13": 305,
+      "15": 3486,
+      "16": 1480,
+      "17": 1437,
+      "18": 5891,
+      "19": 1155,
+      "20": 4447,
+      "21": 77,
+      "25": 877,
+      "26": 1216,
+      "27": 3678,
+      "33": 28,
+      "34": 263,
+      "36": 224,
+      "37": 339,
+      "41": 887,
+      "46": 130,
+      "47": 1059,
+      "48": 354,
+      "49": 474,
+      "59": 90,
+      "63": 42,
+      "69": 128,
+      "71": 336,
+      "89": 1289,
+      "91": 79,
+      "101": 242,
+      "104": 135,
+      "123": 530,
+      "128": 22,
+      "178": 314,
+      "179": 357
+    }
+  },
+  {
+    "project": "aiobotocore",
+    "production_lines_of_code": 8757,
+    "duplicated_lines": 644,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1970,
+        "moderate": 1900,
+        "high": 1635,
+        "very_high": 1986
+      },
+      "unit_complexity": {
+        "low": 6043,
+        "moderate": 1029,
+        "high": 419,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4669,
+        "moderate": 1519,
+        "high": 580,
+        "very_high": 723
+      },
+      "module_coupling": {
+        "low": 8757,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1091,
+      "1": 2742,
+      "2": 2435,
+      "3": 159,
+      "4": 1152,
+      "5": 861,
+      "7": 307,
+      "8": 10
+    }
+  },
+  {
+    "project": "starlette",
+    "production_lines_of_code": 6602,
+    "duplicated_lines": 293,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2640,
+        "moderate": 1500,
+        "high": 851,
+        "very_high": 165
+      },
+      "unit_complexity": {
+        "low": 4374,
+        "moderate": 600,
+        "high": 182,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3115,
+        "moderate": 1456,
+        "high": 273,
+        "very_high": 312
+      },
+      "module_coupling": {
+        "low": 5156,
+        "moderate": 647,
+        "high": 799,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2886,
+      "1": 928,
+      "2": 284,
+      "3": 241,
+      "6": 580,
+      "7": 39,
+      "9": 162,
+      "10": 36,
+      "13": 25,
+      "14": 100,
+      "16": 522,
+      "21": 271,
+      "22": 509,
+      "35": 19
+    }
+  },
+  {
+    "project": "opentelemetry-api",
+    "production_lines_of_code": 44657,
+    "duplicated_lines": 7554,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 10581,
+        "moderate": 5539,
+        "high": 3378,
+        "very_high": 1594
+      },
+      "unit_complexity": {
+        "low": 18502,
+        "moderate": 2257,
+        "high": 333,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 14491,
+        "moderate": 3611,
+        "high": 1089,
+        "very_high": 1901
+      },
+      "module_coupling": {
+        "low": 44544,
+        "moderate": 113,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 43091,
+      "1": 1246,
+      "2": 9,
+      "3": 84,
+      "7": 43,
+      "10": 71,
+      "13": 27,
+      "14": 86
+    }
+  },
+  {
+    "project": "platformdirs",
+    "production_lines_of_code": 2405,
+    "duplicated_lines": 478,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1179,
+        "moderate": 432,
+        "high": 84,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 1655,
+        "moderate": 40,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1196,
+        "moderate": 42,
+        "high": 400,
+        "very_high": 57
+      },
+      "module_coupling": {
+        "low": 2405,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 154,
+      "1": 973,
+      "2": 705,
+      "4": 136,
+      "10": 437
+    }
+  },
+  {
+    "project": "pillow",
+    "production_lines_of_code": 26268,
+    "duplicated_lines": 719,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5911,
+        "moderate": 3903,
+        "high": 4366,
+        "very_high": 5491
+      },
+      "unit_complexity": {
+        "low": 11367,
+        "moderate": 4203,
+        "high": 2718,
+        "very_high": 1383
+      },
+      "unit_interfacing": {
+        "low": 12632,
+        "moderate": 4539,
+        "high": 1914,
+        "very_high": 586
+      },
+      "module_coupling": {
+        "low": 22882,
+        "moderate": 310,
+        "high": 31,
+        "very_high": 3045
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9678,
+      "1": 4627,
+      "2": 1713,
+      "3": 460,
+      "4": 2023,
+      "5": 1657,
+      "6": 1744,
+      "7": 770,
+      "8": 210,
+      "14": 16,
+      "15": 55,
+      "16": 29,
+      "18": 210,
+      "38": 31,
+      "55": 616,
+      "96": 2429
+    }
+  },
+  {
+    "project": "uvicorn",
+    "production_lines_of_code": 5914,
+    "duplicated_lines": 1473,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1645,
+        "moderate": 1034,
+        "high": 838,
+        "very_high": 1166
+      },
+      "unit_complexity": {
+        "low": 3364,
+        "moderate": 624,
+        "high": 695,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3551,
+        "moderate": 581,
+        "high": 0,
+        "very_high": 551
+      },
+      "module_coupling": {
+        "low": 4955,
+        "moderate": 959,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 249,
+      "1": 1741,
+      "2": 2640,
+      "3": 118,
+      "4": 46,
+      "5": 26,
+      "8": 44,
+      "9": 91,
+      "11": 266,
+      "16": 165,
+      "17": 528
+    }
+  },
+  {
+    "project": "pathspec",
+    "production_lines_of_code": 7568,
+    "duplicated_lines": 4522,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3903,
+        "moderate": 607,
+        "high": 633,
+        "very_high": 510
+      },
+      "unit_complexity": {
+        "low": 4702,
+        "moderate": 497,
+        "high": 454,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1501,
+        "moderate": 3821,
+        "high": 331,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 7359,
+        "moderate": 167,
+        "high": 42,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 3865,
+      "1": 275,
+      "2": 1313,
+      "3": 767,
+      "4": 286,
+      "6": 161,
+      "7": 462,
+      "9": 230,
+      "15": 46,
+      "18": 121,
+      "36": 42
+    }
+  },
+  {
+    "project": "fsspec",
+    "production_lines_of_code": 14566,
+    "duplicated_lines": 1354,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5218,
+        "moderate": 3584,
+        "high": 2903,
+        "very_high": 1499
+      },
+      "unit_complexity": {
+        "low": 9179,
+        "moderate": 2590,
+        "high": 1435,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 6358,
+        "moderate": 2958,
+        "high": 2250,
+        "very_high": 1638
+      },
+      "module_coupling": {
+        "low": 12610,
+        "moderate": 1424,
+        "high": 532,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 5900,
+      "1": 2220,
+      "2": 222,
+      "3": 884,
+      "4": 1124,
+      "5": 262,
+      "6": 506,
+      "8": 91,
+      "9": 955,
+      "10": 446,
+      "19": 1358,
+      "20": 66,
+      "28": 532
+    }
+  },
+  {
+    "project": "jsonschema",
+    "production_lines_of_code": 3670,
+    "duplicated_lines": 645,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1099,
+        "moderate": 567,
+        "high": 373,
+        "very_high": 446
+      },
+      "unit_complexity": {
+        "low": 2045,
+        "moderate": 272,
+        "high": 168,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1257,
+        "moderate": 996,
+        "high": 79,
+        "very_high": 153
+      },
+      "module_coupling": {
+        "low": 3670,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 570,
+      "1": 986,
+      "2": 391,
+      "3": 123,
+      "4": 1154,
+      "8": 344,
+      "9": 102
+    }
+  },
+  {
+    "project": "filelock",
+    "production_lines_of_code": 9790,
+    "duplicated_lines": 778,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3557,
+        "moderate": 2579,
+        "high": 1209,
+        "very_high": 172
+      },
+      "unit_complexity": {
+        "low": 6600,
+        "moderate": 917,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4807,
+        "moderate": 1554,
+        "high": 626,
+        "very_high": 530
+      },
+      "module_coupling": {
+        "low": 8170,
+        "moderate": 1620,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 552,
+      "1": 1076,
+      "2": 1675,
+      "3": 1763,
+      "4": 1372,
+      "5": 269,
+      "6": 680,
+      "7": 553,
+      "9": 230,
+      "11": 60,
+      "13": 1560
+    }
+  },
+  {
+    "project": "jmespath",
+    "production_lines_of_code": 1452,
+    "duplicated_lines": 48,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 909,
+        "moderate": 201,
+        "high": 38,
+        "very_high": 82
+      },
+      "unit_complexity": {
+        "low": 1148,
+        "moderate": 0,
+        "high": 82,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1066,
+        "moderate": 164,
+        "high": 0,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1452,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 208,
+      "1": 335,
+      "2": 803,
+      "4": 106
+    }
+  },
+  {
+    "project": "referencing",
+    "production_lines_of_code": 1241,
+    "duplicated_lines": 348,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 467,
+        "moderate": 310,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 725,
+        "moderate": 52,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 650,
+        "moderate": 127,
+        "high": 0,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1241,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 234,
+      "1": 515,
+      "2": 83,
+      "3": 393,
+      "4": 16
+    }
+  },
+  {
+    "project": "tomlkit",
+    "production_lines_of_code": 4327,
+    "duplicated_lines": 290,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1799,
+        "moderate": 632,
+        "high": 460,
+        "very_high": 842
+      },
+      "unit_complexity": {
+        "low": 2362,
+        "moderate": 323,
+        "high": 910,
+        "very_high": 138
+      },
+      "unit_interfacing": {
+        "low": 2861,
+        "moderate": 709,
+        "high": 94,
+        "very_high": 69
+      },
+      "module_coupling": {
+        "low": 4327,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 66,
+      "1": 1065,
+      "2": 196,
+      "3": 1819,
+      "4": 1081,
+      "5": 100
+    }
+  },
+  {
+    "project": "multidict",
+    "production_lines_of_code": 4300,
+    "duplicated_lines": 322,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1581,
+        "moderate": 701,
+        "high": 429,
+        "very_high": 277
+      },
+      "unit_complexity": {
+        "low": 2497,
+        "moderate": 300,
+        "high": 191,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2500,
+        "moderate": 404,
+        "high": 50,
+        "very_high": 34
+      },
+      "module_coupling": {
+        "low": 4300,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2277,
+      "1": 10,
+      "2": 1359,
+      "3": 654
+    }
+  },
+  {
+    "project": "markdown-it-py",
+    "production_lines_of_code": 4888,
+    "duplicated_lines": 345,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1033,
+        "moderate": 769,
+        "high": 1004,
+        "very_high": 1096
+      },
+      "unit_complexity": {
+        "low": 1923,
+        "moderate": 790,
+        "high": 763,
+        "very_high": 426
+      },
+      "unit_interfacing": {
+        "low": 2283,
+        "moderate": 1572,
+        "high": 47,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 4159,
+        "moderate": 574,
+        "high": 155,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 490,
+      "1": 2935,
+      "2": 373,
+      "3": 178,
+      "6": 160,
+      "9": 3,
+      "10": 20,
+      "12": 138,
+      "13": 181,
+      "14": 123,
+      "16": 132,
+      "22": 155
+    }
+  },
+  {
+    "project": "aiohttp",
+    "production_lines_of_code": 21296,
+    "duplicated_lines": 1748,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 6529,
+        "moderate": 3382,
+        "high": 3260,
+        "very_high": 2703
+      },
+      "unit_complexity": {
+        "low": 11429,
+        "moderate": 2232,
+        "high": 1842,
+        "very_high": 371
+      },
+      "unit_interfacing": {
+        "low": 10499,
+        "moderate": 2540,
+        "high": 955,
+        "very_high": 1880
+      },
+      "module_coupling": {
+        "low": 17258,
+        "moderate": 2917,
+        "high": 1121,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2364,
+      "1": 2309,
+      "2": 1081,
+      "3": 2455,
+      "4": 4176,
+      "5": 903,
+      "7": 402,
+      "8": 3178,
+      "10": 390,
+      "11": 334,
+      "12": 633,
+      "13": 532,
+      "14": 666,
+      "15": 237,
+      "20": 515,
+      "21": 182,
+      "22": 162,
+      "30": 777
+    }
+  },
+  {
+    "project": "yarl",
+    "production_lines_of_code": 4610,
+    "duplicated_lines": 418,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 935,
+        "moderate": 860,
+        "high": 823,
+        "very_high": 837
+      },
+      "unit_complexity": {
+        "low": 1814,
+        "moderate": 682,
+        "high": 509,
+        "very_high": 450
+      },
+      "unit_interfacing": {
+        "low": 2371,
+        "moderate": 730,
+        "high": 133,
+        "very_high": 221
+      },
+      "module_coupling": {
+        "low": 4610,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 755,
+      "1": 3267,
+      "2": 556,
+      "3": 32
+    }
+  },
+  {
+    "project": "pip",
+    "production_lines_of_code": 111561,
+    "duplicated_lines": 19289,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 22837,
+        "moderate": 15033,
+        "high": 12277,
+        "very_high": 7000
+      },
+      "unit_complexity": {
+        "low": 44413,
+        "moderate": 8415,
+        "high": 4319,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 38254,
+        "moderate": 10272,
+        "high": 3420,
+        "very_high": 5201
+      },
+      "module_coupling": {
+        "low": 97026,
+        "moderate": 8069,
+        "high": 3881,
+        "very_high": 2585
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 17940,
+      "1": 39296,
+      "2": 14539,
+      "3": 6860,
+      "4": 3855,
+      "5": 3385,
+      "6": 3355,
+      "7": 1000,
+      "8": 2858,
+      "9": 2118,
+      "10": 1820,
+      "11": 2069,
+      "12": 1289,
+      "13": 23,
+      "14": 883,
+      "15": 1913,
+      "16": 89,
+      "17": 888,
+      "19": 806,
+      "20": 109,
+      "21": 531,
+      "25": 145,
+      "29": 78,
+      "30": 1910,
+      "31": 188,
+      "40": 897,
+      "44": 132,
+      "53": 1743,
+      "57": 529,
+      "67": 313
+    }
+  },
+  {
+    "project": "websockets",
+    "production_lines_of_code": 13445,
+    "duplicated_lines": 4548,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3340,
+        "moderate": 3277,
+        "high": 2578,
+        "very_high": 1724
+      },
+      "unit_complexity": {
+        "low": 8086,
+        "moderate": 2508,
+        "high": 325,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 7601,
+        "moderate": 1809,
+        "high": 442,
+        "very_high": 1067
+      },
+      "module_coupling": {
+        "low": 11128,
+        "moderate": 1046,
+        "high": 1271,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2782,
+      "1": 814,
+      "2": 3905,
+      "3": 997,
+      "4": 1256,
+      "5": 702,
+      "6": 57,
+      "8": 68,
+      "9": 547,
+      "12": 397,
+      "13": 236,
+      "15": 327,
+      "16": 86,
+      "23": 319,
+      "24": 243,
+      "29": 484,
+      "40": 225
+    }
+  },
+  {
+    "project": "fastapi",
+    "production_lines_of_code": 28900,
+    "duplicated_lines": 15118,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5119,
+        "moderate": 2278,
+        "high": 2403,
+        "very_high": 13401
+      },
+      "unit_complexity": {
+        "low": 20110,
+        "moderate": 1186,
+        "high": 1739,
+        "very_high": 166
+      },
+      "unit_interfacing": {
+        "low": 7722,
+        "moderate": 2673,
+        "high": 1118,
+        "very_high": 11688
+      },
+      "module_coupling": {
+        "low": 22801,
+        "moderate": 6024,
+        "high": 54,
+        "very_high": 21
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 8745,
+      "1": 5724,
+      "2": 5222,
+      "3": 1043,
+      "4": 1,
+      "5": 337,
+      "6": 782,
+      "7": 93,
+      "8": 502,
+      "9": 312,
+      "10": 40,
+      "11": 5865,
+      "15": 15,
+      "19": 144,
+      "46": 54,
+      "368": 21
+    }
+  },
+  {
+    "project": "pydantic-settings",
+    "production_lines_of_code": 4887,
+    "duplicated_lines": 336,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1106,
+        "moderate": 1177,
+        "high": 809,
+        "very_high": 801
+      },
+      "unit_complexity": {
+        "low": 2131,
+        "moderate": 1227,
+        "high": 535,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1668,
+        "moderate": 825,
+        "high": 352,
+        "very_high": 1048
+      },
+      "module_coupling": {
+        "low": 3666,
+        "moderate": 1221,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 117,
+      "1": 154,
+      "2": 2428,
+      "3": 232,
+      "8": 692,
+      "9": 43,
+      "11": 65,
+      "14": 1156
+    }
+  },
+  {
+    "project": "wrapt",
+    "production_lines_of_code": 3092,
+    "duplicated_lines": 177,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1516,
+        "moderate": 595,
+        "high": 309,
+        "very_high": 136
+      },
+      "unit_complexity": {
+        "low": 2198,
+        "moderate": 155,
+        "high": 203,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1931,
+        "moderate": 506,
+        "high": 46,
+        "very_high": 73
+      },
+      "module_coupling": {
+        "low": 3092,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 739,
+      "1": 1625,
+      "2": 162,
+      "3": 422,
+      "6": 121,
+      "10": 23
+    }
+  },
+  {
+    "project": "python-multipart",
+    "production_lines_of_code": 1595,
+    "duplicated_lines": 157,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 522,
+        "moderate": 332,
+        "high": 41,
+        "very_high": 432
+      },
+      "unit_complexity": {
+        "low": 927,
+        "moderate": 61,
+        "high": 95,
+        "very_high": 244
+      },
+      "unit_interfacing": {
+        "low": 1055,
+        "moderate": 126,
+        "high": 53,
+        "very_high": 93
+      },
+      "module_coupling": {
+        "low": 1595,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 353,
+      "1": 19,
+      "3": 70,
+      "5": 8,
+      "6": 1145
+    }
+  },
+  {
+    "project": "lxml",
+    "production_lines_of_code": 9798,
+    "duplicated_lines": 188,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3642,
+        "moderate": 2132,
+        "high": 1364,
+        "very_high": 670
+      },
+      "unit_complexity": {
+        "low": 5719,
+        "moderate": 1410,
+        "high": 679,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4994,
+        "moderate": 1968,
+        "high": 512,
+        "very_high": 334
+      },
+      "module_coupling": {
+        "low": 9787,
+        "moderate": 11,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 4119,
+      "1": 3448,
+      "2": 468,
+      "3": 196,
+      "4": 462,
+      "7": 1094,
+      "15": 11
+    }
+  },
+  {
+    "project": "tenacity",
+    "production_lines_of_code": 1511,
+    "duplicated_lines": 152,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 732,
+        "moderate": 261,
+        "high": 68,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 1061,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 780,
+        "moderate": 160,
+        "high": 25,
+        "very_high": 96
+      },
+      "module_coupling": {
+        "low": 1511,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 10,
+      "1": 407,
+      "2": 412,
+      "9": 613,
+      "10": 69
+    }
+  },
+  {
+    "project": "importlib-metadata",
+    "production_lines_of_code": 1180,
+    "duplicated_lines": 0,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 683,
+        "moderate": 33,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 716,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 692,
+        "moderate": 24,
+        "high": 0,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1180,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 155,
+      "1": 190,
+      "2": 229,
+      "3": 606
+    }
+  },
+  {
+    "project": "sqlalchemy",
+    "production_lines_of_code": 141761,
+    "duplicated_lines": 17969,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 44864,
+        "moderate": 22407,
+        "high": 17761,
+        "very_high": 19599
+      },
+      "unit_complexity": {
+        "low": 79615,
+        "moderate": 13585,
+        "high": 10397,
+        "very_high": 1034
+      },
+      "unit_interfacing": {
+        "low": 59296,
+        "moderate": 21942,
+        "high": 10184,
+        "very_high": 13209
+      },
+      "module_coupling": {
+        "low": 76355,
+        "moderate": 20405,
+        "high": 36365,
+        "very_high": 8636
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 11111,
+      "1": 13850,
+      "2": 12970,
+      "3": 6420,
+      "4": 6262,
+      "5": 4942,
+      "6": 11389,
+      "7": 748,
+      "8": 625,
+      "9": 2570,
+      "10": 5468,
+      "11": 5148,
+      "12": 976,
+      "13": 2605,
+      "14": 2501,
+      "15": 1015,
+      "16": 2414,
+      "17": 4683,
+      "20": 1063,
+      "21": 4401,
+      "22": 1199,
+      "23": 1704,
+      "24": 6992,
+      "25": 124,
+      "27": 625,
+      "28": 123,
+      "29": 2737,
+      "30": 65,
+      "31": 1697,
+      "34": 579,
+      "38": 1859,
+      "39": 3014,
+      "40": 140,
+      "43": 3667,
+      "44": 651,
+      "45": 1110,
+      "46": 187,
+      "47": 1996,
+      "48": 3495,
+      "54": 364,
+      "62": 1543,
+      "65": 157,
+      "67": 437,
+      "71": 1633,
+      "79": 3623,
+      "84": 283,
+      "115": 436,
+      "152": 160
+    }
+  },
+  {
+    "project": "hatchling",
+    "production_lines_of_code": 17606,
+    "duplicated_lines": 1676,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4990,
+        "moderate": 3342,
+        "high": 2726,
+        "very_high": 2598
+      },
+      "unit_complexity": {
+        "low": 9153,
+        "moderate": 2228,
+        "high": 1730,
+        "very_high": 545
+      },
+      "unit_interfacing": {
+        "low": 9818,
+        "moderate": 1753,
+        "high": 784,
+        "very_high": 1301
+      },
+      "module_coupling": {
+        "low": 15143,
+        "moderate": 2184,
+        "high": 279,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 702,
+      "1": 4662,
+      "2": 3326,
+      "3": 2567,
+      "4": 1599,
+      "5": 988,
+      "6": 336,
+      "7": 748,
+      "10": 215,
+      "13": 1301,
+      "14": 883,
+      "28": 166,
+      "37": 113
+    }
+  },
+  {
+    "project": "wheel",
+    "production_lines_of_code": 1904,
+    "duplicated_lines": 26,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 299,
+        "moderate": 312,
+        "high": 352,
+        "very_high": 439
+      },
+      "unit_complexity": {
+        "low": 871,
+        "moderate": 384,
+        "high": 147,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1052,
+        "moderate": 266,
+        "high": 84,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1904,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 84,
+      "1": 1519,
+      "3": 107,
+      "7": 194
+    }
+  },
+  {
+    "project": "pyparsing",
+    "production_lines_of_code": 23375,
+    "duplicated_lines": 2536,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4351,
+        "moderate": 1999,
+        "high": 1874,
+        "very_high": 3529
+      },
+      "unit_complexity": {
+        "low": 9176,
+        "moderate": 1346,
+        "high": 1035,
+        "very_high": 196
+      },
+      "unit_interfacing": {
+        "low": 8044,
+        "moderate": 2569,
+        "high": 474,
+        "very_high": 666
+      },
+      "module_coupling": {
+        "low": 23007,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 368
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 15636,
+      "1": 1454,
+      "2": 884,
+      "3": 879,
+      "4": 3,
+      "5": 260,
+      "6": 3891,
+      "115": 368
+    }
+  },
+  {
+    "project": "truststore",
+    "production_lines_of_code": 1312,
+    "duplicated_lines": 58,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 267,
+        "moderate": 165,
+        "high": 119,
+        "very_high": 213
+      },
+      "unit_complexity": {
+        "low": 655,
+        "moderate": 109,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 403,
+        "moderate": 195,
+        "high": 47,
+        "very_high": 119
+      },
+      "module_coupling": {
+        "low": 1312,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 66,
+      "1": 1230,
+      "3": 16
+    }
+  },
+  {
+    "project": "scipy",
+    "production_lines_of_code": 144721,
+    "duplicated_lines": 8853,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 42001,
+        "moderate": 24206,
+        "high": 22153,
+        "very_high": 30480
+      },
+      "unit_complexity": {
+        "low": 75323,
+        "moderate": 19355,
+        "high": 20775,
+        "very_high": 3387
+      },
+      "unit_interfacing": {
+        "low": 51594,
+        "moderate": 27908,
+        "high": 13495,
+        "very_high": 25843
+      },
+      "module_coupling": {
+        "low": 134966,
+        "moderate": 5586,
+        "high": 2668,
+        "very_high": 1501
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 16264,
+      "1": 49471,
+      "2": 26103,
+      "3": 15783,
+      "4": 10383,
+      "5": 8592,
+      "6": 5891,
+      "7": 1535,
+      "8": 227,
+      "9": 622,
+      "10": 95,
+      "11": 532,
+      "12": 191,
+      "13": 3124,
+      "14": 835,
+      "16": 856,
+      "17": 22,
+      "19": 26,
+      "23": 292,
+      "25": 49,
+      "27": 55,
+      "30": 255,
+      "32": 14,
+      "35": 32,
+      "36": 1733,
+      "42": 238,
+      "56": 86,
+      "67": 25,
+      "90": 691,
+      "141": 699
+    }
+  },
+  {
+    "project": "openai",
+    "production_lines_of_code": 171131,
+    "duplicated_lines": 98597,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 17902,
+        "moderate": 22216,
+        "high": 22024,
+        "very_high": 17153
+      },
+      "unit_complexity": {
+        "low": 64661,
+        "moderate": 5798,
+        "high": 5851,
+        "very_high": 2985
+      },
+      "unit_interfacing": {
+        "low": 31806,
+        "moderate": 6330,
+        "high": 11908,
+        "very_high": 29251
+      },
+      "module_coupling": {
+        "low": 162896,
+        "moderate": 3381,
+        "high": 546,
+        "very_high": 4308
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9710,
+      "1": 13503,
+      "2": 74349,
+      "3": 35575,
+      "4": 10614,
+      "5": 6316,
+      "6": 5074,
+      "7": 3148,
+      "8": 2904,
+      "9": 934,
+      "10": 769,
+      "11": 13,
+      "12": 383,
+      "13": 12,
+      "15": 1006,
+      "16": 538,
+      "17": 100,
+      "18": 1329,
+      "23": 353,
+      "25": 4,
+      "26": 4,
+      "40": 180,
+      "44": 5,
+      "54": 350,
+      "73": 223,
+      "120": 467,
+      "121": 315,
+      "131": 30,
+      "136": 1861,
+      "155": 156,
+      "280": 153,
+      "374": 67,
+      "1009": 686
+    }
+  },
+  {
+    "project": "httpx2",
+    "production_lines_of_code": 13129,
+    "duplicated_lines": 4711,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4414,
+        "moderate": 2952,
+        "high": 2809,
+        "very_high": 735
+      },
+      "unit_complexity": {
+        "low": 9664,
+        "moderate": 949,
+        "high": 297,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 6762,
+        "moderate": 1314,
+        "high": 612,
+        "very_high": 2222
+      },
+      "module_coupling": {
+        "low": 11438,
+        "moderate": 1691,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 905,
+      "1": 1889,
+      "2": 2453,
+      "3": 1649,
+      "4": 3457,
+      "6": 195,
+      "7": 523,
+      "8": 274,
+      "10": 93,
+      "12": 116,
+      "13": 211,
+      "14": 56,
+      "17": 1180,
+      "18": 119,
+      "19": 9
+    }
+  },
+  {
+    "project": "psutil",
+    "production_lines_of_code": 11643,
+    "duplicated_lines": 941,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3910,
+        "moderate": 2511,
+        "high": 1388,
+        "very_high": 1078
+      },
+      "unit_complexity": {
+        "low": 7565,
+        "moderate": 931,
+        "high": 222,
+        "very_high": 169
+      },
+      "unit_interfacing": {
+        "low": 8042,
+        "moderate": 567,
+        "high": 177,
+        "very_high": 101
+      },
+      "module_coupling": {
+        "low": 9788,
+        "moderate": 423,
+        "high": 1432,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 4984,
+      "1": 4121,
+      "5": 233,
+      "9": 450,
+      "14": 423,
+      "37": 1432
+    }
+  },
+  {
+    "project": "soupsieve",
+    "production_lines_of_code": 3854,
+    "duplicated_lines": 150,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 831,
+        "moderate": 937,
+        "high": 827,
+        "very_high": 355
+      },
+      "unit_complexity": {
+        "low": 1653,
+        "moderate": 701,
+        "high": 596,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1759,
+        "moderate": 668,
+        "high": 239,
+        "very_high": 284
+      },
+      "module_coupling": {
+        "low": 3854,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 476,
+      "1": 272,
+      "2": 2676,
+      "3": 358,
+      "4": 72
+    }
+  },
+  {
+    "project": "coverage",
+    "production_lines_of_code": 11656,
+    "duplicated_lines": 223,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3804,
+        "moderate": 2174,
+        "high": 1857,
+        "very_high": 1402
+      },
+      "unit_complexity": {
+        "low": 6727,
+        "moderate": 1577,
+        "high": 933,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 7242,
+        "moderate": 1557,
+        "high": 198,
+        "very_high": 240
+      },
+      "module_coupling": {
+        "low": 10854,
+        "moderate": 495,
+        "high": 307,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1704,
+      "1": 3048,
+      "2": 2818,
+      "3": 960,
+      "5": 711,
+      "6": 166,
+      "7": 682,
+      "8": 21,
+      "9": 417,
+      "10": 327,
+      "11": 325,
+      "12": 44,
+      "15": 108,
+      "16": 18,
+      "22": 205,
+      "23": 19,
+      "29": 83
+    }
+  },
+  {
+    "project": "sse-starlette",
+    "production_lines_of_code": 1043,
+    "duplicated_lines": 34,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 421,
+        "moderate": 232,
+        "high": 125,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 778,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 573,
+        "moderate": 137,
+        "high": 16,
+        "very_high": 52
+      },
+      "module_coupling": {
+        "low": 1043,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 635,
+      "1": 332,
+      "2": 72,
+      "7": 4
+    }
+  },
+  {
+    "project": "s3fs",
+    "production_lines_of_code": 4504,
+    "duplicated_lines": 1103,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 727,
+        "moderate": 732,
+        "high": 1200,
+        "very_high": 744
+      },
+      "unit_complexity": {
+        "low": 2079,
+        "moderate": 913,
+        "high": 411,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1664,
+        "moderate": 718,
+        "high": 596,
+        "very_high": 425
+      },
+      "module_coupling": {
+        "low": 4504,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 74,
+      "1": 2305,
+      "2": 2125
+    }
+  },
+  {
+    "project": "typer",
+    "production_lines_of_code": 13512,
+    "duplicated_lines": 3810,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 4113,
+        "moderate": 1539,
+        "high": 1543,
+        "very_high": 3682
+      },
+      "unit_complexity": {
+        "low": 9164,
+        "moderate": 1131,
+        "high": 582,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 5013,
+        "moderate": 1755,
+        "high": 775,
+        "very_high": 3334
+      },
+      "module_coupling": {
+        "low": 12435,
+        "moderate": 1048,
+        "high": 0,
+        "very_high": 29
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 3643,
+      "1": 1161,
+      "2": 1977,
+      "3": 2167,
+      "4": 1103,
+      "5": 303,
+      "6": 869,
+      "8": 543,
+      "10": 669,
+      "12": 1041,
+      "13": 7,
+      "244": 29
+    }
+  },
+  {
+    "project": "mcp",
+    "production_lines_of_code": 36441,
+    "duplicated_lines": 6446,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 10150,
+        "moderate": 5414,
+        "high": 4014,
+        "very_high": 1803
+      },
+      "unit_complexity": {
+        "low": 17123,
+        "moderate": 3295,
+        "high": 963,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 14505,
+        "moderate": 4151,
+        "high": 1288,
+        "very_high": 1437
+      },
+      "module_coupling": {
+        "low": 32431,
+        "moderate": 2730,
+        "high": 509,
+        "very_high": 771
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9846,
+      "1": 7840,
+      "2": 6226,
+      "3": 1193,
+      "4": 2584,
+      "5": 921,
+      "6": 1079,
+      "7": 812,
+      "8": 1066,
+      "9": 619,
+      "10": 245,
+      "11": 189,
+      "12": 1406,
+      "13": 918,
+      "14": 137,
+      "16": 7,
+      "20": 73,
+      "25": 135,
+      "26": 142,
+      "32": 2,
+      "33": 130,
+      "41": 59,
+      "45": 41,
+      "56": 84,
+      "57": 141,
+      "58": 51,
+      "62": 428,
+      "120": 56,
+      "129": 6,
+      "148": 5
+    }
+  },
+  {
+    "project": "huggingface-hub",
+    "production_lines_of_code": 48298,
+    "duplicated_lines": 7170,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 9269,
+        "moderate": 9581,
+        "high": 8731,
+        "very_high": 8360
+      },
+      "unit_complexity": {
+        "low": 23791,
+        "moderate": 6754,
+        "high": 4827,
+        "very_high": 569
+      },
+      "unit_interfacing": {
+        "low": 15078,
+        "moderate": 7286,
+        "high": 4199,
+        "very_high": 9378
+      },
+      "module_coupling": {
+        "low": 36867,
+        "moderate": 465,
+        "high": 10380,
+        "very_high": 586
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9443,
+      "1": 11136,
+      "2": 5702,
+      "3": 4473,
+      "4": 626,
+      "5": 606,
+      "6": 2500,
+      "7": 872,
+      "8": 231,
+      "10": 1278,
+      "14": 219,
+      "20": 246,
+      "23": 414,
+      "24": 818,
+      "26": 1973,
+      "35": 85,
+      "36": 65,
+      "45": 6888,
+      "50": 137,
+      "60": 199,
+      "61": 387
+    }
+  },
+  {
+    "project": "dnspython",
+    "production_lines_of_code": 22558,
+    "duplicated_lines": 3214,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 8465,
+        "moderate": 3503,
+        "high": 4822,
+        "very_high": 1971
+      },
+      "unit_complexity": {
+        "low": 14728,
+        "moderate": 2702,
+        "high": 1331,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 10207,
+        "moderate": 3506,
+        "high": 1991,
+        "very_high": 3057
+      },
+      "module_coupling": {
+        "low": 15872,
+        "moderate": 3690,
+        "high": 1545,
+        "very_high": 1451
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 4381,
+      "1": 3816,
+      "2": 1777,
+      "3": 1545,
+      "4": 1058,
+      "5": 623,
+      "6": 1464,
+      "7": 299,
+      "8": 497,
+      "9": 412,
+      "11": 1747,
+      "13": 239,
+      "14": 224,
+      "18": 1055,
+      "19": 425,
+      "21": 1270,
+      "25": 43,
+      "42": 232,
+      "55": 723,
+      "63": 614,
+      "83": 67,
+      "85": 47
+    }
+  },
+  {
+    "project": "cachetools",
+    "production_lines_of_code": 1215,
+    "duplicated_lines": 234,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 829,
+        "moderate": 159,
+        "high": 101,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 1036,
+        "moderate": 53,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 856,
+        "moderate": 123,
+        "high": 93,
+        "very_high": 17
+      },
+      "module_coupling": {
+        "low": 1215,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 69,
+      "1": 952,
+      "2": 194
+    }
+  },
+  {
+    "project": "docstring-parser",
+    "production_lines_of_code": 4295,
+    "duplicated_lines": 289,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1117,
+        "moderate": 728,
+        "high": 622,
+        "very_high": 897
+      },
+      "unit_complexity": {
+        "low": 1676,
+        "moderate": 676,
+        "high": 745,
+        "very_high": 267
+      },
+      "unit_interfacing": {
+        "low": 2503,
+        "moderate": 716,
+        "high": 108,
+        "very_high": 37
+      },
+      "module_coupling": {
+        "low": 3953,
+        "moderate": 342,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 335,
+      "1": 398,
+      "2": 225,
+      "3": 2479,
+      "5": 119,
+      "6": 212,
+      "7": 185,
+      "15": 342
+    }
+  },
+  {
+    "project": "oauthlib",
+    "production_lines_of_code": 4884,
+    "duplicated_lines": 446,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1724,
+        "moderate": 1022,
+        "high": 781,
+        "very_high": 196
+      },
+      "unit_complexity": {
+        "low": 3266,
+        "moderate": 389,
+        "high": 68,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2114,
+        "moderate": 641,
+        "high": 747,
+        "very_high": 221
+      },
+      "module_coupling": {
+        "low": 4375,
+        "moderate": 44,
+        "high": 465,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 342,
+      "1": 1480,
+      "2": 627,
+      "3": 687,
+      "4": 128,
+      "5": 85,
+      "6": 553,
+      "7": 381,
+      "9": 92,
+      "11": 44,
+      "21": 163,
+      "30": 302
+    }
+  },
+  {
+    "project": "werkzeug",
+    "production_lines_of_code": 16020,
+    "duplicated_lines": 1538,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5842,
+        "moderate": 2905,
+        "high": 2261,
+        "very_high": 1072
+      },
+      "unit_complexity": {
+        "low": 9886,
+        "moderate": 1674,
+        "high": 520,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 8836,
+        "moderate": 1868,
+        "high": 497,
+        "very_high": 879
+      },
+      "module_coupling": {
+        "low": 12907,
+        "moderate": 2359,
+        "high": 754,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1602,
+      "1": 2015,
+      "2": 1849,
+      "3": 2360,
+      "4": 2547,
+      "5": 608,
+      "6": 235,
+      "7": 519,
+      "8": 672,
+      "10": 500,
+      "11": 352,
+      "13": 495,
+      "14": 699,
+      "18": 60,
+      "19": 753,
+      "21": 383,
+      "26": 371
+    }
+  },
+  {
+    "project": "more-itertools",
+    "production_lines_of_code": 2780,
+    "duplicated_lines": 50,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1490,
+        "moderate": 779,
+        "high": 71,
+        "very_high": 69
+      },
+      "unit_complexity": {
+        "low": 2122,
+        "moderate": 218,
+        "high": 69,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1664,
+        "moderate": 646,
+        "high": 99,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 2780,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 65,
+      "1": 2146,
+      "2": 569
+    }
+  },
+  {
+    "project": "virtualenv",
+    "production_lines_of_code": 7781,
+    "duplicated_lines": 297,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3274,
+        "moderate": 1356,
+        "high": 718,
+        "very_high": 125
+      },
+      "unit_complexity": {
+        "low": 5063,
+        "moderate": 410,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 4087,
+        "moderate": 984,
+        "high": 134,
+        "very_high": 268
+      },
+      "module_coupling": {
+        "low": 7226,
+        "moderate": 555,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2152,
+      "1": 1738,
+      "2": 696,
+      "3": 1383,
+      "4": 522,
+      "5": 60,
+      "6": 72,
+      "7": 309,
+      "8": 294,
+      "12": 70,
+      "15": 16,
+      "17": 323,
+      "20": 146
+    }
+  },
+  {
+    "project": "defusedxml",
+    "production_lines_of_code": 1299,
+    "duplicated_lines": 186,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 638,
+        "moderate": 274,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 912,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 583,
+        "moderate": 88,
+        "high": 225,
+        "very_high": 16
+      },
+      "module_coupling": {
+        "low": 1299,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 619,
+      "1": 94,
+      "2": 292,
+      "3": 243,
+      "6": 51
+    }
+  },
+  {
+    "project": "networkx",
+    "production_lines_of_code": 45194,
+    "duplicated_lines": 4023,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 10356,
+        "moderate": 10246,
+        "high": 10263,
+        "very_high": 7170
+      },
+      "unit_complexity": {
+        "low": 21402,
+        "moderate": 9586,
+        "high": 5719,
+        "very_high": 1328
+      },
+      "unit_interfacing": {
+        "low": 16860,
+        "moderate": 10741,
+        "high": 6249,
+        "very_high": 4185
+      },
+      "module_coupling": {
+        "low": 44882,
+        "moderate": 271,
+        "high": 0,
+        "very_high": 41
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 4395,
+      "1": 29270,
+      "2": 6997,
+      "3": 1395,
+      "4": 333,
+      "5": 2162,
+      "6": 219,
+      "8": 111,
+      "19": 271,
+      "128": 8,
+      "360": 33
+    }
+  },
+  {
+    "project": "redis",
+    "production_lines_of_code": 58955,
+    "duplicated_lines": 16045,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 17009,
+        "moderate": 10706,
+        "high": 8734,
+        "very_high": 6566
+      },
+      "unit_complexity": {
+        "low": 32627,
+        "moderate": 6147,
+        "high": 3288,
+        "very_high": 953
+      },
+      "unit_interfacing": {
+        "low": 26504,
+        "moderate": 8635,
+        "high": 2667,
+        "very_high": 5209
+      },
+      "module_coupling": {
+        "low": 48389,
+        "moderate": 9713,
+        "high": 735,
+        "very_high": 118
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 9203,
+      "1": 7690,
+      "2": 4296,
+      "3": 1192,
+      "4": 10959,
+      "5": 985,
+      "6": 543,
+      "7": 1340,
+      "8": 68,
+      "9": 10092,
+      "10": 2021,
+      "11": 501,
+      "12": 2708,
+      "13": 3295,
+      "15": 1045,
+      "16": 1933,
+      "18": 99,
+      "19": 132,
+      "34": 129,
+      "38": 606,
+      "55": 118
+    }
+  },
+  {
+    "project": "fonttools",
+    "production_lines_of_code": 108843,
+    "duplicated_lines": 9689,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 25048,
+        "moderate": 16646,
+        "high": 18195,
+        "very_high": 15165
+      },
+      "unit_complexity": {
+        "low": 49509,
+        "moderate": 13857,
+        "high": 8893,
+        "very_high": 2795
+      },
+      "unit_interfacing": {
+        "low": 46217,
+        "moderate": 18651,
+        "high": 6824,
+        "very_high": 3362
+      },
+      "module_coupling": {
+        "low": 94524,
+        "moderate": 9923,
+        "high": 4237,
+        "very_high": 159
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 8955,
+      "1": 30760,
+      "2": 20030,
+      "3": 6755,
+      "4": 12534,
+      "5": 5917,
+      "6": 2718,
+      "7": 2888,
+      "8": 1362,
+      "9": 2316,
+      "10": 289,
+      "11": 5967,
+      "12": 2483,
+      "13": 580,
+      "16": 608,
+      "18": 22,
+      "19": 263,
+      "26": 421,
+      "29": 232,
+      "31": 2267,
+      "32": 51,
+      "33": 50,
+      "34": 5,
+      "38": 144,
+      "42": 1067,
+      "56": 48,
+      "83": 96,
+      "104": 15
+    }
+  },
+  {
+    "project": "mako",
+    "production_lines_of_code": 6061,
+    "duplicated_lines": 298,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 2380,
+        "moderate": 1188,
+        "high": 801,
+        "very_high": 774
+      },
+      "unit_complexity": {
+        "low": 4287,
+        "moderate": 712,
+        "high": 144,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 3317,
+        "moderate": 1098,
+        "high": 293,
+        "very_high": 435
+      },
+      "module_coupling": {
+        "low": 5757,
+        "moderate": 304,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 727,
+      "1": 2485,
+      "2": 1024,
+      "3": 827,
+      "6": 499,
+      "8": 195,
+      "14": 304
+    }
+  },
+  {
+    "project": "alembic",
+    "production_lines_of_code": 18164,
+    "duplicated_lines": 1846,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 5385,
+        "moderate": 3603,
+        "high": 3856,
+        "very_high": 2155
+      },
+      "unit_complexity": {
+        "low": 11618,
+        "moderate": 2678,
+        "high": 496,
+        "very_high": 207
+      },
+      "unit_interfacing": {
+        "low": 7303,
+        "moderate": 3682,
+        "high": 2115,
+        "very_high": 1899
+      },
+      "module_coupling": {
+        "low": 15058,
+        "moderate": 2651,
+        "high": 455,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1803,
+      "1": 4365,
+      "2": 1836,
+      "3": 2084,
+      "4": 124,
+      "5": 774,
+      "6": 799,
+      "7": 1222,
+      "9": 768,
+      "10": 1283,
+      "12": 692,
+      "16": 384,
+      "18": 1575,
+      "22": 422,
+      "32": 33
+    }
+  },
+  {
+    "project": "requests-toolbelt",
+    "production_lines_of_code": 1770,
+    "duplicated_lines": 18,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 955,
+        "moderate": 318,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 1254,
+        "moderate": 19,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1020,
+        "moderate": 235,
+        "high": 18,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1770,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 722,
+      "1": 458,
+      "2": 135,
+      "3": 273,
+      "10": 182
+    }
+  },
+  {
+    "project": "prompt-toolkit",
+    "production_lines_of_code": 29569,
+    "duplicated_lines": 3012,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 10388,
+        "moderate": 4725,
+        "high": 2862,
+        "very_high": 2638
+      },
+      "unit_complexity": {
+        "low": 18661,
+        "moderate": 1031,
+        "high": 921,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 15496,
+        "moderate": 2189,
+        "high": 1088,
+        "very_high": 1840
+      },
+      "module_coupling": {
+        "low": 22537,
+        "moderate": 2792,
+        "high": 4115,
+        "very_high": 125
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 5044,
+      "1": 5520,
+      "2": 1614,
+      "3": 4386,
+      "4": 1965,
+      "5": 1573,
+      "6": 924,
+      "7": 1042,
+      "8": 142,
+      "9": 193,
+      "10": 134,
+      "11": 261,
+      "15": 12,
+      "16": 1208,
+      "17": 12,
+      "18": 48,
+      "19": 178,
+      "20": 1073,
+      "22": 687,
+      "25": 374,
+      "26": 274,
+      "27": 321,
+      "32": 84,
+      "33": 532,
+      "34": 1699,
+      "38": 81,
+      "40": 18,
+      "42": 45,
+      "53": 42,
+      "56": 44,
+      "57": 39
+    }
+  },
+  {
+    "project": "scikit-learn",
+    "production_lines_of_code": 127149,
+    "duplicated_lines": 17985,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 19785,
+        "moderate": 19966,
+        "high": 22398,
+        "very_high": 22735
+      },
+      "unit_complexity": {
+        "low": 59464,
+        "moderate": 15074,
+        "high": 8038,
+        "very_high": 2308
+      },
+      "unit_interfacing": {
+        "low": 32198,
+        "moderate": 21471,
+        "high": 10533,
+        "very_high": 20682
+      },
+      "module_coupling": {
+        "low": 115896,
+        "moderate": 4152,
+        "high": 2633,
+        "very_high": 4468
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 33268,
+      "1": 41816,
+      "2": 19820,
+      "3": 4749,
+      "4": 3645,
+      "5": 901,
+      "6": 3425,
+      "7": 1616,
+      "8": 1471,
+      "9": 3651,
+      "10": 1534,
+      "12": 147,
+      "13": 296,
+      "14": 2135,
+      "15": 145,
+      "16": 880,
+      "17": 393,
+      "18": 69,
+      "19": 87,
+      "22": 87,
+      "23": 32,
+      "28": 91,
+      "30": 18,
+      "31": 959,
+      "35": 18,
+      "37": 371,
+      "40": 251,
+      "41": 43,
+      "44": 58,
+      "45": 665,
+      "47": 40,
+      "57": 95,
+      "58": 494,
+      "74": 39,
+      "83": 909,
+      "118": 186,
+      "121": 92,
+      "134": 62,
+      "141": 457,
+      "145": 71,
+      "146": 455,
+      "149": 1359,
+      "152": 90,
+      "234": 159
+    }
+  },
+  {
+    "project": "threadpoolctl",
+    "production_lines_of_code": 1197,
+    "duplicated_lines": 20,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 435,
+        "moderate": 164,
+        "high": 303,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 818,
+        "moderate": 84,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 757,
+        "moderate": 75,
+        "high": 70,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1197,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 72,
+      "1": 1125
+    }
+  },
+  {
+    "project": "mypy",
+    "production_lines_of_code": 120176,
+    "duplicated_lines": 7197,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 33808,
+        "moderate": 23010,
+        "high": 20886,
+        "very_high": 22031
+      },
+      "unit_complexity": {
+        "low": 61564,
+        "moderate": 18175,
+        "high": 15222,
+        "very_high": 4774
+      },
+      "unit_interfacing": {
+        "low": 59619,
+        "moderate": 21208,
+        "high": 11218,
+        "very_high": 7690
+      },
+      "module_coupling": {
+        "low": 88403,
+        "moderate": 15082,
+        "high": 7126,
+        "very_high": 9565
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 8781,
+      "1": 21394,
+      "2": 19884,
+      "3": 6290,
+      "4": 3882,
+      "5": 5102,
+      "6": 11041,
+      "7": 2630,
+      "8": 7805,
+      "9": 617,
+      "10": 977,
+      "11": 703,
+      "12": 1523,
+      "13": 3006,
+      "14": 557,
+      "15": 3961,
+      "16": 1596,
+      "17": 474,
+      "18": 333,
+      "19": 17,
+      "20": 2912,
+      "22": 1817,
+      "24": 286,
+      "26": 309,
+      "27": 1264,
+      "28": 1014,
+      "29": 914,
+      "31": 115,
+      "34": 379,
+      "43": 670,
+      "48": 358,
+      "51": 346,
+      "66": 1013,
+      "70": 1181,
+      "117": 3253,
+      "124": 3772
+    }
+  },
+  {
+    "project": "flask",
+    "production_lines_of_code": 4678,
+    "duplicated_lines": 213,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1783,
+        "moderate": 933,
+        "high": 694,
+        "very_high": 126
+      },
+      "unit_complexity": {
+        "low": 3026,
+        "moderate": 449,
+        "high": 61,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2441,
+        "moderate": 583,
+        "high": 260,
+        "very_high": 252
+      },
+      "module_coupling": {
+        "low": 4620,
+        "moderate": 58,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1248,
+      "1": 726,
+      "2": 269,
+      "3": 248,
+      "4": 1081,
+      "5": 13,
+      "6": 689,
+      "7": 216,
+      "9": 130,
+      "12": 58
+    }
+  },
+  {
+    "project": "anthropic",
+    "production_lines_of_code": 125286,
+    "duplicated_lines": 69160,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 13405,
+        "moderate": 11443,
+        "high": 27791,
+        "very_high": 6072
+      },
+      "unit_complexity": {
+        "low": 52911,
+        "moderate": 4076,
+        "high": 1724,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 20645,
+        "moderate": 3102,
+        "high": 6700,
+        "very_high": 28264
+      },
+      "module_coupling": {
+        "low": 115632,
+        "moderate": 2435,
+        "high": 2937,
+        "very_high": 4282
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2581,
+      "1": 18042,
+      "2": 70830,
+      "3": 13308,
+      "4": 4840,
+      "5": 2399,
+      "6": 783,
+      "7": 484,
+      "8": 683,
+      "9": 952,
+      "10": 730,
+      "11": 213,
+      "12": 63,
+      "13": 617,
+      "14": 758,
+      "16": 15,
+      "19": 6,
+      "20": 763,
+      "21": 341,
+      "23": 458,
+      "28": 18,
+      "31": 199,
+      "40": 1884,
+      "41": 17,
+      "49": 20,
+      "56": 17,
+      "104": 237,
+      "120": 498,
+      "122": 170,
+      "125": 66,
+      "129": 28,
+      "131": 2090,
+      "146": 148,
+      "176": 66,
+      "239": 215,
+      "1420": 747
+    }
+  },
+  {
+    "project": "nodeenv",
+    "production_lines_of_code": 1794,
+    "duplicated_lines": 16,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 221,
+        "moderate": 330,
+        "high": 272,
+        "very_high": 300
+      },
+      "unit_complexity": {
+        "low": 710,
+        "moderate": 230,
+        "high": 183,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 776,
+        "moderate": 295,
+        "high": 52,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1794,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1794
+    }
+  },
+  {
+    "project": "pyopenssl",
+    "production_lines_of_code": 3107,
+    "duplicated_lines": 248,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1445,
+        "moderate": 518,
+        "high": 235,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 2161,
+        "moderate": 37,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1953,
+        "moderate": 213,
+        "high": 32,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 3107,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 264,
+      "2": 2790,
+      "3": 53
+    }
+  },
+  {
+    "project": "python-discovery",
+    "production_lines_of_code": 2735,
+    "duplicated_lines": 14,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 931,
+        "moderate": 926,
+        "high": 266,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 1818,
+        "moderate": 305,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1373,
+        "moderate": 346,
+        "high": 322,
+        "very_high": 82
+      },
+      "module_coupling": {
+        "low": 2735,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 107,
+      "1": 1116,
+      "2": 330,
+      "3": 479,
+      "4": 703
+    }
+  },
+  {
+    "project": "joblib",
+    "production_lines_of_code": 10153,
+    "duplicated_lines": 574,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 3216,
+        "moderate": 1756,
+        "high": 2099,
+        "very_high": 1104
+      },
+      "unit_complexity": {
+        "low": 6307,
+        "moderate": 1270,
+        "high": 598,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 5560,
+        "moderate": 1354,
+        "high": 346,
+        "very_high": 915
+      },
+      "module_coupling": {
+        "low": 10111,
+        "moderate": 42,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1658,
+      "1": 2698,
+      "2": 812,
+      "3": 2264,
+      "4": 2360,
+      "5": 201,
+      "7": 118,
+      "14": 42
+    }
+  },
+  {
+    "project": "psycopg",
+    "production_lines_of_code": 18391,
+    "duplicated_lines": 2155,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 7036,
+        "moderate": 3431,
+        "high": 1641,
+        "very_high": 511
+      },
+      "unit_complexity": {
+        "low": 11533,
+        "moderate": 1023,
+        "high": 63,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 9961,
+        "moderate": 1934,
+        "high": 278,
+        "very_high": 446
+      },
+      "module_coupling": {
+        "low": 15354,
+        "moderate": 1604,
+        "high": 209,
+        "very_high": 1224
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 2389,
+      "1": 3055,
+      "2": 2817,
+      "3": 3194,
+      "4": 974,
+      "5": 391,
+      "6": 300,
+      "7": 493,
+      "9": 675,
+      "10": 1066,
+      "11": 759,
+      "16": 78,
+      "17": 555,
+      "18": 212,
+      "22": 63,
+      "26": 50,
+      "50": 96,
+      "52": 116,
+      "53": 1108
+    }
+  },
+  {
+    "project": "matplotlib",
+    "production_lines_of_code": 111565,
+    "duplicated_lines": 4906,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 32200,
+        "moderate": 17297,
+        "high": 13263,
+        "very_high": 10118
+      },
+      "unit_complexity": {
+        "low": 56520,
+        "moderate": 9481,
+        "high": 6237,
+        "very_high": 640
+      },
+      "unit_interfacing": {
+        "low": 45396,
+        "moderate": 11442,
+        "high": 5573,
+        "very_high": 10467
+      },
+      "module_coupling": {
+        "low": 83866,
+        "moderate": 6577,
+        "high": 10375,
+        "very_high": 10747
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 29831,
+      "1": 16847,
+      "2": 14068,
+      "3": 6074,
+      "4": 4775,
+      "5": 3878,
+      "6": 4410,
+      "7": 488,
+      "8": 1382,
+      "9": 1690,
+      "10": 423,
+      "11": 826,
+      "12": 1033,
+      "13": 1235,
+      "14": 10,
+      "16": 17,
+      "17": 1005,
+      "20": 2451,
+      "21": 737,
+      "24": 924,
+      "26": 1271,
+      "28": 1050,
+      "29": 46,
+      "32": 2373,
+      "33": 1613,
+      "39": 862,
+      "42": 1499,
+      "58": 503,
+      "61": 1947,
+      "94": 1356,
+      "96": 2245,
+      "100": 1166,
+      "101": 192,
+      "112": 729,
+      "572": 2609
+    }
+  },
+  {
+    "project": "tzlocal",
+    "production_lines_of_code": 1122,
+    "duplicated_lines": 16,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 74,
+        "moderate": 81,
+        "high": 80,
+        "very_high": 96
+      },
+      "unit_complexity": {
+        "low": 189,
+        "moderate": 46,
+        "high": 96,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 331,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 1122,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 86,
+      "1": 239,
+      "2": 736,
+      "3": 61
+    }
+  },
+  {
+    "project": "pytest-xdist",
+    "production_lines_of_code": 2703,
+    "duplicated_lines": 261,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1124,
+        "moderate": 791,
+        "high": 183,
+        "very_high": 253
+      },
+      "unit_complexity": {
+        "low": 2098,
+        "moderate": 253,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1987,
+        "moderate": 310,
+        "high": 54,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 2703,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 277,
+      "1": 1017,
+      "2": 437,
+      "3": 194,
+      "4": 21,
+      "8": 424,
+      "9": 333
+    }
+  },
+  {
+    "project": "h2",
+    "production_lines_of_code": 4443,
+    "duplicated_lines": 273,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 1710,
+        "moderate": 1187,
+        "high": 384,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 3168,
+        "moderate": 113,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 2711,
+        "moderate": 510,
+        "high": 43,
+        "very_high": 17
+      },
+      "module_coupling": {
+        "low": 3058,
+        "moderate": 1385,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 1541,
+      "1": 83,
+      "2": 1206,
+      "3": 164,
+      "6": 23,
+      "8": 41,
+      "11": 75,
+      "12": 269,
+      "15": 1041
+    }
+  },
+  {
+    "project": "hpack",
+    "production_lines_of_code": 5086,
+    "duplicated_lines": 32,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 182,
+        "moderate": 194,
+        "high": 130,
+        "very_high": 0
+      },
+      "unit_complexity": {
+        "low": 506,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 421,
+        "moderate": 85,
+        "high": 0,
+        "very_high": 0
+      },
+      "module_coupling": {
+        "low": 5086,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 122,
+      "1": 4941,
+      "2": 16,
+      "4": 7
+    }
+  },
+  {
+    "project": "websocket-client",
+    "production_lines_of_code": 3316,
+    "duplicated_lines": 535,
+    "risk_profiles": {
+      "unit_size": {
+        "low": 658,
+        "moderate": 749,
+        "high": 660,
+        "very_high": 220
+      },
+      "unit_complexity": {
+        "low": 1511,
+        "moderate": 565,
+        "high": 211,
+        "very_high": 0
+      },
+      "unit_interfacing": {
+        "low": 1477,
+        "moderate": 507,
+        "high": 88,
+        "very_high": 215
+      },
+      "module_coupling": {
+        "low": 3316,
+        "moderate": 0,
+        "high": 0,
+        "very_high": 0
+      }
+    },
+    "lines_of_code_per_file_fan_in": {
+      "0": 322,
+      "1": 340,
+      "2": 1520,
+      "3": 796,
+      "4": 48,
+      "5": 175,
+      "7": 86,
+      "8": 29
+    }
+  }
+]
