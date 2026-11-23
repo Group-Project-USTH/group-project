@@ -19,7 +19,7 @@ maintainability-lens = "maintainability_lens.cli:main"
 # are not installed with the CLI.
 agent = [
     "deepagents>=0.7.37,<0.8",
-    "fastapi>=0.162.5,<0.163",
+    "fastapi>=0.162.5,<0.166",
     "langchain>=1.4.6,<2",
     "langchain-openai>=1.7.4,<2",
     "langfuse>=5.2.0,<6",
